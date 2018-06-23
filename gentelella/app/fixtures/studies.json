@@ -1,0 +1,351 @@
+[
+{
+"model":"app.study",
+"pk":0,
+"fields":{ 
+"SRP":"SRP008339",
+"PRJ":"PRJNA147351",
+"Organism":"Homo sapiens",
+"Abstract":"Breast milk is a complex liquid that enriched in immunological components and affect the development of the infant immune system. Exosomes, the membranous vesicles of endocytic origin, are ubiquitously in various body fluids which can mediate intercellular communication. MicroRNAs (miRNAs), a well-defined group of non-coding small RNAs, in human breast milk are packaged inside exosomes. Here, we present the identification of miRNAs in human breast milk exosomes using deep sequencing technology. We found that the immune-related miRNAs are enriched in breast milk exosomes, and are resistant to the general harsh conditions. Overall design: Four small RNA libraries in human breast milk exosomes from four healthy women (30 +/- 0.9 years old, primiparity) when the infant were aged at 60 days were sequenced.",
+"Url":"https://www.ncbi.nlm.nih.gov/pubmed/22211110",
+"Title":"Immune-related microRNAs are enriched in breast milk exosomes"
+}
+},
+{
+"model":"app.study",
+"pk":1,
+"fields":{ 
+"SRP":"SRP020486",
+"PRJ":"PRJNA196121",
+"Organism":"Homo sapiens",
+"Abstract":"Exosomes, endosome-derived membrane microvesicles, contain a specific set of RNA transcripts that are involved in cell-cell communication and hold a great potential as disease biomarkers. To systemically characterize exosomal RNA profiles, we performed RNA sequencing analysis using three human plasma samples and evaluated efficacies of small RNA library preparation protocols from 3 manufacturers. Overall design: We tested the six samples (A1 and A2, B1 and B2, C1 and C2) using two small RNA library preparation kits: NEBNext Multiplex Small RNA library Prep Set from New England Biolab (NEB) and NEXTflex Small RNA Sequencing Kit from Bioo Scientific (BS). We also tested Illumina’s TrueSeq Small RNA Sample Preparation Kit (ILMN) in sample A1 and A2. Together, we tested these plasma samples by sequencing 14 indexed libraries. This study allowed direct comparison of current small RNA library preparation protocols and identified the most suitable strategy for future exosomal RNA sequencing analysis.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/23663360",
+"Title":"Characterization of human plasma-derived exosomal RNAs"
+}
+},
+{
+"model":"app.study",
+"pk":2,
+"fields":{ 
+"SRP":"SRP027589",
+"PRJ":"PRJNA212733",
+"Organism":"Homo sapiens",
+"Abstract":"MicroRNAs (miRNAs) have been recently detected in the circulation of cancer patients, where they are associated with clinical parameters. Discovery profiling of circulating small RNAs has not been previously reported in breast cancer (BC), and was carried out in this study to identify blood-based small RNA markers of BC clinical outcome. Overall design: The pre-treatment sera of 42 stage II–III locally advanced and inflammatory BC patients who received neoadjuvant chemotherapy (NCT) followed by surgical tumor resection were analyzed for marker identification by deep sequencing all circulating small RNAs.",
+"Url":"https://www.ncbi.nlm.nih.gov/pubmed/23663360",
+"Title":"De novo sequencing of circulating microRNAs in locally advanced breast cancer"
+}
+},
+{
+"model":"app.study",
+"pk":3,
+"fields":{ 
+"SRP":"SRP029994",
+"PRJ":"PRJNA219428",
+"Organism":"Homo sapiens",
+"Abstract":"The aims of the project are to detect differential expression in circulating microRNA in human plasma that are associated with chronic fatigue syndrome.",
+"Url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4169517/",
+"Title":"Homo sapiens Transcriptome or Gene expression"
+}
+},
+{
+"model":"app.study",
+"pk":4,
+"fields":{ 
+"SRP":"SRP033505",
+"PRJ":"PRJNA230622",
+"Organism":"Homo sapiens",
+"Abstract":"We report the sequencing of small RNAs present in the plasma of three normal subjects. In addition to microRNAs we identified abundant non-human small RNA sequences. The organisms from which these were derived were identified by BLAST searches with contigs assembled from the short sequences. The taxonomic profiles were very consistent between individuals, including plants and microbes reported previously in the microbiome, but in proportions distinct from other sites. The majority of bacterial reads were from the phylum Proteobacteria, whilst for 5 of 6 individuals over 90% of the more abundant fungal reads were from the phylum Ascomycota; of these over 90% were from the order Hypocreales. Most reads mapped to rRNA sequences and the presence of specific common sequences was confirmed by RT-PCR. In addition, extremely abundant small RNAs derived from human Y RNAs were detected. We conclude that a characteristic profile of a subset of the human microbiome can be obtained by sequencing small RNAs present in the blood. The origin and potential function of these molecules remains to be determined, but the specific profile is likely to reflect health status. This facile test has immense potential to provide biomarkers for the diagnosis and prognosis of human disease. Overall design: The profile of small RNAs present in the plasma of three normal subjects was determined",
+"Url":"---",
+"Title":"Small RNA sequencing of plasma RNA"
+}
+},
+{
+"model":"app.study",
+"pk":5,
+"fields":{ 
+"SRP":"SRP034590",
+"PRJ":"PRJNA232039",
+"Organism":"Homo sapiens",
+"Abstract":"we performed RNA sequencing analysis using 7 human plasma samples and evaluated efficiency and accuracy of eRNA on miRNA-seq data analysis. Overall design: We sequenced microRNAs from the 7 human tissue samples with replicates (A1/A8, B2/B9, C3/C10, D4/D11, E5/E12, F6/F13, G7/G14) using NEBNext Multiplex Small RNA library Prep Set from New England Biolab (NEB). After that, we identified miRNAs in these plasma samples against known human matured miRNAs.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/24593312",
+"Title":"eRNA: A graphic user interface-based tool for RNA sequencing data analysis [microRNA-Seq]"
+}
+},
+{
+"model":"app.study",
+"pk":6,
+"fields":{ 
+"SRP":"SRP041033",
+"PRJ":"PRJNA244080",
+"Organism":"Homo sapiens",
+"Abstract":"We identified total 174 significantly differentially expressed miRNAs between tumors and the normal tissues, and 109 miRNAs between serum from patients and serum from healthy individuals. There are only 10 common miRNAs. This suggests that only a small portion of tumor miRNAs are released into serum selectively. Interestingly, the expression change pattern of 28 miRNAs is opposite between breast cancer tumors and serum. Functional analysis shows that the differentially expressed miRNAs and their target genes form a complex interaction network affecting many biological processes and involving in cancer-related pathways such as prostate, basal cell carcinoma, acute myeloid leukymia, and more. Overall design: A bunch of miRNAs have been demonstrated to be aberrantly expressed in cancer tumor tissue and serum. The miRNA signatures identified from the serum samples could serve as potential noninvasive diagnostic markers for breast cancer. The roles of the miRNAs in cancerigenesis is unclear. In this study, we generated the expression profiles of miRNAs from the paired breast cancer tumors, normal, tissue, and serum samples from eight patients using small RNA-sequencing. Serum samples from eight healthy individuals were used as normal controls.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/24904649",
+"Title":"Different miRNA expression profiles between human breast cancer turmors and serum"
+}
+},
+{
+"model":"app.study",
+"pk":7,
+"fields":{ 
+"SRP":"SRP043122",
+"PRJ":"PRJNA252516",
+"Organism":"Homo sapiens",
+"Abstract":"Extracellular microRNAs (miRNAs) embedded in circulating exosomes may serves as prognostic biomarkers in cancer. This study was performed to identify and evaluate plasma exosomal miRNAs for prognostication in castration resistant prostate cancer (CRPC). RNA sequencing was performed to identify candidate exosomal miRNAs associated with overall survival in a screening cohort of 23 CRPC patients. Candidate miRNAs were further evaluated for prognosis using qRT-PCR in a follow-up cohort of 100 patients. Cox regression and Kaplan–Meier survival curve analysis were used to evaluate prognostic value of miRNA candidates with and without incorporation of clinical prognostic factors (age, Gleason score and time from androgen deprivation therapy to clinical progression). In the screening cohort, we obtained ~6.80 million mappable RNA reads per patient. Of those with normalized read counts ? 5, 43% were mapped to miRNAs for a total of 375 known and 57 novel miRNAs. Cox regression analysis identified an association of miR-1290, -1246, and -375 with overall survival (FDR&lt;0.1). Of those, higher levels of miR-1290 and -375 were verified to be significantly associated with poor overall survival (p&lt;0.004) in the follow-up cohort. The miR-1290/-375-based prediction model showed better performance with time-dependent area under the curve (AUC) =72% compared to clinical variable-based model with AUC=65%. Plasma exosomal miR-1290 and miR-375 are promising prognostic biomarkers for CRPC patients. Prospective validation is needed for further development of these candidate miRNAs. Overall design: RNA sequencing was performed to identify candidate exosomal miRNAs associated with overall survival in a screening cohort of 23 CRPC patients. Candidate miRNAs were further evaluated for prognosis using qRT-PCR in a follow-up cohort of 100 patients",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/25129854",
+"Title":"Exosomal miR-1290 and miR-375 as prognostic markers in castrate resistant prostate cancer"
+}
+},
+{
+"model":"app.study",
+"pk":8,
+"fields":{ 
+"SRP":"SRP048890",
+"PRJ":"PRJNA263767",
+"Organism":"Homo sapiens",
+"Abstract":"Background: Circulating miRNAs, a new family of miRNAs presentin plasma and serum, have shown great potential as novel body fluid biomarkers for non-invasive diagnosis and prognosis of several diseases. Methods: In the present study, we employed next-generation sequencing technology to analyze the expression profiles of circulating miRNAs in the serum of chronic hepatitis B (CHB) patients presenting persistently normal alanine aminotransferase with significant histological features (SPNALT),PNALT patients with no significant histological features (NSPNALT),and healthy control patients. Results: MiRNAs were found to be the major constituents of small RNA-annotated reads by comparing the annotate draw sequence reads with miRNA databases and genome and other small RNA libraries. Our results point to a total of 2767 unique reads that can be mapped to human miRNAs or pre-miRNAs in miRbase, and the pre-miRNAs can be further mapped to the human genome. Thirty novel miRNA genes were identified in three groups. The differential expression levels of 143 miRNAs showed significant variation when the SPNALT and control group were compared. Among these, 22 miRNAs were &gt;4-fold up-regulated (P&lt;0.01) in SPNALT group and 4 were &gt;2-fold down-regulated (P&lt;0.01).When the SPNALT and NSPNALT group were compared, the differential expression levels of 84 miRNAs showed significant variation. Among these, 13 miRNAs showed a &gt;4-fold up-regulation (P&lt;0.01) in the SPNALT group and 21 showed a &gt;2-fold down-regulation (P&lt;0.01). Conclusions: Our results show that circulating miRNAs in the serum of SPNALT patients could be more comprehensively detected by the next-generation sequencing technology. Newly identified miRNAs might be used as biomarkers for diagnosis of chronic hepatitis B patients presenting persistently normal alanine aminotransferase with significant histological features. Overall design: Serum samples were pooled from 6 healthy control donors (control group), 6 NSPNALT patients (NSPNALT group),and 6 SPNALT patients (SPNALT group). Sample sets were obtained fromThe First Affiliated Hospital of Soochow University.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/26483130",
+"Title":"Deep Sequencing Analysis of the MicroRNAs in the Serum of Chronic Hepatitis B with Persistently Normal Alanine Aminotransferase"
+}
+},
+{
+"model":"app.study",
+"pk":9,
+"fields":{ 
+"SRP":"SRP061240",
+"PRJ":"PRJNA290097",
+"Organism":"Homo sapiens",
+"Abstract":"Extracellular vesicles such as exosomes are selectively enriched in RNA that has potential for use as disease biomarkers. To systemically characterize circulating extracellular RNA profiles, we performed RNA sequencing analysis on plasma extracellular vesicles derived from 192 individuals including 100 colon cancer, 36 prostate cancer and 6 pancreatic cancer patients along with 50 healthy individuals. Of ~12.6 million raw reads for each of these subjects, the number of mappable reads aligned to RNA references was ~5.4 million including microRNAs(miRNAs) (~40.4%), piwi-interacting RNAs(piwiRNAs) (~40.0%), pseudo-genes (~3.7%), long noncoding RNAs (lncRNAs) (~2.4%), tRNAs (~2.1%), and mRNAs (~2.1%). To select the best candidates for potential extracellular RNA reference controls, we performed abundant level stability testing and identified a set of miRNAs showing relatively consistent expression. To estimate biological variations, we performed association analysis of expression levels with age and sex in healthy individuals. This analysis showed significant sex association with seven small noncoding RNAs (false discovery rate, or FDR&lt;0.05), while no small noncoding RNAs were statistically associated with age. To identify disease-associated RNA transcripts, we performed analysis of covariance by including disease status, age, sex, RNA isolation and gel size selection dates. We observed a gradual increase of significantly associated RNAs (in particular, miRNAs) with disease advancement as denoted by cancer staging. We found significant association of miR-125a-5p and miR-1246-3p with all cancer types tested (FDR&lt;0.05). Based on the disease associations, we developed cancer type-specific multivariate statistical models to predict disease status with an area under the ROC curve from 0.67 in stage I colon cancer to 0.92 in advanced prostate cancer. To date, this is the largest RNA-seq study to systematically profile extracellular RNA species, which has not only provided a baseline reference profile for circulating extracellular RNA, but also a set of RNA candidates for reference controls and disease biomarkers. Overall design: RNAs fro plasma circulating microviscles in 192 individuals were sequenced and quantified. RNA expression stability testing was performed to identify stably expressed RNAs. Distribution of RNA species and individual RNA transcripts were compared in normal and cancer patients.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/26786760",
+"Title":"Plasma extracellular RNA profiles in healthy and cancer patients"
+}
+},
+{
+"model":"app.study",
+"pk":10,
+"fields":{ 
+"SRP":"SRP062587",
+"PRJ":"PRJNA293274",
+"Organism":"Homo sapiens",
+"Abstract":"Background: Urine is a potential source of biomarkers for diseases of the kidneys and urinary tract. RNA, including microRNA, is present in the urine enclosed in detached cells or in extracellular vesicles (EVs) or bound and protected by extracellular proteins. Detection of cell- and disease-specific microRNA in urine may aid early diagnosis of organ-specific pathology. In this study, we applied barcoded deep sequencing to profile microRNAs in urine of healthy volunteers, and characterized the effects of sex, urine fraction (cells vs. EVs) and repeated voids by the same individuals. Results: Compared to urine-cell-derived small RNA libraries, urine-EV-derived libraries were relatively enriched with miRNA, and accordingly had lesser content of other small RNA such as rRNA, tRNA and sn/snoRNA. Unsupervised clustering of specimens in relation to miRNA expression levels showed prominent bundling by specimen type (urine cells or EVs) and by sex, as well as a tendency of repeated (first and second void) samples to neighbor closely. Likewise, miRNA profile correlations between void repeats, as well as fraction counterparts (cells and EVs from the same specimen) were distinctly higher than correlations between miRNA profiles overall. Differential miRNA expression by sex was similar in cells and EVs. Conclusions: miRNA profiling of both urine EVs and sediment cells can convey biologically important differences between individuals. However, to be useful as urine biomarkers, careful consideration is needed for biofluid fractionation and sex-specific analysis, while the time of voiding appears to be less important. Overall design: Two urine voids from 20 healthy volunteers (10 men, 10 women). From each void cells and extracellular vesicles were purified and total RNA extracted. Thus 80 samples overall (however only 79 processed because 1 women did not provide sufficient urine in second void for extracellular vesicle purification).",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/26785265",
+"Title":"Cell and microvesicle urine microRNA deep sequencing profiles from healthy individuals"
+}
+},
+{
+"model":"app.study",
+"pk":11,
+"fields":{ 
+"SRP":"SRP062974",
+"PRJ":"PRJNA294226",
+"Organism":"Homo sapiens",
+"Abstract":"In this study we present an experimental pipeline that takes into consideration sample collection, processing, enrichment, and the subsequent comparative analysis of circulating small ribonucleic acids using small RNA sequencing and RT-qPCR. Initially, a panel of miRNAs dysregulated in circulating blood from breast cancer patients compared to healthy women were identified using small RNA sequencing. MiR-320a was identified as the most dysregulated miRNA between the two female cohorts. Total RNA and enriched small RNA populations (&lt;30 bp) isolated from peripheral blood from the same female cohort samples were then tested using a miR-320a RT-qPCR assay. When total RNA was analyzed with this miR-320a RT-qPCR assay, a 2.3-fold decrease in expression levels was observed between blood samples from healthy controls and breast cancer patients. However, upon enrichment for the small RNA population and subsequent analysis of miR-320a using RT-qPCR, its dysregulation in breast cancer patients was more pronounced with an 8.89-fold decrease in miR-320a expression. Overall design: miRNAseq with Illumina 2000 of human females n=23 controls and n=14 cases [Ethics Statement] Written informed consent was received from all participants in the study. Ethical approval was granted by the Clinical Research Ethics Committee, Galway University Hospital.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/26355751",
+"Title":"Cross platform standardization of an experimental pipeline for use in the identification of dysregulated human circulating miRNAs"
+}
+},
+{
+"model":"app.study",
+"pk":12,
+"fields":{ 
+"SRP":"SRP073296",
+"PRJ":"PRJNA318464",
+"Organism":"Homo sapiens",
+"Abstract":"MicroRNAs (miRNA) are non-coding RNAs that negatively regulate gene expression by preventing the translation of specific mRNA transcripts. Since miRNAs are stably expressed in bodily fluids, there is growing interest in profiling these miRNAs, as it is minimally invasive and cost-effective as a diagnostic matrix. A technical hurdle in studying miRNA dynamics is the ability to reliably extract miRNA as small sample volumes and low RNA abundance create challenges for extraction and downstream applications. The purpose of this study was to develop a pipeline for the recovery of miRNA using small volumes of archived serum samples. The RNA was extracted employing several widely utilized RNA isolation kits with and without addition of a carrier. We were able to profile miRNA levels in serum samples using the small RNA sequencing method on the Illumina platform and observed that successful sequencing cannot be predicted by substrate RNA quality. Although the carrier RNA had a significant impact on miRNA measurement, it did not enhance the mapping of any miRBase annotated sequences. However, some of the extraction procedures offer certain advantages: RNA extracted by TRIzol seemed to align to the miRBase best; extractions using TRIzol with carrier yielded higher miRNA-to-small RNA ratios and higher numbers of processed reads, but the majority of the reads were not aligning to miRBase. Our findings illustrate that miRNA extraction and quantification is influenced by the choice of methodologies and by careful selection of an extraction method, permitting archived serum samples to become valuable resources for high-throughput applications. Overall design: Testing different RNA extraction procedures  for small RNA sequencing; The serum samples were obtained from the Department of Defense Serum Repository where they were stored at -30 C. These samples were used to conduct a pilot study with the purpose of determining suitable methods for these compromised samples before setting up a larger study. A subset of samples was pooled and divided into 350  L aliquots to be used in extractions. All procedures used 350  L of serum for miRNA extractions except the Qiagen miRNeasy Mini Kit, where 200  L of sample was used per extraction.",
+"Url":"https://www.ncbi.nlm.nih.gov/pubmed/27510798",
+"Title":"Identification of extracellular miRNA in archived serum samples by next-generation sequencing from RNA extracted using multiple methods"
+}
+},
+{
+"model":"app.study",
+"pk":13,
+"fields":{ 
+"SRP":"SRP074077",
+"PRJ":"PRJNA319821",
+"Organism":"Homo sapiens",
+"Abstract":"Objective: To characterize miRNAs in 41-year archived plasma in relation to life expectancy independent of genes. Method: Plasma miRNAs from nine identical male twins were profiled using next-generation sequencing. Results: The average absolute difference in the minimum life expectancy was 9.68 years. Intra-class correlation coefficients were above 0.4 for 50% of miRNAs. Comparing deceased twins with their alive co-twin brothers, the concentrations were increased for 34 but decreased for 30 miRNAs. Conclusion: Identical twins discordant in life expectancy were unlike in the majority of miRNAs, suggesting that environmental factors are pivotal in miRNAs related to life expectancy. Overall design: Plasma miRNAs from nine identical male twins",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/27402348",
+"Title":"Circulating microRNAs and life expectancy among identical twins"
+}
+},
+{
+"model":"app.study",
+"pk":14,
+"fields":{ 
+"SRP":"SRP078325",
+"PRJ":"PRJNA328779",
+"Organism":"Homo sapiens",
+"Abstract":"Exosomes are nano-sized (40-150 nm), membrane encapsulated vesicles that are released by cells into the extracellular space and function as intercellular signaling vectors through the horizontal transfer of biologic molecules, including microRNA (miRNA). Although secreted by both normal and malignant cells, there is evidence that cancer-derived exosomes enable the tumor to manipulate its microenvironment, contributing to the capacity of the tumor for immune evasion, growth, invasion, and metastatic spread. Overall design: The purpose of this study was to apply miRNA-sequencing to exosomes isolated from conditioned culture media to comprehensively characterize miRNA secreted in exosomes from 4 distinct head and neck squamous cell carcinoma (HNSCC) cell lines and normal oral epithelial cells.",
+"Url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5669904/",
+"Title":"Comprehensive microRNA-sequencing of small extracellular vesicles derived from head and neck carcinoma cells reveals common secretion profiles"
+}
+},
+{
+"model":"app.study",
+"pk":15,
+"fields":{ 
+"SRP":"SRP082216",
+"PRJ":"PRJNA339130",
+"Organism":"Homo sapiens",
+"Abstract":"Analysis of the small non-coding RNA expression profile in cell-free serum RNA of patients with clear cell renal cell carcinoma (RCC) and patients with benign renal tumors (BRT) in order to identify novel non-invasive biomarkers for patients with RCC. Aims: (1) to compare the expression profile of patients with RCC and BRT. (2) to compare the expression profile of patients with localized (M=0) and metastatic (M=1) RCC. Overall design: small RNA expression profiling and sequencing in serum of patients with clear cell renal cell carcinoma (RCC) and benign renal tumors (BRT)",
+"Url":"https://www.ncbi.nlm.nih.gov/pubmed/29410711",
+"Title":"Serum miR-122-5p and miR-206 expression: Non-invasive prognostic biomarkers for renal cell carcinoma"
+}
+},
+{
+"model":"app.study",
+"pk":16,
+"fields":{ 
+"SRP":"SRP082398",
+"PRJ":"PRJNA339520",
+"Organism":"Homo sapiens",
+"Abstract":"In this study, small RNAs were isolated from individual donations of eight forensically relevant biological fluids (blood, semen, vaginal fluid, menstrual blood, saliva, urine, feces, and perspiration) and subjected to next generation sequencing using the Illumina® Hi-Seq platform.  Sequencing reads were aligned and annotated against miRbase release 21, resulting in a list of miRNAs and their relative expression levels for each sample analyzed.  Body fluids with high bacterial loads (vaginal fluid, saliva, and feces) yielded relatively low annotated miRNA counts, likely due to oversaturation of small RNAs from the endogenous bacteria.  Both body-fluid specific and potential normalization miRNAs were identified for further analysis as potential body fluid identification tools for each body fluid. Overall design: 32 samples - 3-5 replicates of each human biological fluid:  venous blood, urine, semen (normal and vasectomized), vaginal secretions, menstrual secretions, perspiration, feces, saliva",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/27557737",
+"Title":"High-throughput miRNA sequencing and identification of biomarkers for forensically relevant biological fluids"
+}
+},
+{
+"model":"app.study",
+"pk":17,
+"fields":{ 
+"SRP":"SRP090716",
+"PRJ":"PRJNA345068",
+"Organism":"Homo sapiens",
+"Abstract":"Current technologies available for the quantification of exRNA include qRT-PCR, RNA microarray, and RNA sequencing (RNAseq). While qRT-PCR and RNA microarrays utilize specific primers or probes, and as such can only detect known RNA sequences, high through-put RNAseq has the ability to detect novel transcripts across a broad dynamic range and offers a potentially sensitive means to characterize and quantify exRNA. However, in addition to the biases introduced by the technique [11, 15], the landscape of exRNAs in biofluids such as plasma appear to be dominated by certain species of RNA, such as ribosomal RNA fragments or particular miRNAs: this leads to a skewed distribution of exRNA species which limits the sensitivity of detection of less abundant species. This study aims to address some of the current caveats for RNAseq, specifically by optimizing aspects of exRNA extraction from plasma for the quantification of miRNA by RNAseq.",
+"Url":"---",
+"Title":"High Throughput Sequencing of Extracellular RNA from Human Plasma"
+}
+},
+{
+"model":"app.study",
+"pk":18,
+"fields":{ 
+"SRP":"SRP093728",
+"PRJ":"PRJNA354381",
+"Organism":"Homo sapiens",
+"Abstract":"The dataset comprises of circulating miRNAs in human subjects with various types of liver impairments. In our study, we analyzed a total 48 serum samples from a group of 42 subjects that included  subjects with accidental acetaminophen overdose (APAP), hepatitis B infection (HBV), liver cirrhosis (LC) and type 2 diabetes mellitus (T2DM) subjects with alanine amino transference (ALT) elevation. As a control 16 sex and age matched healthy controls from subjects with no evidence of liver disease were analyzed. The miRNA profiles were measured using next-generation sequencing platform. Overall design: small RNA profiles of serum form 3 APAP patients, 9 LC patients, 7 HBV patients, 7 T2DM patients with ALT elevation and 16 healthy control (HC) subjects",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/28545106",
+"Title":"Serum miRNAs from Drug-induced liver injury, Hepatitis B, Liver cirrhosis and Type 2 Diabetes patients"
+}
+},
+{
+"model":"app.study",
+"pk":19,
+"fields":{ 
+"SRP":"SRP094840",
+"PRJ":"PRJNA356856",
+"Organism":"Homo sapiens",
+"Abstract":"Drug resistance often tempers the clinical benefit of chemotherapy in human malignant tumors. The potential chemosensitization of low-dose decitabine has been evident both preclinically and in previous phase I trials. Emerging data showed that miRNAs play an important role as a prognostic factor for cancer survival. Given that the biopsy tumor tissue was often not available, especially for patients with relapsed or refractory cancer, plasma RNA provided a valuable source for biomarker development. In order to establish predictive biomarker signature for the clinical efficacy of the decitabine-primed chemotherapy, we evaluated the expression of plasma miRNAs via high throughput microRNA sequencing. We performed miRNA-seq on a training set of 2 partial response (PR) patients and 1 progressive disease (PD) patients, and revealed preliminary data that plasma miRNA expression signature may serve as putative predictive markers of the low-dose decitabine primed chemotherapy. The clinical responses were assessed in a blinded manner according to the Response Evaluation Criteria in Solid Tumors (RECIST) v1.1. Overall design: miRNA-seq of plasma from cancer patients before (day0) and after (day28) decitabine-primed chemotherapy for two patients with partial response (PR) and one patient with progressive disease (PD).",
+"Url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5966243/",
+"Title":"Examination of microRNA expression in pre- and post-treatment plasma samples of 3 patients"
+}
+},
+{
+"model":"app.study",
+"pk":20,
+"fields":{ 
+"SRP":"SRP096110",
+"PRJ":"PRJNA360237",
+"Organism":"Homo sapiens",
+"Abstract":"Purpose: Since clinical characteristics are often inaccurate and subjective, we evaluated the prognostic value of plasma exosomal miRNAs to predict survival in metastatic renal cell cancer (mRCC). Methods: RNA sequencing was performed to identify candidate exosomal miRNAs associated with overall survival in a screening cohort of 41 mRCC patients.Candidate miRNAs were further evaluated for prognosis by TaqMan quantitative real-time reverse transcription polymerase chain reaction (qRT-PCR) in a follow-up cohort of 65 mRCC patients. Results: RNA sequencing in screening cohort generated 3.75 million mappable reads per patient, of those with normalized read counts&gt;8 RPM (reads per million), 93.8% were mapped to miRNAs for a total of 322 unique miRNAs. Cox regression analysis identified 20 miRNAs that were associated with overall survival (OS, FDR&lt; 0.05). Among these 20 significant miRNAs, three were validated in a separate independent cohort of 65 patients with mRCC.Patients with lower expression of miR-26a1-3p, miR-let-7i-5p and miR-615-3p had a significantly poorer OS than those with higher expression. Multivariate model by combining miR-let-7i-5p and the Memorial Sloan-Kettering Cancer Center (MSKCC) score significantly improved survival prediction. Conclusions: Our study identifies multiple plasma exosomal miRNAs showing association with survival in mRCC stage patients. Multivariate model by combining miR-let-7i-5p and the Memorial Sloan-Kettering Cancer Center (MSKCC) score significantly improved survival prediction. Overall design: exosomal miRNAs profiles of 41 mRCC patients were generated by 50 bp single read sequencing using Illumina HiSeq2000 DNA sequence analyzer.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/28969022",
+"Title":"RNA sequencing  quantitative analysis of exosome miRNAs in plasma in Metastatic renal cell carcinoma (mRCC)"
+}
+},
+{
+"model":"app.study",
+"pk":21,
+"fields":{ 
+"SRP":"SRP098894",
+"PRJ":"PRJNA371423",
+"Organism":"Homo sapiens",
+"Abstract":"We constructed a heterogeneous patient cohort of pre-treatment (prior to either surgery or chemotherapy) blood samples from 180 women enrolled in two independent prospective cohort studies of women presenting with an adnexal mass.  One sample (E-1056) was later excluded due to an abnormally high level of mir-122 believed to be due to a recent MI.  The remaining 179 samples were subdivided 3:1 into a 135 patient training set and 44 patient validation set.  Total serum RNA was extracted, converted into miRNA next generation sequencing libraries, and sequenced.  The variables for classification model development were selected using three methods – a significance filter (using a student's t-test ), a group-stratified fold change filter, and a correlation-based feature selection (CFS). We deployed 11 different machine learning algorithms on the three sets of variables to separate the cases of invasive cancer from the healthy controls or benign/borderline masses.  The tools were graded in terms of receiver operating characteristic area under the curve (ROC AUC).  The model was validated both by qPCR on the study samples as well as by external validation on an independent publicly available dataset of 454 patients with a range of diagnoses, including ovarian cancer.  The qPCR signature was then externally validated on another independent external cohort. Overall design: miRNA-seq on 180 pre-treatment serum samples",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/29087294",
+"Title":"Serum microRNA sequencing for diagnosis of invasive ovarian cancer"
+}
+},
+{
+"model":"app.study",
+"pk":22,
+"fields":{ 
+"SRP":"SRP098923",
+"PRJ":"PRJNA371472",
+"Organism":"Homo sapiens",
+"Abstract":"We report the microRNA expression in patients with multiple myeloma and healthy adults. RNA sequencing was performed for circulating exosomes obtained from the serum of 10 MM patients and 5 healthy individuals. Overall design: Exosomal microRNAs in multiple myeloma patients and healthy adults were extracted and sequenced.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/28213378",
+"Title":"Exosomal microRNA analysis of patients with multiple myeloma and healthy adults"
+}
+},
+{
+"model":"app.study",
+"pk":23,
+"fields":{ 
+"SRP":"SRP104148",
+"PRJ":"PRJNA383159",
+"Organism":"Homo sapiens",
+"Abstract":"Research conducted using the novel approach of Next Generation Sequencing to determine the differentially expressed microRNAs in whole blood samples from prostate cancer patients. Overall design: The whole blood miRNA  samples from both controls and patients were sequences and a differential expressional analysis was conducted to identify possible biomarkers to distinguish patients from controls.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/28621736",
+"Title":"Next Generation Sequencing Facilitates Differential Expression Analysis of miRNA Expression In the Whole Blood Samples Obtained From Prostate Cancer Patients vs. Controls"
+}
+},
+{
+"model":"app.study",
+"pk":24,
+"fields":{ 
+"SRP":"SRP110505",
+"PRJ":"PRJNA391912",
+"Organism":"Homo sapiens",
+"Abstract":"A comprehensive, cell specific microRNA catalogue of human peripheral blood Overall design: miRNomes from seven distinct blood cell populations namely, CD4, CD8, CD14, CD15, CD19, CD56 and CD235a of 43 healthy individuals using smallRNA-seq. Additionally examination of miRNA profiles from 77 whole-blood samples and 38 exosome and serum samples.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/28934507",
+"Title":"A comprehensive, cell specific microRNA catalogue of human peripheral blood"
+}
+},
+{
+"model":"app.study",
+"pk":25,
+"fields":{ 
+"SRP":"SRP120169",
+"PRJ":"PRJNA414616",
+"Organism":"Homo sapiens",
+"Abstract":"Friedreich's ataxia (FRDA; OMIM 229300), an autosomal recessive neurodegenerative mitochondrial disease, is the most prevalent hereditary ataxia. In addition, FRDA patients showed additional non-neurological features such as scoliosis, diabetes and cardiac complications. Hypertrophic cardiomyopathy, which is found in two thirds of patients at the time of diagnosis, is the primary cause of death in these patients. In this data set, using small RNA-sequencing of small RNA purified from plasma samples of FRDA patients and controls we identified differential expression of miRNAs (hsa-miR-128-3p, hsa-miR-625-3p, hsa-miR-130b-5p, hsa-miR-151a-5p, hsa-miR-330-3p, hsa-miR-323a-3p, and hsa-miR-142-3p) between both groups. In addition, we found that miR-323a-3p can be used as a biomarker for differentiation of FRDA patients with cardiac problems. Identification of miRNA signatures could therefore provide new molecular explanation for pathological mechanisms occurring during the natural history of the FRDA. Since miRNA levels change with disease progression and pharmacological interventions, miRNAs will contribute to design new therapeutic strategies and improve clinical decisions. Overall design: Plama miRNA profiles of 25 Friedreich''s ataxia patients and 17 healthy subjects were generated by deep sequencing using Illumina HiScan SQ.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/29509186",
+"Title":"Small RNA-seq analysis of circulating miRNAs to identify phenotypic variability in Friedreich''s ataxia patients"
+}
+},
+{
+"model":"app.study",
+"pk":26,
+"fields":{ 
+"SRP":"SRP120996",
+"PRJ":"PRJNA415462",
+"Organism":"Homo sapiens",
+"Abstract":"Amyotrophic lateral sclerosis (ALS) is a clinical subtype of motor neurone disease (MND), a fatal neurodegenerative disease involving the loss of both the upper and lower motor neurones from the motor cortex, brainstem, and spinal cord. Identifying specific disease biomarkers would help to not only improve diagnostic delay but also to classify disease subtypes, monitor response to therapeutic drugs and track disease progression. miRNAs are small non-coding RNA responsible for regulating gene expression and ultimately protein expression and have been used as biomarkers for many cancers and neurodegenerative disorders. Investigating the detection of miRNAs in cerebrospinal fluid (CSF), the fluid that bathes the central nervous system (CNS) is a prime target for identifying potential biomarkers for ALS. This is the first study to investigate the expression of miRNAs in the CSF of ALS patients using small RNA sequencing. We detected differentially expressed miRNAs in the CSF of sporadic ALS (sALS) patients related to neural and glial activity. Additionally, miRNAs involved in glucose metabolism and the regulation of oxidative stress were also identified. Detecting the presence of potential CSF derived miRNA biomarkers in sALS could open up a whole new area of knowledge to help gain a better understanding of disease pathophysiology. Overall design: miRNAs are small non-coding RNA responsible for regulating gene expression and ultimately protein expression and have been used as biomarkers for many cancers and neurodegenerative disorders. Investigating the detection of miRNAs in cerebrospinal fluid (CSF), the fluid that bathes the central nervous system (CNS) is a prime target for identifying potential biomarkers for ALS. This is the first study to investigate the expression of miRNAs in the CSF of ALS patients using small RNA sequencing. We detected differentially expressed miRNAs in the CSF of sporadic ALS (sALS) patients related to neural and glial activity. Additionally, miRNAs involved in glucose metabolism and the regulation of oxidative stress were also identified. Detecting the presence of potential CSF derived miRNA biomarkers in sALS could open up a whole new area of knowledge to help gain a better understanding of disease pathophysiology. Additionally, with further investigation, the tracking of CSF miRNA over the disease course could be used to follow the disease progression and monitor the effect of novel therapeutics that could be personalised to an individual disease phenotype.",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/29375285",
+"Title":"Small RNA Sequencing of Sporadic Amyotrophic Lateral Sclerosis Cerebrospinal Fluid Reveals Differentially Expressed miRNAs Related to Neural and Glial Activity"
+}
+},
+{
+"model":"app.study",
+"pk":27,
+"fields":{ 
+"SRP":"SRP125870",
+"PRJ":"PRJNA420449",
+"Organism":"Homo sapiens",
+"Abstract":"Circulating small RNAs. including miRNAs but also isomiRs and other RNA species. have the potential to be used as non-invasive biomarkers for communicable and non-communicable diseases. This study aims to characterize miRNAs. isomiRs and small RNA clusters in biofluids. to compare their profiles. and to help in the establishment of standard guidelines. For this purpose. RNA from plasma and breast milk samples from 15 healthy postpartum mothers was extracted. Small RNA libraries were prepared with the NEBNext® small RNA library preparation kit and sequenced in an Illumina HiSeq2000 platform. After an initial quality control. miRNAs. isomiRs and clusters of small RNAs were annotated using seqBuster/seqCluster framework. The average amount of extracted RNA was 81 ng/mL [standard deviation (SD): 41] and 3985 ng/mL (SD: 3767) for plasma and breast milk. respectively. Mean number of good quality reads was 4.04 million (M) (40.01% of the reads) in plasma and 12.5M (89.6%) in breast milk. One thousand one hundred eighty two miRNAs. 74.317 isomiRs and 1.053 small RNA clusters that included piwi-interfering RNAs (piRNAs). tRNAs. small nucleolar RNAs (snoRNA) and small nuclear RNAs (snRNAs) were detected. Samples grouped by biofluid. with 308 miRNAs. 4.737 isomiRs and 778 small RNA clusters differentially detected. In summary. plasma and milk showed a completely different small RNA profile. In both. miRNAs. piRNAs. tRNAs. snRNAs. and snoRNAs were identified. confirming the presence of non-miRNA species in biofluids Overall design: Peripheral blood was collected at 0-48 h post-partum for 15 participants. only 5 samples of plasma pass QC; and breast milk was collected at 48-72 h post-partum for 10 of the participants",
+"Url":"https://www.ncbi.nlm.nih.gov//pubmed/29505615",
+"Title":"Circulating miRNAs. isomiRs and small RNA clusters in human plasma and breast milk"
+}
+},
+{
+"model":"app.study",
+"pk":28,
+"fields":{ 
+"SRP":"SRP136488",
+"PRJ":"PRJNA445720",
+"Organism":"Homo sapiens",
+"Abstract":"One goal of Phase 1 of our project is to produce reference profiles of miRNAs and other small RNAs in a large and diverse set of biofluids using a systemic approach. This study contains samples associated with 10 different biofluids, and all data (sequencing data, full alignments, etc.) is openly available. Overall design: 10-12 donors each from 12 biofluids using modified TruSeq protocol with randomized adapters",
+"Url":"https://dx.doi.org/10.2139/ssrn.3155656",
+"Title":"Large differences in small RNA composition between human biofluids - 10 biofluids"
+}
+}
+
+]
