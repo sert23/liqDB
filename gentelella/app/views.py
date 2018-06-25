@@ -15,9 +15,19 @@ def index(request):
     #print(len(recent))
     results = dict()
     for i,obj in enumerate(recent):
-        results["title"+str(i)] = obj.Title
-        results["abstract"+str(i)] = obj.Abstract
-        results["srp"+str(i)] = obj.SRP
+        SRP = obj.SRP
+        title = obj.Title
+        results["title"+str(i)] = "<a href='/study/"+ SRP + "'><b>" +title + "</b></a>"
+        abstract = obj.Abstract
+
+        if len(abstract) < 499:
+            results["abstract"+str(i)] = abstract
+        #print(len(obj.Abstract))
+        else:
+            results["abstract" + str(i)] = abstract[0:499]+ "[...]<a href='/study/"+ SRP + "'><b> Read More </b></a>"
+
+
+        results["srp"+str(i)] = SRP
         results["paper"+str(i)] = obj.Url
 
     #print(studies_ids)
@@ -74,11 +84,18 @@ def studies(request):
         PRJ_link = "https://www.ncbi.nlm.nih.gov/bioproject/" + PRJ
         PRJ_field = "<a href='" + PRJ_link + "'><b>" + PRJ + "</b></a>"
         Title = study.Title
-        Abstract = r'<button class="collapsible">Read more</button><div class="content"> <p>Abstract</p></div>'
+        abstract = study.Abstract
+        if len(abstract) < 199:
+            Abstract = abstract
+        #print(len(obj.Abstract))
+        else:
+            Abstract = abstract[0:199]+ "[...]<a href='/study/"+ SRP + "'><b> Read More </b></a>"
+        #Abstract = r'<button class="collapsible">Read more</button><div class="content"> <p>Abstract</p></div>'
+        #Abstract = r'<button class="collapsible">Read more</button><div class="content"> <p>Abstract</p></div>'
         all_info=list(Sample.objects.filter(SRP__exact=SRP).values_list('Desc', flat=True))
         #print(set(all_info))
         Desc = ", ".join(set(all_info))
-        prof = "<a href='/study?=" +SRP +"'><b> View Profiles </b></a>"
+        prof = "<a href='/study/" +SRP +"#profiles'><b> View Profiles </b></a>"
         #prof = PRJ_field
         #print(prof)
         #Abstract = study.Abstract
@@ -98,8 +115,8 @@ def studies(request):
     test_tag = "<thead>\n<tr>\n<th>Name</th>\n<th>Position2</th>\n<th>Office</th>\n<th>Age</th>\n<th>Start date</th>\n<th>Salary</th>\n</tr>\n</thead>"
     context["test_tag"] = test_tag
     #context["table"] = table
-    template = loader.get_template('app/tables_dynamic.html' )
-    #template = loader.get_template('app/studies_tables.html' )
+    #template = loader.get_template('app/tables_dynamic.html' )
+    template = loader.get_template('app/studies_table.html' )
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
 

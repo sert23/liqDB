@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^.*\.html', views.gentella_html, name='gentella'),
     url(r'^studies', views.studies, name='studies'),
     url(r'^study/', include('study.urls')),
+    url(r'^samples/', include('samples.urls')),
 
     # The home page
     url(r'^$', views.index, name='index'),

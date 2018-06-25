@@ -6,6 +6,8 @@ from django.views.generic import DetailView
 from study.forms import StudyForm
 from app.models import Study, Sample
 import pandas as pd
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+import os
 # Create your views here.
 
 class DisplayStudy(DetailView):
@@ -26,7 +28,27 @@ class DisplayStudy(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        context['pagetitle'] = 'My special Title'
+        expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA_sort.txt")
+        exp_table = []
+        print("hello")
+        print(os.path.exists(os.path.join(MEDIA_ROOT)))
+        with open(expression_mat) as matFile:
+            lines = matFile.readlines()
+            headerLine =lines.pop(0)
+            for line in lines:
+                fields = line.rstrip().split("\t")
+                exp_table.append(fields)
+        import json
+        column_list = []
+        for e in headerLine.rstrip().split("\t"):
+            new_dict=dict()
+            new_dict["title"] = e
+            column_list.append(new_dict)
+            #print(e)
+        context["exp_columns"] = json.dumps(column_list)
+        exp_data = json.dumps(exp_table)
+        context["exp_data"] = exp_data
+        #print(os.listdir(os.path.join(DATA_FOLDER,"SRP062974")))
         study = context.get('object')
         context['pagetitle'] = study.SRP
         SRP = study.SRP
@@ -53,6 +75,7 @@ class DisplayStudy(DetailView):
         for sam in samples:
             organism = sam.Organism
             SRX = sam.Experiment
+            Library = sam.Library
             BIOS = sam.Sample
             instrument = sam.Instrument
             sex = sam.Sex
@@ -62,12 +85,15 @@ class DisplayStudy(DetailView):
             cancer = sam.Cancer
             exosome= sam.Exosome
             desc = sam.Desc
-            table_data.append([SRX, BIOS ,organism,instrument,sex,fluid,extraction,healthy,cancer,exosome,desc])
+            table_data.append([SRX, BIOS ,organism,instrument,sex,fluid,extraction,Library,healthy,cancer,exosome,desc])
         #context['pagetitle'] = str(study.SRP)
-        import json
+
         js_data = json.dumps(table_data)
-        # #print(type(js_data))
         context["data"] = js_data
+        SRX_list = list(samples.values_list('Experiment', flat=True))
+        context["SRX_list"] = ",".join(SRX_list)
+        # #print(type(js_data))
+
         return context
 
     # def render_to_response(self, context, **response_kwargs):

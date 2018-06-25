@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+DATA_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_tables2',
+    'crispy_forms',
     'app',
     'study'
 ]
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -75,6 +77,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gentelella.wsgi.application'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "queryData")
+MEDIA_URL = '/media/'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
