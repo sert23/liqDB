@@ -88,7 +88,7 @@ class DisplayStudy(DetailView):
             table_data.append([SRX, BIOS ,organism,instrument,sex,fluid,extraction,Library,healthy,cancer,exosome,desc])
         #context['pagetitle'] = str(study.SRP)
 
-        js_data = json.dumps(table_data)
+        js_data = json.dumps(table_data[0:1000])
         context["data"] = js_data
         SRX_list = list(samples.values_list('Experiment', flat=True))
         context["SRX_list"] = ",".join(SRX_list)
