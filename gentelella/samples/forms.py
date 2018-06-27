@@ -13,18 +13,28 @@ def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-
+samples = Sample.objects.all()
+fluid_list = list(set(samples.values_list('Fluid', flat=True)))
+health_list = list(set(samples.values_list('Healthy', flat=True)))
+extraction_list = list(set(samples.values_list('Extraction', flat=True)))
+sex_list = list(set(samples.values_list('Sex', flat=True)))
+library_list = list(set(samples.values_list('Library', flat=True)))
 
 
 class SamplesForm(forms.Form):
 
-    samples = Sample.objects.all()
-    fluids =[(None, "All")] + [(element,element) for element in list(set(samples.values_list('Fluid', flat=True)))]
-    health_choice =[(None, "All")] + [(element,element) for element in list(set(samples.values_list('Healthy', flat=True)))]
-    extraction_choice =[(None, "All")] + [(element,element) for element in list(set(samples.values_list('Extraction', flat=True)))]
+
+
+
+
+
+    fluids =[(None, "All")] + [(element,element) for element in fluid_list]
+    health_choice =[(None, "All")] + [(element,element) for element in health_list]
+    extraction_choice =[(None, "All")] + [(element,element) for element in extraction_list]
     #extraction_choice =
-    sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
-    library_choice = [(None, "All")] + [(element,element) for element in list(set(samples.values_list('Extraction', flat=True)))]
+    sex_choice = [(None, "All")] +  [("mf", "mf")]+[(element,element) for element in sex_list]
+    #sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
+    library_choice = [(None, "All")] + [(element,element) for element in library_list]
     #extraction_choice = [""] + list(set(samples.values_list('Extraction', flat=True)))
     #library_choice = [""] + list(set(samples.values_list('Library', flat=True)))
     #fluids = samples.values_list('Fluid', flat=True)
@@ -72,38 +82,47 @@ class SamplesForm(forms.Form):
         extraction = str(cleaned_data.get("extraction"))
         library = str(cleaned_data.get("library"))
         samples = Sample.objects.all()
+        #samples = Sample.objects.all()
+
         #print(samples)
+
         if fluid:
-            samples = samples.filter(Fluid__exact=fluid)
-            samples = samples.filter(Sex__exact="female")
+            fluid_list = [fluid]
+        else:
+            fluid_list = list(set(samples.values_list('Fluid', flat=True)))
         if sex:
-            samples = samples.filter(Sex__exact="female")
             if sex == "mf":
-                print("hello")
-                to_exc = ["unavailable"]
-                from django.db.models import Q
-
-
-                #samples=samples
-
-                #samples = samples.all().exclude(Sex__in=to_exc)
-                #exclude()
+                sex_list = ["male","female"]
             else:
-                samples = samples.filter(Sex__exact=sex)
-            print(sex)
-            samples = samples.filter(Sex__exact=sex)
+                sex_list = [sex]
+        else:
+            sex_list = list(set(samples.values_list('Sex', flat=True)))
         if healthy:
-            samples = samples.filter(Healthy__exact=healthy)
-        if extraction:
-            samples = samples.filter(Extraction__exact=extraction)
-        if library:
-            samples = samples.filter(Library__exact=library)
+            health_list = [healthy]
+        else:
+            health_list = list(set(samples.values_list('Healthy', flat=True)))
 
-        samples_ids = samples.values_list('Experiment',flat=True)
-        print(samples_ids)
-        print(len(samples_ids))
+        if extraction:
+            extraction_list=[extraction]
+        else:
+            extraction_list = list(set(samples.values_list('Extraction', flat=True)))
+
+        if library:
+            library_list=[library]
+        else:
+            library_list = list(set(samples.values_list('Library', flat=True)))
+
+        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
+
+        queryString = ",".join(querySamples)
+        #print(len(querySamples))
+        #samples_ids = samples.values_list('Experiment',flat=True)
+        #print(samples_ids)
+        #print(len(samples_ids))
         query_path = os.path.join(MEDIA_ROOT, query_id)
-        print(query_id,fluid,sex,healthy,extraction,library)
+        with open(os.path.join(query_path,"query.txt"), "w") as text_file:
+            text_file.write(queryString)
+        #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id)
     def start_query(self):
         query_id = self.generate_id()

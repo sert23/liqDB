@@ -18,7 +18,6 @@
           <h3>{{pagetitle}} <span style="font-size:10px;">[{{SRP_field|safe}}] [{{PRJ_field|safe}}] {{article_field|safe}} </span> </h3>
         </div>
 
-
         </div>
       </div>
 
@@ -33,13 +32,13 @@
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-
-
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                   <li role="presentation" class="active"><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Overview</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_profile" role="tab" id="profiles" data-toggle="tab" aria-expanded="false">miRNA Profiles</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_plots" role="tab" id="plots" data-toggle="tab" aria-expanded="false">Summary Plots</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                   </li>
@@ -60,16 +59,36 @@
                   <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <h4 class="panel-title">List of SRA Experiments</h4>
                   </a>
-                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
                         <pre style="white-space: pre-line">
                               {{SRX_list}}
                         </pre>
                     </div>
                   </div>
+
                 </div>
               </div>
                     </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade active" id="tab_plots" aria-labelledby="overview-tab">
+                  <div class="x_content">
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                    <a class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">RNA types distribution</h4>
+                  </a>
+                  <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+
+
+                      <table id="RNA_types" class="table table-striped table-bordered bulk_action"></table>
+                      {{mapBox|safe}}
+                    </div>
+                  </div>
+                    </div>
+
+
+                  </div>
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_profile" aria-labelledby="profiles">
                     <p></p>
@@ -147,7 +166,6 @@ $(document).ready(function() {
             { title: "Sex" },
             { title: "Fluid" },
             { title: "Library preparation protocol" },
-
             { title: "RNA Extraction protocol" },
             { title: "Healthy" },
             { title: "Cancer" },
@@ -174,6 +192,25 @@ $(document).ready(function() {
 //        'responsive': true,
         data: parsed_data,
         columns: exp_columns
+    } );
+} );
+
+</script>
+
+<script>
+//    alert("Hey");
+//    var received_data = {{ data }};
+    var RNA_data = {{ RNAbody|safe }};
+    var RNA_columns = {{RNAcols|safe}}
+//    alert(RNA_columns)
+//    alert(received_data);
+
+$(document).ready(function() {
+    $('#RNA_types').DataTable( {
+//        'responsive': true,
+        data: RNA_data,
+        columns: RNA_columns,
+        "order": [[ 2, "desc" ]]
     } );
 } );
 

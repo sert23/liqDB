@@ -37,17 +37,69 @@
 
             </div>
             <div class="x_content">
-
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_results" id="results-tab" role="tab" data-toggle="tab" aria-expanded="true">Query Result</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_overview" role="tab" id="query-overview" data-toggle="tab" aria-expanded="false">Query Overview</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Download Data</a>
+                  </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane active in" id="tab_results" aria-labelledby="profiles">
+                    <p></p>
+                        <div class="panel">
+                  <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">List of selected Experiments</h4>
+                  </a>
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
                         <pre style="white-space: pre-line">
-                              {{Query_summary}}
+                              {{SRX_string}}
                         </pre>
                     </div>
                   </div>
+                </div>
+                        <h2> Samples metadata</h2>
+                      <table id="example" class="table table-striped table-bordered bulk_action"></table>
+
+                    <table id="profile" class="table table-striped table-bordered bulk_action"></table>
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab_overview" aria-labelledby="overview-tab">
+                    <p>{{SRX_string}}</p>
+                    <div class="x_content">
+              <p class="text-muted font-13 m-b-30">
+                <!--DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>-->
+              </p>
 
 
-                <table id="example" class="table table-striped table-bordered bulk_action"></table>
+                    <br>
+
+
+              <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
+              </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="tab_downloads" aria-labelledby="profile-tab">
+                    <p></p>
+                    <button class="btn"><i class="fa fa-download"></i> Download some stuff</button>
+                    <button class="btn"><i class="fa fa-download"></i> <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download></a></button>
+                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i
+                                class="fa fa-download fa-fw"></i>Matrix File</a>
+                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button>Download!</button></a>
+                    <div class="panel-body">
+                Input File: <a href="http://bioinfo5.ugr.es/srnatoolbox/media//UBNMV10I6X5S169/IK_exosomes.fastq.gz" download> <i class="fa fa-download fa-fw"></i> IK_exo.fastq.gz</a>
+            </div>
+                    <!--<a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i-->
+                                <!--class="fa fa-download fa-fw"></i>Matrix File</a>-->
+                  </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+
 
                 <!--<table id="example" class="table table-striped table-bordered bulk_action">-->
                 <!--&lt;!&ndash;<th>&ndash;&gt;-->
@@ -58,7 +110,6 @@
             </div>
           </div>
         </div>
-
 
 
       </div>
@@ -117,9 +168,10 @@ $(document).ready(function() {
       "processing": "Loading..."
     },
         columns: [
+            { title: "SRA Study" },
             { title: "Experiment" },
             { title: "BioSample" },
-            { title: "Organism" },
+//            { title: "Organism" },
             { title: "Instrument" },
             { title: "Sex" },
             { title: "Fluid" },

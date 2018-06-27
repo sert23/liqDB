@@ -699,11 +699,11 @@ function init_chart_doughnut() {
             tooltipFillColor: "rgba(51, 51, 51, 0.55)",
             data: {
                 labels: [
-                    "Symbian",
-                    "Blackberry",
-                    "Other",
-                    "Android",
-                    "IOS"
+                    "plasma",
+                    "whole blood",
+                    "Others",
+                    "bile",
+                    "serum"
                 ],
                 datasets: [{
                     data: [15, 20, 30, 10, 30],

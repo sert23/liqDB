@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
 from app.models import Study, Sample, StudiesTable
+from app.pie_chart import pie_chart
 
 
 def index(request):
@@ -9,11 +10,11 @@ def index(request):
     template = loader.get_template('app/index.html')
     studies = Study.objects.all()
     samples = Sample.objects.all()
-
     total = len(studies)
     recent = Study.objects.all()[total-6:total-1]
     #print(len(recent))
     results = dict()
+
     for i,obj in enumerate(recent):
         SRP = obj.SRP
         title = obj.Title
@@ -25,16 +26,17 @@ def index(request):
         #print(len(obj.Abstract))
         else:
             results["abstract" + str(i)] = abstract[0:499]+ "[...]<a href='/study/"+ SRP + "'><b> Read More </b></a>"
-
-
         results["srp"+str(i)] = SRP
         results["paper"+str(i)] = obj.Url
-
     #print(studies_ids)
     print(len(studies))
     results["samples"] = len(samples)
     results["studies"]=len(studies)
-    results["fluids"] = len(set(Sample.objects.values_list('Fluid')))
+    fluid_list = Sample.objects.values_list('Fluid', flat=True)
+    pie_string = pie_chart(fluid_list)
+
+    results["fluid_chart"] =pie_string
+    results["fluids"] = len(set(fluid_list))
     print(results["fluids"])
     #print(studies)
     context=results
@@ -95,7 +97,7 @@ def studies(request):
         all_info=list(Sample.objects.filter(SRP__exact=SRP).values_list('Desc', flat=True))
         #print(set(all_info))
         Desc = ", ".join(set(all_info))
-        prof = "<a href='/study/" +SRP +"#profiles'><b> View Profiles </b></a>"
+        prof = "<a href='/study/" +SRP +"#tab_profile'><b> View Profiles </b></a>"
         #prof = PRJ_field
         #print(prof)
         #Abstract = study.Abstract

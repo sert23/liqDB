@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from app.models import Sample
 from django.views.generic import FormView
 from samples.forms import SamplesForm
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
 # Create your views here.
 import json
 import os
@@ -62,7 +63,8 @@ def samples_table(request):
         exosome = sam.Exosome
         desc = sam.Desc
         table_data.append(
-            [SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+            [SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+            #[SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
     # context['pagetitle'] = str(study.SRP)
 
     js_data = json.dumps(table_data)
@@ -108,6 +110,7 @@ class StartSample(FormView):
         # print(df)
         for sam in samples:
             organism = sam.Organism
+            SRP = sam.SRP
             SRX = sam.Experiment
             Library = sam.Library
             BIOS = sam.Sample
@@ -120,16 +123,17 @@ class StartSample(FormView):
             exosome = sam.Exosome
             desc = sam.Desc
             table_data.append(
-                [SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
         # context['pagetitle'] = str(study.SRP)
-        table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
-                      "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
-                     table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
-                     )
+        # table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
+        #               "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
+        #              table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
+        #              )
+        #
+        # context["table_html"] = table_html
 
-        context["table_html"] = table_html
-
-        js_data = json.dumps(table_data[0:2000])
+        js_data = json.dumps(table_data)
         #print(js_data)
         context["data"] = js_data
 
@@ -181,11 +185,15 @@ class SampleQuery(FormView):
     form_class = SamplesForm
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
-        context['pagetitle'] = 'Second QUERY:'
-        samples = Sample.objects.all()
+        query_id = str(self.request.path_info).split("/")[-1]
+        with open(os.path.join(MEDIA_ROOT,query_id,"query.txt"), 'r') as queryfile:
+            SRX_string = queryfile.read()
+        context['SRX_string'] = SRX_string
+        samples_ids = SRX_string.split(",")
+        context['pagetitle'] = str(len(samples_ids))+ ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
         table_data = []
-        print(str(self.request.path_info))
-
+        #print(str(self.request.path_info).split("/")[-1])
         # qs = list(samples.values_list('Healthy', 'Cancer', 'Desc', 'Fluid', 'Sex'))
         # df = pd.DataFrame.from_records(qs)
         # print(df)
@@ -205,12 +213,11 @@ class SampleQuery(FormView):
             table_data.append(
                 [SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
         # context['pagetitle'] = str(study.SRP)
-        table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
-                      "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
-                     table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
-                     )
-
-        context["table_html"] = table_html
+        # table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
+        #               "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
+        #              table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
+        #              )
+        # context["table_html"] = table_html
 
         js_data = json.dumps(table_data[0:2000])
         #print(js_data)
