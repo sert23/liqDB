@@ -50,4 +50,4 @@ def makeSpeciesPlot():
     print(" ")
 
 
-makeGenomePlot("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RCperc_genome.txt","")
+#makeGenomePlot("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RCperc_genome.txt","")
