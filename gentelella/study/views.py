@@ -66,8 +66,8 @@ class DisplayStudy(DetailView):
         #studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
         study = context.get('object')
         context['pagetitle'] = study.SRP
-        expression_mat = os.path.join(studies_folder,study.SRP,)
-        expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA.txt")
+        expression_mat = os.path.join(studies_folder,study.SRP,"RCadj_miRNA.txt")
+        #expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA.txt")
         RNAcols , RNAbody =sortedMatrixToTableList(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"))
 
         context['RNAcols'] = RNAcols
