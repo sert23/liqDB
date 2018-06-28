@@ -1,0 +1,4 @@
+Django==1.10
+django-tables2==1.21.2
+django-crispy-forms==1.7.2
+
