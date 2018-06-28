@@ -23,8 +23,8 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 						labels: ["{first}", "{second}", "{third}", "{fourth}", "{fifth}"],
 						datasets: [{{
 							data: ["{p_first}", "{p_second}", "{p_third}", "{p_fourth}", "{p_fifth}"],
-							backgroundColor: ["#BDC3C7", "#9B59B6", "#E74C3C", "#26B99A", "#3498DB"],
-							hoverBackgroundColor: ["#CFD4D8", "#B370CF", "#E95E4F", "#36CAAB", "#49A9EA"]
+							backgroundColor: ["#3498DB", "#26B99A", "#9B59B6", "#E74C3C", "#BDC3C7"],
+							hoverBackgroundColor: ["#49A9EA", "#36CAAB", "#B370CF", "#E95E4F", "#CFD4D8"]
 						}}]
 					}},
 					options: {{
@@ -56,8 +56,8 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 					<tr><td><p><i class="fa fa-square blue"></i>{first}</p></td><td>{p_first}%</td></tr>
 					<tr><td><p><i class="fa fa-square green"></i>{second}</p></td><td>{p_second}%</td></tr>
 					<tr><td><p><i class="fa fa-square purple"></i>{third}</p></td><td>{p_third}%</td></tr>
-					<tr><td><p><i class="fa fa-square aero"></i>{fourth}</p></td><td>{p_fourth}%</td></tr>
-					<tr><td><p><i class="fa fa-square red"></i>{fifth}</p></td><td>{p_fifth}%</td></tr>
+					<tr><td><p><i class="fa fa-square red"></i>{fourth}</p></td><td>{p_fourth}%</td></tr>
+					<tr><td><p><i class="fa fa-square aero"></i>{fifth}</p></td><td>{p_fifth}%</td></tr>
 				</tbody></table></td>
 			</tr>
 		</tbody></table>
