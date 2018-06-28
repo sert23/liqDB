@@ -46,11 +46,9 @@ def sortedMatrixToTableList(input_file):
     return columns_json, body_json
     #context["exp_data"] = exp_data
 
-
 class DisplayStudy(DetailView):
 
     model = Study
-
     #study = Study.objects.filter(SRP__exact=SRP)
     #print(ProcessFormView.request)
     slug_field='SRP'
@@ -63,7 +61,7 @@ class DisplayStudy(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
-        studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
+        #studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
         study = context.get('object')
         context['pagetitle'] = study.SRP
         expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
@@ -83,6 +81,8 @@ class DisplayStudy(DetailView):
         context["speciesPlot"] = makeSpeciesPlot(os.path.join(studies_folder,study.SRP,"genomeDistribution_sort.txt"))
         context["top20CV"] = makeTop20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
         context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
+        context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(studies_folder, study.SRP, "genomeDistribution_sort.txt"))
+        context["DE_list"] = ["mock_list"]
             #context["mapBox2"] = plot2
         exp_table = []
         #print("hello")

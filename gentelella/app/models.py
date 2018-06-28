@@ -31,7 +31,7 @@ class Sample (models.Model):
     Exosome = models.CharField(max_length=100, default="False")
     Desc = models.CharField(max_length=100, default="False")
     DateString = models.CharField(max_length=100, default="False")
-    Date = models.DateTimeField(auto_now_add = True, editable = True)
+    Date = models.DateTimeField( editable = True,default=datetime.now())
     #Adapter = models.CharField(max_length=100, default="-")
 
 
