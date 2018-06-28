@@ -12,32 +12,32 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 	p_fifth = round(100 - p_first - p_second - p_third - p_fourth, 2) 
 	template = '''
 	<script>
-		function init_chart_doughnut() {
-			if (typeof(Chart) === 'undefined') { return };
+		function init_chart_doughnut() {{
+			if (typeof(Chart) === 'undefined') {{ return }};
 			console.log('init_chart_doughnut');
-			if ($('.canvasDoughnut').length) {
-				var chart_doughnut_settings = {
+			if ($('.canvasDoughnut').length) {{
+				var chart_doughnut_settings = {{
 					type: 'doughnut',
 					tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-					data: {
+					data: {{
 						labels: ["{first}", "{second}", "{third}", "{fourth}", "{fifth}"],
-						datasets: [{
+						datasets: [{{
 							data: ["{p_first}", "{p_second}", "{p_third}", "{p_fourth}", "{p_fifth}"],
 							backgroundColor: ["#BDC3C7", "#9B59B6", "#E74C3C", "#26B99A", "#3498DB"],
 							hoverBackgroundColor: ["#CFD4D8", "#B370CF", "#E95E4F", "#36CAAB", "#49A9EA"]
-						}]
-					},
-					options: {
+						}}]
+					}},
+					options: {{
 						legend: false,
 						responsive: false
-					}
-				}
-				$('.canvasDoughnut').each(function() {
+					}}
+				}}
+				$('.canvasDoughnut').each(function() {{
 					var chart_element = $(this);
 					var chart_doughnut = new Chart(chart_element, chart_doughnut_settings);
-				});
-			}
-		}
+				}});
+			}}
+		}}
 	</script>
 	<div class="x_panel tile fixed_height_320 overflow_hidden">
 	<div class="x_title"><h2>{main_title}</h2></div>
