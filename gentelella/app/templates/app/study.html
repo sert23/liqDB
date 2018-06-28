@@ -47,14 +47,8 @@
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_metadata" aria-labelledby="overview-tab">
                     <p>{{Abstract|safe}}</p>
                     <div class="x_content">
-              <p class="text-muted font-13 m-b-30">
-                <!--DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>-->
-              </p>
-              <h2> Samples metadata</h2>
-                    <br>
-              <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
-              <table id="example" class="table table-striped table-bordered bulk_action"></table>
-                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+
+                      <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel">
                   <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <h4 class="panel-title">List of SRA Experiments</h4>
@@ -69,6 +63,14 @@
 
                 </div>
               </div>
+              <p class="text-muted font-13 m-b-30">
+                <!--DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>-->
+              </p>
+              <h2> Samples metadata</h2>
+                    <br>
+              <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
+              <table id="example" class="table table-striped table-bordered bulk_action"></table>
+
                     </div>
                   </div>
                   <div role="tabpanel" class="tab-pane fade active" id="tab_plots" aria-labelledby="overview-tab">
@@ -80,9 +82,20 @@
                   <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
 
-
                       <table id="RNA_types" class="table table-striped table-bordered bulk_action"></table>
                       {{mapBox|safe}}
+                    </div>
+                  </div>
+                      <a class="panel-heading" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">Most expressed miRNAs</h4>
+                  </a>
+                  <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                    {{top20|safe}}
+                      {{toPie|safe}}
+                        {{speciesPlot|safe}}
+                      {{top20CV|safe}}
+                      {{bottom20CV|safe}}
                     </div>
                   </div>
                     </div>

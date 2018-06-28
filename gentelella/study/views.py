@@ -8,7 +8,7 @@ from app.models import Study, Sample
 import pandas as pd
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
 import os
-from study.summary_plots import makeGenomePlot
+from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV
 # Create your views here.
 
 
@@ -63,23 +63,27 @@ class DisplayStudy(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
-        #studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
+        studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
         study = context.get('object')
         context['pagetitle'] = study.SRP
-        expression_mat = os.path.join(studies_folder,study.SRP,"RCadj_miRNA.txt")
+        expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
         #expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA.txt")
         RNAcols , RNAbody =sortedMatrixToTableList(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"))
-
         context['RNAcols'] = RNAcols
         context['RNAbody'] = RNAbody
         # with open("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/test/mapBox.html","r") as html_file:
         #     print(os.path.exists("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RCadj_miRNA_sort.txt"))
         plot = makeGenomePlot(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"), "")
+        top20 = makeTop20(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"), "")
+        toPie = makePie10(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"))
             #plot2 = makeGenomePlot("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RNAmaping_sort.txt", "")
         context["mapBox"] = plot
+        context["top20"] = top20
+        context["toPie"] = toPie
+        context["speciesPlot"] = makeSpeciesPlot(os.path.join(studies_folder,study.SRP,"genomeDistribution_sort.txt"))
+        context["top20CV"] = makeTop20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
+        context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
             #context["mapBox2"] = plot2
-
-
         exp_table = []
         #print("hello")
         #print(os.path.exists(os.path.join(MEDIA_ROOT)))

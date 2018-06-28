@@ -46,8 +46,202 @@ def makeGenomePlot(input_file, output_file):
     div_obj = plot(fig, show_link=False, auto_open=False, output_type = 'div')
     return div_obj
 
-def makeSpeciesPlot():
-    print(" ")
+def makeTop20(input_file, output_file):
+    first_table = pandas.read_table(input_file, sep='\t')
+    input_table = first_table.head(20)
+    data = []
+    for index, row in input_table.iterrows():
+        line = numpy.ndarray.flatten(row.values)
+        trace = go.Box(
+            y=line[1:-1],
+            name=line[0]
+        )
+        data.append(trace)
+    layout = go.Layout(
+        autosize=True,
+        margin=go.Margin(
+            l=50,
+            r=50,
+            b=150,
+            t=100,
+            pad=4
+        ),
+        title="20 most abundant microRNAs",
+        xaxis=dict(
+            # title='Nulceotide added',
+            tick0=0,
+            dtick=1,
+        ),
+        yaxis=dict(
+            type='log',
+            title='RPM')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type = 'div')
+    return div_obj
+
+def makePie10(input_file):
+    first_table = pandas.read_table(input_file, sep='\t')
+    input_table = first_table.head(10)
+    others = first_table.tail(first_table.shape[0]-10)
+    others_val = sum(others[["sum"]].values)
+    print(others_val)
+    labels =list(numpy.ndarray.flatten(input_table[["name"]].values)) + ["Others"]
+    # first_table = first_table.drop("sum", axis=1)
+    averagecol = first_table.mean(axis=1)
+    # total = sum(averagecol)
+    # print(first_table.shape)
+    # print(averagecol[0])
+    # print(len(averagecol))
+    # print(total)
+    data = []
+    values = (list(numpy.ndarray.flatten(input_table[["sum"]].values)))+ list(numpy.ndarray.flatten(others_val))
+    print(labels)
+    print(values)
+    trace = go.Pie(labels=labels, values=values)
+    data.append(trace)
+    layout = go.Layout(
+        autosize=True,
+        margin=go.Margin(
+            l=50,
+            r=50,
+            b=150,
+            t=100,
+            pad=4
+        ),
+        title="10 most abundant microRNAs",
+        # xaxis=dict(
+        #     # title='Nulceotide added',
+        #     tick0=0,
+        #     dtick=1,
+        # ),
+        # yaxis=dict(
+        #     #type='log',
+        #     title='RPM')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
+
+#makePie10("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RPMadjLib_sort.txt")
+
+def makeSpeciesPlot(input_file):
+    first_table = pandas.read_table(input_file, sep='\t')
+    input_table = first_table.head(10)
+    data = []
+    for index, row in input_table.iterrows():
+        line = numpy.ndarray.flatten(row.values)
+        trace = go.Box(
+            y=line[1:-1],
+            name=line[0]
+        )
+        data.append(trace)
+    layout = go.Layout(
+        autosize=True,
+        margin=go.Margin(
+            l=50,
+            r=50,
+            b=150,
+            t=100,
+            pad=4
+        ),
+        title="Genomes distribution",
+        xaxis=dict(
+            # title='Nulceotide added',
+            tick0=0,
+            dtick=1,
+        ),
+        yaxis=dict(
+            title='Percentage of reads (%)')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
 
 
 #makeGenomePlot("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RCperc_genome.txt","")
+
+def makeTop20CV(input_file):
+    first_table = pandas.read_table(input_file, sep='\t')
+    ordered = first_table.sort_values(by="CV", axis=0, ascending=False)
+    clean = ordered.drop(["stddev",	"CV", "mean"],axis=1)
+    top20 = clean.head(20)
+    input_table = top20
+    data = []
+    for index, row in input_table.iterrows():
+        line = numpy.ndarray.flatten(row.values)
+        trace = go.Box(
+            y=line[1:],
+            name=line[0]
+        )
+        data.append(trace)
+    layout = go.Layout(
+        autosize=True,
+        margin=go.Margin(
+            l=50,
+            r=50,
+            b=150,
+            t=100,
+            pad=4
+        ),
+        title="Top20 microRNA with highest Coefficient of Variation",
+        xaxis=dict(
+            # title='Nulceotide added',
+            tick0=0,
+            dtick=1,
+        ),
+        yaxis=dict(
+            type='log',
+            title='RPM')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
+
+    #CVs = (input_table[["CV"]].values)
+
+
+    print("")
+
+def makeBottom20CV(input_file):
+    first_table = pandas.read_table(input_file, sep='\t')
+    ordered = first_table.sort_values(by="CV", axis=0, ascending=False)
+    clean = ordered.drop(["stddev",	"CV", "mean"],axis=1)
+    top20 = clean.tail(20)
+    input_table = top20
+    data = []
+    for index, row in input_table.iterrows():
+        line = numpy.ndarray.flatten(row.values)
+        trace = go.Box(
+            y=line[1:],
+            name=line[0]
+        )
+        data.append(trace)
+    layout = go.Layout(
+        autosize=True,
+        margin=go.Margin(
+            l=50,
+            r=50,
+            b=150,
+            t=100,
+            pad=4
+        ),
+        title="Top20 microRNA with lowest Coefficient of Variation",
+        xaxis=dict(
+            # title='Nulceotide added',
+            tick0=0,
+            dtick=1,
+        ),
+        yaxis=dict(
+            type='log',
+            title='RPM')
+    )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
+
+    #CVs = (input_table[["CV"]].values)
+
+
+    # print("")
+# makeTop20CV("C:/Users/Ernesto/Desktop/Colabo/liqDB/test/miRNA_RPMadjLib_CV_min20.txt")
