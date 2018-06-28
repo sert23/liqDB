@@ -1,8 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
 import django_tables2 as tables
-from django.db.models import signals
-from django.dispatch import dispatcher
 from datetime import datetime
 import dateutil.parser
 
@@ -44,10 +42,8 @@ class StudiesTable(tables.Table):
 
 # Create your models here.
 
-def parse_datetime(sender, instance, created, *args, **kwargs):
-    if created:
-        for sample in Sample.objects.all():
-            sample.Date = dateutil.parser.parse(sample.DateString)
-            sample.save()
+def parse_datetime():
+    for sample in Sample.objects.all():
+        sample.Date = dateutil.parser.parse(sample.DateString)
+        sample.save()
 
-dispatcher.connect(parse_datetime, signal = signals.post_save, sender = Sample)
