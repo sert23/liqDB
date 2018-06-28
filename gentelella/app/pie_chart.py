@@ -40,7 +40,10 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 		}}
 	</script>
 	<div class="x_panel tile fixed_height_320 overflow_hidden">
-	<div class="x_title"><h2>{main_title}</h2></div>
+	<div class="x_title">
+		<h2>{main_title}</h2>
+		<div class="clearfix"></div>
+	</div>
 	<div class="x_content">
 		<table class="" style="width:100%"><tbody>
 			<tr>
