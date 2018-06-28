@@ -42,7 +42,7 @@ def bar_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', fifth = 
 			</div>
 			<div class="w_center w_55">
 				<div class="progress">
-					<div class="progress-bar bg-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_second}%;">
+					<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_second}%;">
 						<span class="sr-only">{p_second}%</span>
 					</div>
 				</div>
@@ -58,7 +58,7 @@ def bar_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', fifth = 
 			</div>
 			<div class="w_center w_55">
 				<div class="progress">
-					<div class="progress-bar bg-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_third}%;">
+					<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_third}%;">
 						<span class="sr-only">{p_third}%</span>
 					</div>
 				</div>
@@ -74,7 +74,7 @@ def bar_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', fifth = 
 			</div>
 			<div class="w_center w_55">
 				<div class="progress">
-					<div class="progress-bar bg-red" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_fourth}%;">
+					<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_fourth}%;">
 						<span class="sr-only">{p_fourth}%</span>
 					</div>
 				</div>
@@ -90,7 +90,7 @@ def bar_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', fifth = 
 			</div>
 			<div class="w_center w_55">
 				<div class="progress">
-					<div class="progress-bar bg-aero" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_fifth}%;">
+					<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {p_fifth}%;">
 						<span class="sr-only">{p_fifth}%</span>
 					</div>
 				</div>
