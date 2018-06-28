@@ -17,7 +17,6 @@ class Study (models.Model):
     Title = models.CharField(max_length=100)
 
 
-
 class Sample (models.Model):
     SRP = models.CharField(max_length=100)
     PRJ = models.CharField(max_length=100)
@@ -26,7 +25,6 @@ class Sample (models.Model):
     Sample = models.CharField(max_length=100)
     Runs = models.CharField(max_length=200)
     Instrument = models.CharField(max_length=100, default="NA")
-    #Release =  models.IntegerField(default=2018)
     Release =  models.CharField(default=2018, max_length=100)
     Sex = models.CharField(max_length=100)
     Fluid = models.CharField(max_length=100)
@@ -36,6 +34,7 @@ class Sample (models.Model):
     Cancer = models.CharField(max_length=100, default="NA")
     Exosome = models.CharField(max_length=100, default="False")
     Desc = models.CharField(max_length=100, default="False")
+    Date = models.DateTimeField(default=datetime.now())
     #Adapter = models.CharField(max_length=100, default="-")
 
 

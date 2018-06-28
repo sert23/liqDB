@@ -7,7 +7,7 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 	counter = Counter(data)
 	top_4 = counter.most_common(4)
 	first, second, third, fourth = [key for key, value in top_4]
-	p_first, p_second, p_third, p_fourth = list(map(lambda value: round(100*value/total, 2), [value for key, value in top_4]))
+	p_first, p_second, p_third, p_fourth = list(map(lambda value: int(100*value/total), [value for key, value in top_4]))
 	fifth = fifth
 	p_fifth = round(100 - p_first - p_second - p_third - p_fourth, 2) 
 	template = '''
