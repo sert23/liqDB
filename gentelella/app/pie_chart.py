@@ -2,7 +2,7 @@
 
 from collections import Counter
 
-def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 = 'Fluid', title_3 = 'Abundance', fifth = 'Others'):
+def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 = 'Fluid', title_3 = 'N. of Samples', fifth = 'Others'):
 	total = float(len(data))
 	counter = Counter(data)
 	top_4 = counter.most_common(4)
@@ -58,11 +58,11 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 			<tr>
 				<td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe><canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas></td>
 				<td><table class="tile_info"><tbody>
-					<tr><td><p><i class="fa fa-square blue"></i>{first}</p></td><td>{c_first}%</td></tr>
-					<tr><td><p><i class="fa fa-square green"></i>{second}</p></td><td>{c_second}%</td></tr>
-					<tr><td><p><i class="fa fa-square purple"></i>{third}</p></td><td>{c_third}%</td></tr>
-					<tr><td><p><i class="fa fa-square red"></i>{fourth}</p></td><td>{c_fourth}%</td></tr>
-					<tr><td><p><i class="fa fa-square aero"></i>{fifth}</p></td><td>{c_fifth}%</td></tr>
+					<tr><td><p><i class="fa fa-square blue"></i>{first}</p></td><td>{c_first}</td></tr>
+					<tr><td><p><i class="fa fa-square green"></i>{second}</p></td><td>{c_second}</td></tr>
+					<tr><td><p><i class="fa fa-square purple"></i>{third}</p></td><td>{c_third}</td></tr>
+					<tr><td><p><i class="fa fa-square red"></i>{fourth}</p></td><td>{c_fourth}</td></tr>
+					<tr><td><p><i class="fa fa-square aero"></i>{fifth}</p></td><td>{c_fifth}</td></tr>
 				</tbody></table></td>
 			</tr>
 		</tbody></table>
