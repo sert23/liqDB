@@ -9,7 +9,7 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 	first, second, third, fourth = [key for key, value in top_4]
 	p_first, p_second, p_third, p_fourth = list(map(lambda value: int(100*value/total), [value for key, value in top_4]))
 	fifth = fifth
-	p_fifth = round(100 - p_first - p_second - p_third - p_fourth, 2) 
+	p_fifth = int(100 - p_first - p_second - p_third - p_fourth) 
 	template = '''
 	<script>
 		function init_chart_doughnut() {{
