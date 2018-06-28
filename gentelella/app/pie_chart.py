@@ -7,9 +7,11 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 	counter = Counter(data)
 	top_4 = counter.most_common(4)
 	first, second, third, fourth = [key for key, value in top_4]
-	p_first, p_second, p_third, p_fourth = list(map(lambda value: int(100*value/total), [value for key, value in top_4]))
+	c_first, c_second, c_third, c_fourth = [value for key, value in top_4]
+	p_first, p_second, p_third, p_fourth = list(map(lambda value: round(100*value/total, 2), [value for key, value in top_4]))
 	fifth = fifth
-	p_fifth = int(100 - p_first - p_second - p_third - p_fourth) 
+	c_fifth = len(data) - c_first - c_second - c_third - c_fourth
+	p_fifth = round(100 - p_first - p_second - p_third - p_fourth, 2)
 	template = '''
 	<script>
 		function init_chart_doughnut() {{
@@ -56,17 +58,17 @@ def pie_chart(data, main_title = 'Fluids Abundance', title_1 = 'Top 5', title_2 
 			<tr>
 				<td><iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe><canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0px; width: 140px; height: 140px;"></canvas></td>
 				<td><table class="tile_info"><tbody>
-					<tr><td><p><i class="fa fa-square blue"></i>{first}</p></td><td>{p_first}%</td></tr>
-					<tr><td><p><i class="fa fa-square green"></i>{second}</p></td><td>{p_second}%</td></tr>
-					<tr><td><p><i class="fa fa-square purple"></i>{third}</p></td><td>{p_third}%</td></tr>
-					<tr><td><p><i class="fa fa-square red"></i>{fourth}</p></td><td>{p_fourth}%</td></tr>
-					<tr><td><p><i class="fa fa-square aero"></i>{fifth}</p></td><td>{p_fifth}%</td></tr>
+					<tr><td><p><i class="fa fa-square blue"></i>{first}</p></td><td>{c_first}%</td></tr>
+					<tr><td><p><i class="fa fa-square green"></i>{second}</p></td><td>{c_second}%</td></tr>
+					<tr><td><p><i class="fa fa-square purple"></i>{third}</p></td><td>{c_third}%</td></tr>
+					<tr><td><p><i class="fa fa-square red"></i>{fourth}</p></td><td>{c_fourth}%</td></tr>
+					<tr><td><p><i class="fa fa-square aero"></i>{fifth}</p></td><td>{c_fifth}%</td></tr>
 				</tbody></table></td>
 			</tr>
 		</tbody></table>
 	</div>
 	</div>
-	'''.format(main_title = main_title, title_1 = title_1, title_2 = title_2, title_3 = title_3, first = first, second = second, third = third, fourth = fourth, fifth = fifth, p_first = p_first, p_second = p_second, p_third = p_third, p_fourth = p_fourth, p_fifth = p_fifth)
+	'''.format(main_title = main_title, title_1 = title_1, title_2 = title_2, title_3 = title_3, first = first, second = second, third = third, fourth = fourth, fifth = fifth, p_first = p_first, p_second = p_second, p_third = p_third, p_fourth = p_fourth, p_fifth = p_fifth, c_first = c_first, c_second = c_second, c_third = c_third, c_fourth = c_fourth, c_fifth = c_fifth)
 	return template
 
 if __name__ == '__main__':

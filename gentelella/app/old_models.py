@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
+
 from django.db import models
+
 import django_tables2 as tables
-from django.db.models import signals
-from django.dispatch import dispatcher
+
+
+
 from datetime import datetime
-import dateutil.parser
 
 class Study (models.Model):
     SRP = models.CharField(max_length=100)
@@ -32,8 +34,7 @@ class Sample (models.Model):
     Cancer = models.CharField(max_length=100, default="NA")
     Exosome = models.CharField(max_length=100, default="False")
     Desc = models.CharField(max_length=100, default="False")
-    DateString = models.CharField(max_length=100, default="False")
-    Date = models.DateTimeField(auto_now_add = True, editable = True)
+    Date = models.DateTimeField(default=datetime.now())
     #Adapter = models.CharField(max_length=100, default="-")
 
 
@@ -43,11 +44,3 @@ class StudiesTable(tables.Table):
 
 
 # Create your models here.
-
-def parse_datetime(sender, instance, created, *args, **kwargs):
-    if created:
-        for sample in Sample.objects.all():
-            sample.Date = dateutil.parser.parse(sample.DateString)
-            sample.save()
-
-dispatcher.connect(parse_datetime, signal = signals.post_save, sender = Sample)
