@@ -91,7 +91,7 @@ class DisplayStudy(DetailView):
                 DE_objs.append([comparison,DE_table,DE_plot])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
-                DE_objs.append([comparison, DE_table, None])
+                DE_objs.append([comparison, DE_table, " "])
                 #print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
         context["DE_list"] = DE_list
         context["DE_objs"] = DE_objs
