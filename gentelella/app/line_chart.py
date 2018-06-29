@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
-from collections import OrderedDict
-from models import Sample
-
-def line_chart(main_title = 'Number of Samples / Fluids publicly available in SRA by Year', label_1 = 'Samples', label_2 = 'Fluids'):
-    samples = Sample.objects.all()
+def line_chart(SampleModel, main_title = 'Number of Samples / Fluids publicly available in SRA by Year', label_1 = 'Samples', label_2 = 'Fluids'):
+    samples = SampleModel.objects.all()
     samples_count = OrderedDict({
         'before 2011' : 0,
         2011 : 0,
@@ -40,8 +37,8 @@ def line_chart(main_title = 'Number of Samples / Fluids publicly available in SR
         else:
             samples_count[year] += 1
             fluids[year].add(fluid)
-            
-    fluids = [len(year) for year in fluids]
+
+    fluids = {year : len(fluids[year]) for year in fluids}
 
     samples_count[2011] += samples_count['before 2011']
     samples_count[2012] += samples_count[2011]
@@ -65,16 +62,16 @@ def line_chart(main_title = 'Number of Samples / Fluids publicly available in SR
     fluids_data = [fluids[year] for year in fluids]
 
     template = '''
-    	<script src="../../dist/Chart.bundle.js"></script>
-    	<script src="../utils.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    	<script src="static/build/js/Chart.bundle.js"></script>
+    	<script src="static/build/js/utils.js"></script>
+    	<script src="static/build/js/jquery.2.1.3.min.js"></script>
     	<style>
-    		canvas{
+    		canvas{{
     			-moz-user-select: none;
     			-webkit-user-select: none;
     			-ms-user-select: none;
-    		}
-    		.chartjs-tooltip {
+    		}}
+    		.chartjs-tooltip {{
     			opacity: 1;
     			position: absolute;
     			background: rgba(0, 0, 0, .7);
@@ -86,13 +83,13 @@ def line_chart(main_title = 'Number of Samples / Fluids publicly available in SR
     			-webkit-transform: translate(-50%, 0);
     			transform: translate(-50%, 0);
     			padding: 4px;
-    		}
+    		}}
 
-    		.chartjs-tooltip-key {
+    		.chartjs-tooltip-key {{
     			display: inline-block;
     			width: 10px;
     			height: 10px;
-    		}
+    		}}
     	</style>
 
     	<div id="canvas-holder1" style="width:75%;">
@@ -101,71 +98,71 @@ def line_chart(main_title = 'Number of Samples / Fluids publicly available in SR
     		<div class="chartjs-tooltip" id="tooltip-1"></div>
     	</div>
     	<script>
-    		var customTooltips = function(tooltip) {
+    		var customTooltips = function(tooltip) {{
     			$(this._chart.canvas).css('cursor', 'pointer');
 
     			var positionY = this._chart.canvas.offsetTop;
     			var positionX = this._chart.canvas.offsetLeft;
 
-    			$('.chartjs-tooltip').css({
+    			$('.chartjs-tooltip').css({{
     				opacity: 0,
-    			});
+    			}});
 
-    			if (!tooltip || !tooltip.opacity) {
+    			if (!tooltip || !tooltip.opacity) {{
     				return;
-    			}
+    			}}
 
-    			if (tooltip.dataPoints.length > 0) {
-    				tooltip.dataPoints.forEach(function(dataPoint) {
+    			if (tooltip.dataPoints.length > 0) {{
+    				tooltip.dataPoints.forEach(function(dataPoint) {{
     					var content = [dataPoint.xLabel, dataPoint.yLabel].join(': ');
     					var $tooltip = $('#tooltip-' + dataPoint.datasetIndex);
 
     					$tooltip.html(content);
-    					$tooltip.css({
+    					$tooltip.css({{
     						opacity: 1,
     						top: positionY + dataPoint.y + 'px',
     						left: positionX + dataPoint.x + 'px',
-    					});
-    				});
-    			}
-    		};
+    					}});
+    				}});
+    			}}
+    		}};
     		var color = Chart.helpers.color;
-    		var lineChartData = {
+    		var lineChartData = {{
     			labels: ['before 2011', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'],
-    			datasets: [{
+    			datasets: [{{
     				label: {label_1},
     				backgroundColor: color("rgba(38, 185, 154, 0.7)").alpha(0.2).rgbString(),
     				borderColor: "rgba(38, 185, 154, 0.7)",
     				pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
     				data: {samples_data}
-    			}, {
+    			}}, {{
     				label: {label_2},
     				backgroundColor: color("rgba(3, 88, 106, 0.70)").alpha(0.2).rgbString(),
     				borderColor: "rgba(3, 88, 106, 0.70)",
     				pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
     				data: {fluids_data}
-    			}]
-    		};
+    			}}]
+    		}};
 
-    		window.onload = function() {
+    		window.onload = function() {{
     			var chartEl = document.getElementById('chart1');
-    			new Chart(chartEl, {
+    			new Chart(chartEl, {{
     				type: 'line',
     				data: lineChartData,
-    				options: {
-    					title: {
+    				options: {{
+    					title: {{
     						display: true,
     						text: {main_title}
-    					},
-    					tooltips: {
+    					}},
+    					tooltips: {{
     						enabled: false,
     						mode: 'index',
     						intersect: false,
     						custom: customTooltips
-    					}
-    				}
-    			});
-    		};
+    					}}
+    				}}
+    			}});
+    		}};
     	</script>
     '''.format(main_title = main_title, label_1 = label_1, label_2 = label_2, samples_data = samples_data, fluids_data = fluids_data)
 
