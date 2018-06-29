@@ -128,17 +128,68 @@
                   </div>
                   <div role="tabpanel" class="tab-pane fade" id="tab_downloads" aria-labelledby="profile-tab">
                     <p></p>
-                    <button class="btn"><i class="fa fa-download"></i> Download some stuff</button>
-                    <button class="btn"><i class="fa fa-download"></i> <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download></a></button>
-                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i
-                                class="fa fa-download fa-fw"></i>Matrix File</a>
-                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button>Download!</button></a>
-                    <div class="panel-body">
-                Input File: <a href="http://bioinfo5.ugr.es/srnatoolbox/media//UBNMV10I6X5S169/IK_exosomes.fastq.gz" download> <i class="fa fa-download fa-fw"></i> IK_exo.fastq.gz</a>
-            </div>
+                      <div class="col-md-4 col-sm-4 col-xs-12">
+                          <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <h2>Download Expression Matrix</h2>
+                                  <div class="clearfix"></div>
+                                    </div>
+                              <br>
+                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button class="btn"><i class="fa fa-download"></i> Download expression matrix (Reads Per Million)</button>
+                    </a>
+                        <br>
+                        <br>
+
+                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button class="btn"><i class="fa fa-download"></i> Download   expression  matrix RC  (Read Count)</button>
+                    </a>
+                          </div>
+                          </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <h2>Download Full Study Data</h2>
+                                  <div class="clearfix"></div>
+                              </div>
+                                  <div class="x_content">
+                              </div>
+                                  <h4>Click the link below to donwload all data available in liqDB: samples metadata, SRA Run tables and IDs, Expression Profiles, RNA content distribution...</h4>
+
+
+                                  <br>
+
+                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button class="btn"><i class="fa fa-download"></i> Download Full Data</button>
+
+                    </a>
+                              </div>
+                              </div>
+                              </div>
+                          <!--</div>-->
+                      <!--</div>-->
+
+                    <!--<div class="panel-body">-->
+                <!--Input File: <a href="http://bioinfo5.ugr.es/srnatoolbox/media//UBNMV10I6X5S169/IK_exosomes.fastq.gz" download> <i class="fa fa-download fa-fw"></i> IK_exo.fastq.gz</a>-->
+            <!--</div>-->
                     <!--<a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i-->
                                 <!--class="fa fa-download fa-fw"></i>Matrix File</a>-->
+
+
+                    {% if DE_list %}
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_DE" aria-labelledby="profile-tab">
+                        <div class="accordion" id="accordion4" role="tablist" aria-multiselectable="true">
+                            {% for comparison,table,plot in DE_objs %}
+                                    <a class="panel-heading" role="tab" id="heading{{comparison}}" data-toggle="collapse" data-parent="#accordion4" href="#collapse{{comparison}}" aria-expanded="false" aria-controls="collapseOne">
+                            <h4 class="panel-title">{{comparison}}</h4>
+                          </a>
+                          <div id="collapse{{comparison}}" class="panel-collapse collapse active in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              {{plot|safe}}
+                            </div>
+                          </div>
+                            {% endfor %}}
                   </div>
+                  </div>
+                  {% endif %}
+
                 </div>
               </div>
 

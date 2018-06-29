@@ -80,6 +80,10 @@ WSGI_APPLICATION = 'gentelella.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, "queryData")
 MEDIA_URL = '/media/'
 
+# STUDIES_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
+STUDIES_FOLDER = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
+
+
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 

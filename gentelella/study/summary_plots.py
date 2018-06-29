@@ -226,7 +226,7 @@ def makeBottom20CV(input_file):
             t=100,
             pad=4
         ),
-        title="Top20 microRNA with lowest Coefficient of Variation",
+        title="20 microRNA with lowest Coefficient of Variation",
         xaxis=dict(
             # title='Nulceotide added',
             tick0=0,
@@ -245,3 +245,60 @@ def makeBottom20CV(input_file):
 
     # print("")
 # makeTop20CV("C:/Users/Ernesto/Desktop/Colabo/liqDB/test/miRNA_RPMadjLib_CV_min20.txt")
+
+def makeDEbox(input_file):
+    input_file = input_file.replace("\\","/")
+    print((input_file))
+    #return None
+    #first_table = pandas.read_table(input_file, header=None ,sep='\t')
+    color_list= ["red", "green","blue","yellow","purple","orange"]
+    with open(input_file, "r") as ifile:
+        lines = ifile.readlines()
+        x_dict = dict()
+        y_dict = dict()
+        for i,line in enumerate(lines):
+            row = line.split("\t")
+            x,cond = row[0].split("#")
+            if x_dict.get(cond):
+                to_ap = [x]*(len(row)-1)
+                x_dict[cond].extend(to_ap)
+                y_dict[cond].extend(row[1:])
+            else:
+                x_dict[cond] = [x]*(len(row)-1)
+                y_dict[cond] = row[1:]
+        data = []
+        for i,key in enumerate(x_dict.keys()):
+            trace = go.Box(
+                    x=x_dict[key],
+                    y=y_dict[key],
+                    marker=dict(
+                        color= color_list[i]),
+                    name=key
+                )
+            data.append(trace)
+            print(data)
+        layout = go.Layout(
+                boxmode='group',
+                autosize=True,
+                margin=go.Margin(
+                    l=50,
+                    r=50,
+                    b=150,
+                    t=100,
+                    pad=4
+                ),
+                title="Differentially Expressed miRNAs",
+                xaxis=dict(
+                    # title='Nulceotide added',
+                    tick0=0,
+                    dtick=1,
+                ),
+                yaxis=dict(
+                    type='log',
+                    title='RPM')
+            )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
+
+#makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")

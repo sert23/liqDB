@@ -6,9 +6,9 @@ from django.views.generic import DetailView
 from study.forms import StudyForm
 from app.models import Study, Sample
 import pandas as pd
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, STUDIES_FOLDER
 import os
-from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV
+from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
 # Create your views here.
 
 
@@ -60,8 +60,8 @@ class DisplayStudy(DetailView):
     #get_form_kwargs
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
-        studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
-        #studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
+        #studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
+        studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
         study = context.get('object')
         context['pagetitle'] = study.SRP
         expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
@@ -69,21 +69,35 @@ class DisplayStudy(DetailView):
         RNAcols , RNAbody =sortedMatrixToTableList(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"))
         context['RNAcols'] = RNAcols
         context['RNAbody'] = RNAbody
-        # with open("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/test/mapBox.html","r") as html_file:
-        #     print(os.path.exists("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RCadj_miRNA_sort.txt"))
         plot = makeGenomePlot(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"), "")
         top20 = makeTop20(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"), "")
         toPie = makePie10(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"))
-            #plot2 = makeGenomePlot("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/RNAmaping_sort.txt", "")
         context["mapBox"] = plot
         context["top20"] = top20
         context["toPie"] = toPie
         context["speciesPlot"] = makeSpeciesPlot(os.path.join(studies_folder,study.SRP,"genomeDistribution_sort.txt"))
         context["top20CV"] = makeTop20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
+        #context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
         context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(studies_folder, study.SRP, "genomeDistribution_sort.txt"))
-        context["DE_list"] = ["mock_list"]
-            #context["mapBox2"] = plot2
+
+        DE_list = os.listdir(os.path.join(studies_folder,study.SRP,"de"))
+        DE_objs = []
+        for comparison in DE_list:
+            files = os.listdir(os.path.join(studies_folder,study.SRP,"de",comparison))
+            if os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt").replace("\\","/")):
+                DE_table = os.path.join(studies_folder,study.SRP,"de",comparison,"").replace("\\","/")
+                DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
+                DE_objs.append([comparison,DE_table,DE_plot])
+            else:
+                DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
+                DE_objs.append([comparison, DE_table, None])
+                #print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
+        context["DE_list"] = DE_list
+        context["DE_objs"] = DE_objs
+
+        context["study_folder"] = os.path.join(STUDIES_FOLDER,study.SRP)
+
         exp_table = []
         #print("hello")
         #print(os.path.exists(os.path.join(MEDIA_ROOT)))
