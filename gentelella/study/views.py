@@ -61,7 +61,7 @@ class DisplayStudy(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
         #studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
-        studies_folder = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
+        studies_folder = STUDIES_FOLDER
         study = context.get('object')
         context['pagetitle'] = study.SRP
         expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
