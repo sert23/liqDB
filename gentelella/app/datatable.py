@@ -7,13 +7,9 @@ def create_datatable(data):
 
 	template = '''
 	<link rel="stylesheet" type="text/css" href="static/build/css/jquery.dataTables.css">
-	<link rel="stylesheet" type="text/css" href="static/build/resources/syntax/shCore.css">
-	<link rel="stylesheet" type="text/css" href="static/build/resources/demo.css">
 	<style type="text/css" class="init"></style>
 	<script type="text/javascript" language="javascript" src="static/build/js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" language="javascript" src="static/build/js/jquery.dataTables.js"></script>
-	<script type="text/javascript" language="javascript" src="static/build/resources/syntax/shCore.js"></script>
-	<script type="text/javascript" language="javascript" src="static/build/resources/demo.js"></script>
 	<script type="text/javascript" language="javascript" class="init">
 
 	var dataSet = {dataset};
