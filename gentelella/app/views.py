@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from app.models import Study, Sample, StudiesTable
 from app.pie_chart import pie_chart
+from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
 
 
@@ -16,7 +17,18 @@ def index(request):
     #print(len(recent))
     results = dict()
 
-    results["bar_years"] = year_bar_chart(["2009"]*6 + ["2012"]*10 + ["2018"]*5)
+    bar_years = dict()
+    for sample in samples:
+        SRP = sample.SRP
+        year = sample.Date.year
+        if SRP in bar_years:
+            if year < bar_years[SRP]:
+                bar_years[SRP] = year
+        else:
+            bar_years[SRP] = year
+
+    results["bar_years"] = year_bar_chart(list(bar_years.values()))
+    results["line_chart"] = line_chart(Sample)
 
     for i,obj in enumerate(recent):
         SRP = obj.SRP
@@ -121,4 +133,3 @@ def studies(request):
     template = loader.get_template('app/studies_table.html' )
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
-
