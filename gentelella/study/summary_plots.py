@@ -248,7 +248,7 @@ def makeBottom20CV(input_file):
 
 def makeDEbox(input_file):
     input_file = input_file.replace("\\","/")
-    print((input_file))
+    #print((input_file))
     #return None
     #first_table = pandas.read_table(input_file, header=None ,sep='\t')
     color_list= ["red", "green","blue","yellow","purple","orange"]
@@ -276,7 +276,7 @@ def makeDEbox(input_file):
                     name=key
                 )
             data.append(trace)
-            print(data)
+        #    print(data)
         layout = go.Layout(
                 boxmode='group',
                 autosize=True,
@@ -302,3 +302,42 @@ def makeDEbox(input_file):
     return div_obj
 
 #makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
+
+def makeMirBox(input_file,title):
+    input_file = input_file.replace("\\", "/")
+
+    color_list = ["red", "green", "blue", "yellow", "purple", "orange"]
+    with open(input_file, "r") as ifile:
+        lines = ifile.readlines()
+        data = []
+        for line in lines:
+            row = line.split("\t")
+            if not row[0].replace(" ","") == "" :
+                trace = go.Box(
+                    y=row[1:],
+                    name=row[0]
+                )
+                data.append(trace)
+        layout = go.Layout(
+            boxmode='group',
+            autosize=True,
+            margin=go.Margin(
+                l=50,
+                r=50,
+                b=150,
+                t=100,
+                pad=4
+            ),
+            title= title,
+            xaxis=dict(
+                # title='Nulceotide added',
+                tick0=0,
+                dtick=1,
+            ),
+            yaxis=dict(
+                type='log',
+                title='RPM')
+        )
+        fig = go.Figure(data=data, layout=layout)
+        div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+        return div_obj

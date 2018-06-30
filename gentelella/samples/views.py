@@ -6,9 +6,12 @@ from app.models import Sample
 from django.views.generic import FormView
 from samples.forms import SamplesForm
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
+from study.views import sortedMatrixToTableList
 # Create your views here.
 import json
 import os
+from app.datatable import create_datatable
 
 def create_table(head, body, table_id = "datatable", table_class = "table table-striped table-bordered dataTable no-footer"):
 	'''
@@ -125,13 +128,6 @@ class StartSample(FormView):
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
                 [SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-        # context['pagetitle'] = str(study.SRP)
-        # table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
-        #               "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
-        #              table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
-        #              )
-        #
-        # context["table_html"] = table_html
 
         js_data = json.dumps(table_data)
         #print(js_data)
@@ -186,10 +182,35 @@ class SampleQuery(FormView):
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
         query_id = str(self.request.path_info).split("/")[-1]
+        content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         with open(os.path.join(MEDIA_ROOT,query_id,"query.txt"), 'r') as queryfile:
             SRX_string = queryfile.read()
+
+        # with open(os.path.join(content_folder,), 'r') as exp_file:
+        #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
+
+        RNAcols, RNAbody = sortedMatrixToTableList(os.path.join(content_folder, "RNAmaping_sort.txt"))
+        MIRcols, MIRbody = sortedMatrixToTableList(os.path.join(content_folder, "miRNA_RCadj.txt"))
+        context['RNAcols'] = RNAcols
+        context['RNAbody'] = RNAbody
+        context['MIRcols'] = MIRcols
+        context['MIRbody'] = MIRbody
+
+        #print(os.path.join(content_folder, "miRNA_RCadj.txt"))
+        #context["exp_table"] = create_datatable(exp_data)
         context['SRX_string'] = SRX_string
+        plot = makeGenomePlot(os.path.join(content_folder, "RNAmaping_sort.txt"), "")
+        top20 = makeTop20(os.path.join(content_folder, "miRNA_RPMadjLib_sort.txt"), "")
+        toPie = makePie10(os.path.join(content_folder, "miRNA_RPMadjLib_sort.txt"))
+        context["mapBox"] = plot
+        context["top20"] = top20
+        context["toPie"] = toPie
+        context["speciesPlot"] = makeSpeciesPlot(os.path.join(content_folder, "genomeDistribution_sort.txt"))
+        context["top20CV"] = makeTop20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
+        # context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
+        context["bottom20CV"] = makeBottom20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
         samples_ids = SRX_string.split(",")
+        samples_ids = list(filter(None, samples_ids))
         context['pagetitle'] = str(len(samples_ids))+ ' samples selected'
         samples = Sample.objects.all().filter(Experiment__in=samples_ids)
         table_data = []

@@ -38,20 +38,26 @@
             </div>
             <div class="x_content">
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="#tab_results" id="results-tab" role="tab" data-toggle="tab" aria-expanded="true">Query Result</a>
+                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Query Result</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_overview" role="tab" id="query-overview" data-toggle="tab" aria-expanded="false">Query Overview</a>
+                  <li role="presentation" class=""><a href="#tab_profile" role="tab" id="profiles" data-toggle="tab" aria-expanded="false">miRNA Profiles</a>
                   </li>
-                  <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Download Data</a>
+                  <li role="presentation" class=""><a href="#tab_plots" role="tab" id="plots" data-toggle="tab" aria-expanded="false">sRNA types distribution</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_genomes" role="tab" id="genomes-tab" data-toggle="tab" aria-expanded="false">Species distribution</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Download</a>
                   </li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div role="tabpanel" class="tab-pane active in" id="tab_results" aria-labelledby="profiles">
-                    <p></p>
-                        <div class="panel">
+                    <div role="tabpanel" class="tab-pane fade in active" id="tab_metadata" aria-labelledby="profiles">
+                    <div class="x_content">
+                        <!--<div class="panel">-->
+                            <br>
+                        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                   <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <h4 class="panel-title">List of selected Experiments</h4>
+                    <h4 class="panel-title">List of Selected Experiments</h4>
                   </a>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
@@ -60,27 +66,58 @@
                         </pre>
                     </div>
                   </div>
-                </div>
                         <h2> Samples metadata</h2>
+                        <!--{{exp_table|safe}}-->
                       <table id="example" class="table table-striped table-bordered bulk_action"></table>
 
-                    <table id="profile" class="table table-striped table-bordered bulk_action"></table>
+                    <!--<table id="profile" class="table table-striped table-bordered bulk_action"></table>-->
                   </div>
-                  <div role="tabpanel" class="tab-pane fade active in" id="tab_overview" aria-labelledby="overview-tab">
-                    <p>{{SRX_string}}</p>
-                    <div class="x_content">
-              <p class="text-muted font-13 m-b-30">
-                <!--DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>-->
-              </p>
-
-
-                    <br>
-
-
-              <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
-              </div>
+                  </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade in" id="tab_downloads" aria-labelledby="profile-tab">
+              <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_profile" aria-labelledby="profiles">
+                    <div class="x_content">
+                        <br>
+                        <table id="profile" class="table table-striped table-bordered bulk_action"></table>
+                        <!--<table id=profile class="table table-striped table-bordered bulk_action"></table>-->
+                      <div class="panel">
+                          <!--{{exp_table|safe}}-->
+                        <!--<table id="profile" class="table table-striped table-bordered bulk_action"></table>-->
+                            <div class="accordion" id="accordion3" role="tablist" aria-multiselectable="true">
+                                <a class="panel-heading" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion3" href="#collapse5" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">Most highly expressed miRNAs</h4>
+                  </a>
+                  <div id="collapse5" class="panel-collapse active in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      {{top20|safe}}
+                      {{toPie|safe}}
+                    </div>
+                  </div>
+                                <a class="panel-heading" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion3" href="#collapse6" aria-expanded="false" aria-controls="collapseOne">
+                    <h4 class="panel-title">Most and least variant microRNAs</h4>
+                  </a>
+                  <div id="collapse6" class="panel-collapse collapse active in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      {{top20CV|safe}}
+                      {{bottom20CV|safe}}
+                    </div>
+                  </div>
+
+                    </div>
+                      </div>
+                      </div>
+                      </div>
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_plots" aria-labelledby="profiles">
+                        <table id="RNA_types" class="table table-striped table-bordered bulk_action"></table>
+                        {{mapBox|safe}}
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_genomes" aria-labelledby="profiles">
+
+                        <table id="genomes" class="table table-striped table-bordered bulk_action"></table>
+                        {{speciesPlot|safe}}
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_downloads" aria-labelledby="profile-tab">
                     <p></p>
                     <button class="btn"><i class="fa fa-download"></i> Download some stuff</button>
                     <button class="btn"><i class="fa fa-download"></i> <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download></a></button>
@@ -97,7 +134,7 @@
 
 
                 </div>
-              </div>
+              <!--</div>-->
 
 
 
@@ -189,6 +226,44 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+//    alert("Hey");
+//    var received_data = {{ data }};
+    var RNA_data = {{ RNAbody|safe }};
+    var RNA_columns = {{RNAcols|safe}}
+//    alert(RNA_columns)
+//    alert(received_data);
+
+$(document).ready(function() {
+    $('#RNA_types').DataTable( {
+//        'responsive': true,
+        data: RNA_data,
+        columns: RNA_columns,
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+
+</script>
+
+<script>
+//    alert("Hey");
+//    var received_data = {{ data }};
+    var MIR_data = {{ MIRbody|safe }};
+    var MIR_columns = {{MIRcols|safe}}
+//    alert(RNA_columns)
+//    alert(received_data);
+
+$(document).ready(function() {
+    $('#profile').DataTable( {
+//        'responsive': true,
+        data: MIR_data,
+        columns: MIR_columns,
+        "order": [[ 2, "desc" ]]
+    } );
+} );
+
+</script>
+
 <!--<script>-->
 <!--//    alert("Hey");-->
 <!--//    var received_data = {{ data }};-->
@@ -234,23 +309,23 @@ $(document).ready(function() {
 
 <!--</script>-->
 
-<script>
-//    alert("Hey");
-//    var received_data = {{ data }};
-    var parsed_data = {{ exp_data|safe }};
-    var exp_columns = {{exp_columns|safe}}
-//    alert(exp_columns)
-//    alert(received_data);
+<!--<script>-->
+<!--//    alert("Hey");-->
+<!--//    var received_data = {{ data }};-->
+    <!--var parsed_data = {{ exp_data|safe }};-->
+    <!--var exp_columns = {{exp_columns|safe}}-->
+<!--//    alert(exp_columns)-->
+<!--//    alert(received_data);-->
 
-$(document).ready(function() {
-    $('#profile').DataTable( {
-//        'responsive': true,
-        data: parsed_data,
-        columns: exp_columns
-    } );
-} );
+<!--$(document).ready(function() {-->
+    <!--$('#profile').DataTable( {-->
+<!--//        'responsive': true,-->
+        <!--data: parsed_data,-->
+        <!--columns: exp_columns-->
+    <!--} );-->
+<!--} );-->
 
-</script>
+<!--</script>-->
 
 <script>
 

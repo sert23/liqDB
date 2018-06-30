@@ -4,7 +4,7 @@ from collections import Counter
 
 def year_bar_chart(data, main_title = 'Number of studies available', title_1 = 'Studies uploaded to SRA per year'):
 	labels = ['2018 or later', '2016-2017', '2014-2015', '2012-2013', '2011 or before', 'total']
-	labels = ['<p style="font-size:80%;">' + label + '</p>' for label in labels]
+	labels = ['<p style="font-size:100%;">' + label + '</p>' for label in labels]
 	time_slots_count = {
 		labels[0] : 0,
 		labels[1] : 0,

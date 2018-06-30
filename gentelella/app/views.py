@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from app.models import Study, Sample, StudiesTable
 from app.pie_chart import pie_chart
+from app.bar_chart import year_bar_chart
 
 
 def index(request):
@@ -14,6 +15,8 @@ def index(request):
     recent = Study.objects.all()[total-6:total-1]
     #print(len(recent))
     results = dict()
+
+    results["bar_years"] = year_bar_chart(["2009"]*6 + ["2012"]*10 + ["2018"]*5)
 
     for i,obj in enumerate(recent):
         SRP = obj.SRP
@@ -45,7 +48,6 @@ def index(request):
 
 def gentella_html(request):
     studies = Study.objects.all()
-
     #print(samples)
     total = len(studies)
     recent = Study.objects.all()[total - 6:total - 1]
@@ -58,9 +60,7 @@ def gentella_html(request):
         results["paper" + str(i)] = obj.Url
     # print(studies_ids)
     #print(len(studies))
-
     results["studies"] = len(studies)
-
     # print(studies)
     context = results
     # The template to be loaded as per gentelella.
