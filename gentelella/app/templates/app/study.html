@@ -34,17 +34,16 @@
             <div class="x_content">
               <div class="" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                  <li role="presentation" class=""><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Overview</a>
+                  <li role="presentation" class="active"><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Overview</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_profile" role="tab" id="profiles" data-toggle="tab" aria-expanded="false">miRNA Profiles</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_plots" role="tab" id="plots" data-toggle="tab" aria-expanded="false">sRNA types distribution</a>
-                    </li>
-                      {% if DE_list %}
+                    {% if DE_list %}
                   <li role="presentation" class=""><a href="#tab_DE" role="tab" id="DE-tab" data-toggle="tab" aria-expanded="false">Differential Expression</a>
                   </li>
                   {% endif %}
-
+                  </li>
                   <li role="presentation" class=""><a href="#tab_genomes" role="tab" id="genomes-tab" data-toggle="tab" aria-expanded="false">Species distribution</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Download</a>
@@ -185,8 +184,8 @@
                 </div>
               </div>
             </div>
-          <!--</div>-->
-        <!--</div>-->
+          </div>
+        </div>
 
 
 
