@@ -30,7 +30,6 @@ class Sample (models.Model):
     Cancer = models.CharField(max_length=100, default="NA")
     Exosome = models.CharField(max_length=100, default="False")
     Desc = models.CharField(max_length=100, default="False")
-    DateString = models.CharField(max_length=100, default="False")
     Date = models.DateTimeField( editable = True,default=datetime.now())
     #Adapter = models.CharField(max_length=100, default="-")
 
@@ -41,9 +40,4 @@ class StudiesTable(tables.Table):
 
 
 # Create your models here.
-
-def parse_datetime():
-    for sample in Sample.objects.all():
-        sample.Date = dateutil.parser.parse(sample.DateString)
-        sample.save()
 
