@@ -3,7 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from app.models import Study, Sample, StudiesTable
 from app.pie_chart import pie_chart
-# from app.line_chart import line_chart
+from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
 
 
@@ -55,6 +55,9 @@ def index(request):
 
     results["fluid_chart"] =pie_string
     results["fluids"] = len(set(fluid_list))
+    
+    results["samples_data"], results["fluids_data"] = line_chart(Sample)
+    
     print(results["fluids"])
     #print(studies)
     context=results
