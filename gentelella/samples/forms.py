@@ -64,7 +64,8 @@ class SamplesForm(forms.Form):
         is_new = True
         while is_new:
             query_id = generate_uniq_id()
-            query_path =os.path.join(MEDIA_ROOT,query_id)
+            #query_path =os.path.join(MEDIA_ROOT,query_id)
+            query_path =os.path.join(DATA_FOLDER,"queryData",query_id)
             if not os.path.exists(query_path):
                 os.mkdir(query_path)
                 return query_id
