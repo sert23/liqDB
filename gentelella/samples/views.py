@@ -184,8 +184,8 @@ class SampleQuery(FormView):
         context = super(FormView, self).get_context_data(**kwargs)
         query_id = str(self.request.path_info).split("/")[-1]
         #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
-        content_folder = os.path.join(DATA_FOLDER, "queryOutput",query_id)
-        with open(os.path.join(MEDIA_ROOT,query_id,"query.txt"), 'r') as queryfile:
+        content_folder = os.path.join(DATA_FOLDER, "queryData",query_id)
+        with open(os.path.join(content_folder,"query.txt"), 'r') as queryfile:
             SRX_string = queryfile.read()
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
