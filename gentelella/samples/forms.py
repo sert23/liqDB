@@ -116,7 +116,7 @@ class SamplesForm(forms.Form):
         #print(samples_ids)
         #print(len(samples_ids))
 
-        query_path = os.path.join(MEDIA_ROOT, query_id)
+        query_path = os.path.join(DATA_FOLDER,"queryData", query_id)
         outputPath = os.path.join(query_path,"queryOutput")
 
         call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
