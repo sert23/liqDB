@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from study.forms import StudyForm
 from app.models import Study, Sample
 import pandas as pd
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, STUDIES_FOLDER
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, STUDIES_FOLDER, MEDIA_URL
 import os
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
 # Create your views here.
@@ -164,6 +164,7 @@ class DisplayStudy(DetailView):
         context["RPM_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         context["full_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         print(MEDIA_ROOT)
+        print(MEDIA_URL)
 
         return context
 
