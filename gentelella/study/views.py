@@ -158,7 +158,9 @@ class DisplayStudy(DetailView):
         SRX_list = list(samples.values_list('Experiment', flat=True))
         context["SRX_list"] = ",".join(SRX_list)
 
-        context["RC_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
+        #Download
+
+        context["RC_link"] = os.path.join(STUDIES_FOLDER,study.SRP,"miRNA_RCadj.txt.zip")
         context["RPM_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         context["full_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         # #print(type(js_data))
