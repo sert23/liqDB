@@ -163,7 +163,7 @@ class DisplayStudy(DetailView):
         context["RC_link"] = os.path.join(STUDIES_FOLDER,study.SRP,"miRNA_RCadj.txt.zip")
         context["RPM_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         context["full_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
-        # #print(type(js_data))
+        print(MEDIA_ROOT)
 
         return context
 
