@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <img src="/static/lineplot.png" alt="">
+                  <img class="img-responsive" src="/static/lineplot.png" alt="">
                   <!--<div id="chart_plot_A1" class="demo-placeholder" style="padding: 0px; position: relative;"><canvas class="flot-base" width="795" height="280" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 795px; height: 280px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 13px; text-align: center;">Jan 01</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 138px; text-align: center;">Jan 02</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 264px; text-align: center;">Jan 03</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 390px; text-align: center;">Jan 04</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 515px; text-align: center;">Jan 05</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 151px; top: 264px; left: 641px; text-align: center;">Jan 06</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 252px; left: 13px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 232px; left: 7px; text-align: right;">10</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 213px; left: 7px; text-align: right;">20</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 194px; left: 7px; text-align: right;">30</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 174px; left: 7px; text-align: right;">40</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 7px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 136px; left: 7px; text-align: right;">60</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 116px; left: 7px; text-align: right;">70</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 97px; left: 7px; text-align: right;">80</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 78px; left: 7px; text-align: right;">90</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 58px; left: 1px; text-align: right;">100</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 39px; left: 2px; text-align: right;">110</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 20px; left: 1px; text-align: right;">120</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 1px; text-align: right;">130</div></div></div><canvas class="flot-overlay" width="795" height="280" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 795px; height: 280px;"></canvas></div>-->
                 </div>
                 <div class="clearfix"></div>
@@ -150,7 +150,15 @@
       </div>
 
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="x_panel tile fixed_height_320 overflow_hidden">
+        {{line_chart|safe}}
+
+      <style>
+      .icon-heading {
+        display: inline-block;
+      }
+      </style>
+
+      <div class="x_panel tile fixed_height_320 overflow_hidden">
                               <div class="x_title">
                                 <i class="fa fa-question"></i>
                             <h3 class="icon-heading">Test Data</h3>
@@ -169,6 +177,7 @@
           <a href="/mirna/350"><i class="fa fa-crosshairs"></i> Only interested in one particular miRNA? Have a look at the kind of graphs we prepared <b>[Go]</b> </a>
 
                           </div>
+
       </div>
 
 
@@ -562,68 +571,4 @@
   <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
   <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
   <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-
-
-<script>
-
-$(document).ready(function() {
-
-function gd(year, month, day) {
-    return new Date(year, month - 1, day).getTime();
-}
-
-    var chart_plot_A1_settings = {
-        series: {
-            lines: {
-                show: false,
-                fill: true
-            },
-            splines: {
-                show: true,
-                tension: 0.4,
-                lineWidth: 1,
-                fill: 0.4
-            },
-            points: {
-                radius: 0,
-                show: true
-            },
-            shadowSize: 2
-        },
-        grid: {
-            verticalLines: true,
-            hoverable: true,
-            clickable: true,
-            tickColor: "#d5d5d5",
-            borderWidth: 1,
-            color: '#fff'
-        },
-        colors: ["rgba(38, 185, 154, 0.38)"],
-        xaxis: {
-            tickColor: "rgba(51, 51, 51, 0.06)",
-            mode: "time",
-            tickSize: [1, "year"],
-            //tickLength: 10,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
-        },
-        yaxis: {
-            ticks: 8,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-        },
-        tooltip: true
-    };
-
-    var data1 = {{ samples_data }};
-
- $.plot($("#chart_plot_A1"), [data1], chart_plot_A1_settings);
-
-});
-
-</script>
-
-
 {% endblock javascripts %}
