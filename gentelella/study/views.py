@@ -80,7 +80,8 @@ class DisplayStudy(DetailView):
         #context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
         context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(studies_folder, study.SRP, "genomeDistribution_sort.txt"))
-        DE_list = os.listdir(os.path.join(studies_folder,study.SRP,"de"))
+        initial_dir = os.path.join(studies_folder,study.SRP,"de")
+        DE_list = [name for name in os.listdir(initial_dir) if os.path.isdir(os.path.join(initial_dir, name))]
         DE_objs = []
         for comparison in DE_list:
             files = os.listdir(os.path.join(studies_folder,study.SRP,"de",comparison))
