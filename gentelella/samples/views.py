@@ -141,8 +141,9 @@ class StartSample(FormView):
 
         form.clean()
 
-        query_id = form.start_query()
+        query_id, call = form.start_query()
         self.success_url = "/samples/" + query_id
+        print(call)
 
         return super(StartSample, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
