@@ -42,7 +42,7 @@ def sortedMatrixToTableList(input_file):
         # print(e)
     columns_json = json.dumps(column_list)
     body_json = json.dumps(table_body)
-    print(len(column_list),len(table_body[0]))
+    #print(len(column_list),len(table_body[0]))
     return columns_json, body_json
     #context["exp_data"] = exp_data
 
@@ -80,7 +80,6 @@ class DisplayStudy(DetailView):
         #context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
         context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(studies_folder, study.SRP, "genomeDistribution_sort.txt"))
-
         DE_list = os.listdir(os.path.join(studies_folder,study.SRP,"de"))
         DE_objs = []
         for comparison in DE_list:
@@ -95,9 +94,7 @@ class DisplayStudy(DetailView):
                 #print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
         context["DE_list"] = DE_list
         context["DE_objs"] = DE_objs
-
         context["study_folder"] = os.path.join(STUDIES_FOLDER,study.SRP)
-
         exp_table = []
         #print("hello")
         #print(os.path.exists(os.path.join(MEDIA_ROOT)))
@@ -118,7 +115,6 @@ class DisplayStudy(DetailView):
         exp_data = json.dumps(exp_table)
         context["exp_data"] = exp_data
         #print(os.listdir(os.path.join(DATA_FOLDER,"SRP062974")))
-
         SRP = study.SRP
         SRP_link = 'https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=' + SRP
         SRP_field = "<a href='" + SRP_link + "'><b> at SRA </b></a>"
@@ -135,7 +131,7 @@ class DisplayStudy(DetailView):
         context["SRP_field"] = SRP_field
         samples = Sample.objects.filter(SRP__exact=SRP)
         context["sample_number"] = len(samples)
-        print(set(samples.values_list('Fluid',flat=True)))
+        #print(set(samples.values_list('Fluid',flat=True)))
         table_data = []
         qs = list(samples.values_list('Healthy', 'Cancer', 'Desc','Fluid','Sex'))
         df = pd.DataFrame.from_records(qs)
@@ -160,6 +156,10 @@ class DisplayStudy(DetailView):
         context["data"] = js_data
         SRX_list = list(samples.values_list('Experiment', flat=True))
         context["SRX_list"] = ",".join(SRX_list)
+
+        context["RC_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
+        context["RPM_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
+        context["full_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         # #print(type(js_data))
 
         return context
