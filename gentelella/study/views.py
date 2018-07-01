@@ -160,7 +160,7 @@ class DisplayStudy(DetailView):
 
         #Download
 
-        context["RC_link"] = os.path.join(STUDIES_FOLDER,study.SRP,"miRNA_RCadj.txt.zip")
+        context["RC_link"] = os.path.join(MEDIA_URL,"studies",study.SRP,"miRNA_RCadj.txt.zip")
         context["RPM_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         context["full_link"] = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/miRNA_RCadj.txt"
         print(MEDIA_ROOT)
