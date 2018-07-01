@@ -3,7 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from app.models import Study, Sample, StudiesTable
 from app.pie_chart import pie_chart
-from app.line_chart import line_chart
+# from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
 
 
@@ -28,7 +28,7 @@ def index(request):
             bar_years[SRP] = year
 
     results["bar_years"] = year_bar_chart(list(bar_years.values()))
-    results["line_chart"] = line_chart(Sample)
+    # results["line_chart"] = line_chart(Sample)
 
     for i,obj in enumerate(recent):
         SRP = obj.SRP
@@ -48,6 +48,9 @@ def index(request):
     results["samples"] = len(samples)
     results["studies"]=len(studies)
     fluid_list = Sample.objects.values_list('Fluid', flat=True)
+    #print(len(fluid_list))
+    fluid_list = [element for element in fluid_list if not "cell" in element]
+    #print(len(fluid_list))
     pie_string = pie_chart(fluid_list)
 
     results["fluid_chart"] =pie_string

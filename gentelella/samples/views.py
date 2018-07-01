@@ -185,10 +185,8 @@ class SampleQuery(FormView):
         content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         with open(os.path.join(MEDIA_ROOT,query_id,"query.txt"), 'r') as queryfile:
             SRX_string = queryfile.read()
-
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
-
         RNAcols, RNAbody = sortedMatrixToTableList(os.path.join(content_folder, "RNAmaping_sort.txt"))
         MIRcols, MIRbody = sortedMatrixToTableList(os.path.join(content_folder, "miRNA_RCadj.txt"))
         context['RNAcols'] = RNAcols
@@ -240,7 +238,7 @@ class SampleQuery(FormView):
         #              )
         # context["table_html"] = table_html
 
-        js_data = json.dumps(table_data[0:2000])
+        js_data = json.dumps(table_data)
         #print(js_data)
         context["data"] = js_data
 
@@ -252,7 +250,8 @@ class SampleQuery(FormView):
 
         form.clean()
 
-        query_id = form.start_query()
+        query_id, call = form.start_query()
+        print(call)
         self.success_url = "/samples/" + query_id
         return super(SampleQuery, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")

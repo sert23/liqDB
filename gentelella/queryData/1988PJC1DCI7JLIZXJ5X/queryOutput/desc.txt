@@ -1,0 +1,12 @@
+miRNA_RPMadjLib.txt	matrix	Expression matrix for Read Per Millions of multiple mapping adjusted read counts (library normalized)
+miRNA_RPMadjLib.txt	matrix_sort	Sorted expression matrix for Read Per Millions of multiple mapping adjusted read counts (library normalized)
+miRNA_RPMadjLib.txt	matrix_CV	Expression matrix with Coefficient of Variation for Read Per Millions of multiple mapping adjusted read counts (library normalized)
+miRNA_RCadj.txt	matrix	Expression matrix for Raw reads (adjusted for multiple mapping)
+miRNA_RCadj.txt	matrix_sort	Sorted expression matrix for Raw reads (adjusted for multiple mapping)
+miRNA_RCadj.txt	matrix_CV	Expression matrix with Coefficient of Variation for Raw reads (adjusted for multiple mapping)
+genomeDistribution.txt	matrix	Expression matrix for Genome Distribution: (HR = reads that map more that 20 times to the genome)
+genomeDistribution.txt	matrix_sort	Sorted expression matrix for Genome Distribution: (HR = reads that map more that 20 times to the genome)
+genomeDistribution.txt	matrix_CV	Expression matrix with Coefficient of Variation for Genome Distribution: (HR = reads that map more that 20 times to the genome)
+RNAmaping.txt	matrix	Expression matrix for RNA distribution. Percentages of RNA types found in the sample/study.
+RNAmaping.txt	matrix_sort	Sorted expression matrix for RNA distribution. Percentages of RNA types found in the sample/study.
+RNAmaping.txt	matrix_CV	Expression matrix with Coefficient of Variation for RNA distribution. Percentages of RNA types found in the sample/study.

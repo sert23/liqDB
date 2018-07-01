@@ -114,11 +114,20 @@ class SamplesForm(forms.Form):
         #samples_ids = samples.values_list('Experiment',flat=True)
         #print(samples_ids)
         #print(len(samples_ids))
+
         query_path = os.path.join(MEDIA_ROOT, query_id)
+        outputPath = os.path.join(query_path,"queryOutput")
+
+        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
+            outputPath=outputPath,
+            sampleString=queryString
+        )
+
+
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
         #print(query_id,fluid,sex,healthy,extraction,library)
-        return(query_id)
+        return(query_id,call)
     def start_query(self):
         query_id = self.generate_id()
         return self.make_query(self.cleaned_data,query_id)

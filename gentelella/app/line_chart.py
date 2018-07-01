@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from collections import OrderedDict
+
 def line_chart(SampleModel, main_title = 'Number of Samples / Fluids publicly available in SRA by Year', label_1 = 'Samples', label_2 = 'Fluids'):
     samples = SampleModel.objects.all()
     samples_count = OrderedDict({
