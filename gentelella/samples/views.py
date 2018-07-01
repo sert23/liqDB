@@ -256,7 +256,7 @@ class SampleQuery(FormView):
         self.success_url = "/samples/" + query_id
         os.system(call)
 
-        return super(StartSample, self).form_valid(form)
+        return super(SampleQuery, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
 
     #return super(StartSample, self).form_valid(form)
