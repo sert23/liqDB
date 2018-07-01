@@ -1,0 +1,25 @@
+[
+    {
+        "fields": {
+            "Cancer": "NA",
+            "Date": "2014-04-14 00:00",
+            "Desc": "NA",
+            "Exosome": "False",
+            "Experiment": "NA",
+            "Extraction": "TRIzol",
+            "Fluid": "serum",
+            "Healthy": "NA",
+            "Instrument": "NA",
+            "Library": "Illumina",
+            "Organism": "NA",
+            "PRJ": "NA",
+            "Release": "NA",
+            "Runs": "NA,NA",
+            "SRP": "NA",
+            "Sample": "NA",
+            "Sex": "female"
+        },
+        "model": "app.sample",
+        "pk": 383
+    }
+]
