@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from app.models import Sample
 from django.views.generic import FormView
 from samples.forms import SamplesForm
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MEDIA_URL
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
 from study.views import sortedMatrixToTableList
 # Create your views here.
@@ -241,6 +241,9 @@ class SampleQuery(FormView):
         # context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
 
+        context["RC_link"] = os.path.join(MEDIA_URL, "studies", content_folder, "miRNA_RCadj.txt")
+        context["RPM_link"] = os.path.join(MEDIA_URL, "studies", content_folder, "miRNA_RPMadjLib.txt")
+        #context["full_link"] = os.path.join(MEDIA_URL, "studies", study.SRP, study.SRP + ".zip")
 
 
         return context
