@@ -214,6 +214,7 @@ class SampleQuery(FormView):
         js_data = json.dumps(table_data)
         # print(js_data)
         context["data"] = js_data
+        context['SRX_string'] = SRX_string
 
         if len(SRX_string)<1:
             context['pagetitle'] = 'Sorry, no samples matched your query'
@@ -228,7 +229,7 @@ class SampleQuery(FormView):
 
         #print(os.path.join(content_folder, "miRNA_RCadj.txt"))
         #context["exp_table"] = create_datatable(exp_data)
-        context['SRX_string'] = SRX_string
+
         plot = makeGenomePlot(os.path.join(content_folder, "RNAmaping_sort.txt"), "")
         top20 = makeTop20(os.path.join(content_folder, "miRNA_RPMadjLib_sort.txt"), "")
         toPie = makePie10(os.path.join(content_folder, "miRNA_RPMadjLib_sort.txt"))
