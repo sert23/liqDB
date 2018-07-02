@@ -1,0 +1,5 @@
+rm `find . -name "SRP*.zip"`; for D in SRP*/; do zip -r $D/"${D%/}.zip" "$D"; done
+
+for F in `find . -name miRNA_RCadj.txt`; do zip -r $F.zip $F; done
+
+for F in `find . -name miRNA_RPMadjLib.txt`; do zip -r $F.zip $F; done

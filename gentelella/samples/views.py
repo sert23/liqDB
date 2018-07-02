@@ -219,6 +219,7 @@ class SampleQuery(FormView):
         # df = pd.DataFrame.from_records(qs)
         # print(df)
         for sam in samples:
+            SRP = sam.SRP
             organism = sam.Organism
             SRX = sam.Experiment
             Library = sam.Library
@@ -232,7 +233,7 @@ class SampleQuery(FormView):
             exosome = sam.Exosome
             desc = sam.Desc
             table_data.append(
-                [SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
         # context['pagetitle'] = str(study.SRP)
         # table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
         #               "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
