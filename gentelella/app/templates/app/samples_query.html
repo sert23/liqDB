@@ -41,6 +41,8 @@
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                   <li role="presentation" class=""><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Query Result</a>
                   </li>
+
+                    {% if RNAcols %}
                   <li role="presentation" class=""><a href="#tab_profile" role="tab" id="profiles" data-toggle="tab" aria-expanded="false">miRNA Profiles</a>
                   </li>
                   <li role="presentation" class=""><a href="#tab_plots" role="tab" id="plots" data-toggle="tab" aria-expanded="false">sRNA types distribution</a>
@@ -49,6 +51,7 @@
                   </li>
                   <li role="presentation" class=""><a href="#tab_downloads" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Download</a>
                   </li>
+                        {% endif %}
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="tab_metadata" aria-labelledby="profiles">
