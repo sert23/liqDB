@@ -189,6 +189,10 @@ class SampleQuery(FormView):
             SRX_string = queryfile.read()
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
+        if len(SRX_string)<1:
+            context['pagetitle'] = 'Sorry, no samples matched your query'
+            return context
+
         RNAcols, RNAbody = sortedMatrixToTableList(os.path.join(content_folder, "RNAmaping_sort.txt"))
         MIRcols, MIRbody = sortedMatrixToTableList(os.path.join(content_folder, "miRNA_RCadj.txt"))
         context['RNAcols'] = RNAcols
