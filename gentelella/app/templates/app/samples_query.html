@@ -120,19 +120,43 @@
                         {{speciesPlot|safe}}
 
                     </div>
-                    <div role="tabpanel" class="tab-pane fade active" id="tab_downloads" aria-labelledby="profile-tab">
+                    <div role="tabpanel" class="tab-pane fade" id="tab_downloads" aria-labelledby="profile-tab">
                     <p></p>
-                    <button class="btn"><i class="fa fa-download"></i> Download some stuff</button>
-                    <button class="btn"><i class="fa fa-download"></i> <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download></a></button>
-                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i
-                                class="fa fa-download fa-fw"></i>Matrix File</a>
-                    <a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat"><button>Download!</button></a>
-                    <div class="panel-body">
-                Input File: <a href="http://bioinfo5.ugr.es/srnatoolbox/media//UBNMV10I6X5S169/IK_exosomes.fastq.gz" download> <i class="fa fa-download fa-fw"></i> IK_exo.fastq.gz</a>
-            </div>
-                    <!--<a href="http://bioinfo5.ugr.es/srnatoolbox/media/4LOC73A18CPD9KF/output_directory/mature_sense_minExpr5_RCadj.mat" download> <i-->
-                                <!--class="fa fa-download fa-fw"></i>Matrix File</a>-->
-                  </div>
+                      <div class="col-md-4 col-sm-4 col-xs-12">
+                          <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <h2>Download Expression Matrix</h2>
+                                  <div class="clearfix"></div>
+                                    </div>
+                              <br>
+                    <a href="{{RPM_link}}"><button class="btn"><i class="fa fa-download"></i> Download expression matrix (Reads Per Million)</button>
+                    </a>
+                        <br>
+                        <br>
+
+                    <a href="{{RC_link}}"><button class="btn"><i class="fa fa-download"></i> Download   expression  matrix RC  (Read Count)</button>
+                    </a>
+                          </div>
+                          </div>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <h2>Download Full Sample Query Data</h2>
+                                  <div class="clearfix"></div>
+                              </div>
+                                  <div class="x_content">
+                              </div>
+                                  <h4>Click the link below to donwload all data available in liqDB: samples metadata, SRA Run tables and IDs, Expression Profiles, RNA content distribution...</h4>
+
+
+                                  <br>
+
+                    <a href="{{full_link}}"><button class="btn"><i class="fa fa-download"></i> Download Full Data</button>
+
+                    </a>
+                              </div>
+                              </div>
+                              </div>
                   </div>
 
 
