@@ -189,6 +189,32 @@ class SampleQuery(FormView):
             SRX_string = queryfile.read()
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
+
+        samples_ids = SRX_string.split(",")
+        samples_ids = list(filter(None, samples_ids))
+        context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
+        table_data = []
+        for sam in samples:
+            SRP = sam.SRP
+            organism = sam.Organism
+            SRX = sam.Experiment
+            Library = sam.Library
+            BIOS = sam.Sample
+            instrument = sam.Instrument
+            sex = sam.Sex
+            fluid = sam.Fluid
+            extraction = sam.Extraction
+            healthy = sam.Healthy
+            cancer = sam.Cancer
+            exosome = sam.Exosome
+            desc = sam.Desc
+            table_data.append(
+                [SRP, SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+        js_data = json.dumps(table_data)
+        # print(js_data)
+        context["data"] = js_data
+
         if len(SRX_string)<1:
             context['pagetitle'] = 'Sorry, no samples matched your query'
             return context
@@ -213,41 +239,8 @@ class SampleQuery(FormView):
         context["top20CV"] = makeTop20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
         # context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
-        samples_ids = SRX_string.split(",")
-        samples_ids = list(filter(None, samples_ids))
-        context['pagetitle'] = str(len(samples_ids))+ ' samples selected'
-        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
-        table_data = []
-        #print(str(self.request.path_info).split("/")[-1])
-        # qs = list(samples.values_list('Healthy', 'Cancer', 'Desc', 'Fluid', 'Sex'))
-        # df = pd.DataFrame.from_records(qs)
-        # print(df)
-        for sam in samples:
-            SRP = sam.SRP
-            organism = sam.Organism
-            SRX = sam.Experiment
-            Library = sam.Library
-            BIOS = sam.Sample
-            instrument = sam.Instrument
-            sex = sam.Sex
-            fluid = sam.Fluid
-            extraction = sam.Extraction
-            healthy = sam.Healthy
-            cancer = sam.Cancer
-            exosome = sam.Exosome
-            desc = sam.Desc
-            table_data.append(
-                [SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-        # context['pagetitle'] = str(study.SRP)
-        # table_html = create_table(["Experiment","BioSample","Organism","Instrument","Sex","Fluid","Library preparation protocol",
-        #               "RNA Extraction protocol","Healthy","Cancer","Exosome isolation treatment","Sample info"],
-        #              table_data[0:100], "table_test", "table table-striped table-bordered bulk_action"
-        #              )
-        # context["table_html"] = table_html
 
-        js_data = json.dumps(table_data)
-        #print(js_data)
-        context["data"] = js_data
+
 
         return context
 
