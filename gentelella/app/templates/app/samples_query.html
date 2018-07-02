@@ -39,7 +39,7 @@
             <div class="x_content">
                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                  <li role="presentation" class=""><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="false">Query Result</a>
+                  <li role="presentation" class=""><a href="#tab_metadata" id="overview-tab" role="tab" data-toggle="tab" aria-expanded="true">Query Result</a>
                   </li>
 
                     {% if RNAcols %}
@@ -59,7 +59,7 @@
                         <!--<div class="panel">-->
                             <br>
                         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                  <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <h4 class="panel-title">List of Selected Experiments</h4>
                   </a>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -78,6 +78,7 @@
                   </div>
                     </div>
               <!--<table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">-->
+                    {% if RNAcols %}
                     <div role="tabpanel" class="tab-pane fade active" id="tab_profile" aria-labelledby="profiles">
                     <div class="x_content">
                         <br>
@@ -157,6 +158,7 @@
                               </div>
                               </div>
                               </div>
+                    {% endif %}
                   </div>
 
 
@@ -357,6 +359,32 @@ $(document).ready(function() {
 <!--</script>-->
 
 <script>
+//    alert("Hey");
+//    var received_data = {{ data }};
+    var G_data = {{ Gbody|safe }};
+    var G_columns = {{Gcols|safe}}
+//    alert(RNA_columns)
+//    alert(received_data);
+
+$(document).ready(function() {
+    $('#genomes').DataTable( {
+//        'responsive': true,
+        data: G_data,
+        columns: G_columns,
+        "order": [[ 2, "desc" ]]
+    } );
+
+});
+
+
+if (window.location.href.indexOf("#") == -1) {
+    $('.nav-tabs a[href="#tab_metadata"]').tab('show');
+};
+
+
+</script>
+
+<script>
 
   // Javascript to enable link to tab
 var url = document.location.toString();
@@ -368,8 +396,6 @@ if (url.match('#')) {
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
     window.location.hash = e.target.hash;
 })
-
-
 
 
 </script>

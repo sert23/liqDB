@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^study/', include('study.urls')),
     url(r'^samples/', include('samples.urls')),
     url(r'^mirna/', include('miRNA.urls')),
+    url(r'^bench/', include('bench.urls')),
 
     # The home page
     url(r'^$', views.index, name='index'),

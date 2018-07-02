@@ -215,6 +215,7 @@ class SampleQuery(FormView):
         # print(js_data)
         context["data"] = js_data
         context['SRX_string'] = SRX_string
+        context['RNAcols'] = "hello"
 
         if len(SRX_string)<1:
             context['pagetitle'] = 'Sorry, no samples matched your query'
@@ -237,6 +238,7 @@ class SampleQuery(FormView):
         context["top20"] = top20
         context["toPie"] = toPie
         context["speciesPlot"] = makeSpeciesPlot(os.path.join(content_folder, "genomeDistribution_sort.txt"))
+        context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(content_folder, "genomeDistribution_sort.txt"))
         context["top20CV"] = makeTop20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
         # context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
