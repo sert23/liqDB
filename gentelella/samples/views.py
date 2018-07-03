@@ -215,7 +215,7 @@ class SampleQuery(FormView):
         # print(js_data)
         context["data"] = js_data
         context['SRX_string'] = SRX_string
-        context['RNAcols'] = "hello"
+        #context['RNAcols'] = "hello"
 
         if len(SRX_string)<1:
             context['pagetitle'] = 'Sorry, no samples matched your query'
