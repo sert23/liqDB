@@ -68,6 +68,7 @@ class StartSample(FormView):
 class BenchSample(FormView):
     template_name = 'app/samples_query.html'
     form_class = BenchForm
+    query_id = ""
 
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
@@ -106,18 +107,18 @@ class BenchSample(FormView):
         context["data"] = js_data
         return context
 
-    def form_valid(self, form):
+    def form_valid(self, form,**kwargs):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-
+        context = super(FormView, self).get_context_data(**kwargs)
+        old_query = str(self.request.path_info).split("/")[-1]
         form.clean()
-
-        query_id, call = form.start_query()
+        #old_query = query_id
+        #input_query =
+        query_id, call = form.start_DE(old_query)
         self.success_url = "/bench/compare/" + query_id
-        os.system(call)
-
+        print(call)
         return super(BenchSample, self).form_valid(form)
-
 
 class BenchCompare(FormView):
     template_name = 'app/samples_query.html'

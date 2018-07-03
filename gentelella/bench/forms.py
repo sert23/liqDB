@@ -5,7 +5,7 @@ from app.models import Sample
 import string
 import random
 import os
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, BENCH_FOLDER
 from django.db.models import Q
 
 
@@ -14,12 +14,6 @@ def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
 
 
 samples = Sample.objects.all()
-fluid_list = list(set(samples.values_list('Fluid', flat=True)))
-health_list = list(set(samples.values_list('Healthy', flat=True)))
-extraction_list = list(set(samples.values_list('Extraction', flat=True)))
-sex_list = list(set(samples.values_list('Sex', flat=True)))
-library_list = list(set(samples.values_list('Library', flat=True)))
-
 
 class BenchForm(forms.Form):
     benchID = forms.CharField(label="Input sRNAbench comma separated jobIDs", widget=forms.TextInput(attrs={'placeholder': 'e.g. SDS21JUI78,SD6D6DJDF9IK,S34R5TWT5GD7UJT48'}))
@@ -39,11 +33,9 @@ class BenchForm(forms.Form):
             #     Field('library', wrapper_class='col-md-2',css_class='form-control'),
             #     css_class='form-row'),
             Div(
-
                 Field('benchID', wrapper_class='col-md-3', css_class='form-control'),
                 Field('queryGroup', wrapper_class='col-md-3', css_class='form-control'),
                 Field('benchGroup', wrapper_class='col-md-3', css_class='form-control'),
-
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'COMPARE', css_class='btn btn-primary')
@@ -124,7 +116,38 @@ class BenchForm(forms.Form):
         #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id,call)
 
-    def start_query(self):
+    def make_DE(self,cleaned_data,query_id,old_query_id):
+        with open(os.path.join(DATA_FOLDER,"queryData",old_query_id,"query.txt"), 'r') as queryfile:
+            SRX_string = queryfile.read()
+        sampleString = SRX_string
+        query_n = len(SRX_string.split(","))
+        DB_group = cleaned_data.get("queryGroup")
+        sampleGroupList = [DB_group]* query_n
+        sampleGroups = ",".join(sampleGroupList)
+        userSampleString = cleaned_data.get("benchID")
+        userSampleList = userSampleString.split(",")
+        userDirList = [os.path.join(BENCH_FOLDER,ID) for ID in userSampleList]
+        userSampleString = ",".join(userDirList)
+        userGroup = cleaned_data.get("benchGroup")
+        user_n = len(userSampleString.split(","))
+        userGroupList = [userGroup]* user_n
+        userSampleGroups = ",".join(userGroupList)
+
+        query_path = os.path.join(DATA_FOLDER, "queryData", query_id)
+        outputPath = os.path.join(query_path, "queryOutput")
+
+        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=DE sampleString={sampleString} sampleGroups={sampleGroups} userSampleString={userSampleString} userSampleGroups={userSampleGroups}".format(
+
+            outputPath=outputPath,
+            sampleString=sampleString,
+            sampleGroups=sampleGroups,
+            userSampleString=userSampleString,
+            userSampleGroups=userSampleGroups
+        )
+
+        print(call)
+
+    def start_DE(self, old_query_id):
         query_id = self.generate_id()
-        return self.make_query(self.cleaned_data,query_id)
+        return self.make_DE(self.cleaned_data,query_id, old_query_id)
 
