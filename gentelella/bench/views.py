@@ -176,7 +176,7 @@ def bench(request):
     context = dict()
     context["pagetitle"] = "Compare selected Dataset with sRNAbench jobs"
     #table_cols = ["miRNA", "Browse miRNA data"]
-    template = loader.get_template('app/mirna_search.html' )
+    template = loader.get_template('app/bench.html' )
     return HttpResponse(template.render(context, request))
 
 # Create your views here.
