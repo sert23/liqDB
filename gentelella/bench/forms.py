@@ -42,7 +42,7 @@ class BenchForm(forms.Form):
                     # onsubmit="alert('Neat!'); return false")
                 ),
                 ButtonHolder(Submit('cancel', ' GO  BACK ', onclick="window.history.go(-1); return false;",
-                                    css_class='btn btn-primary')),
+                                    css_class='btn btn-primary btn-form')),
 
                 css_class='form-row')
 
@@ -150,4 +150,3 @@ class BenchForm(forms.Form):
     def start_DE(self, old_query_id):
         query_id = self.generate_id()
         return self.make_DE(self.cleaned_data,query_id, old_query_id)
-
