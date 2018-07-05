@@ -54,7 +54,7 @@ class SamplesForm(forms.Form):
                 Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
-                    Submit('submit', 'FILTER', css_class='btn btn-primary btn-form')
+                    Submit('submit', 'FILTER', onclick='$("#loadpage").css("visibility", "visible"); $("#divPageContent").hide();', css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                 ),
                 css_class='form-row')
