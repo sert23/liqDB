@@ -22,7 +22,7 @@
 }
 </style>
 
-<div id="loadpage" style="position:absolute; visibility: hidden;
+<div id="loadpage" style="position:absolute;
     left:0px; top:0px; background-color:white;
     layer-background-color:white; height:100%;
     width:100%;">
@@ -30,7 +30,7 @@
        <img style="position:relative; left:15%; top:5%; display:flex; width:17%" class="center" src="/static/spinner.gif">
 </div>
 
-<div id="divPageContent">
+<div id="divPageContent" style="visibility: hidden;">
 
   <div class="right_col" role="main">
     <div class="">
@@ -229,8 +229,11 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
     window.location.hash = e.target.hash;
 })
 
-
-
+$(document).ready(function()
+	{
+    $("#loadpage").hide();
+		$('#divPageContent').css("visibility", "visible");
+	});
 
 </script>
 
