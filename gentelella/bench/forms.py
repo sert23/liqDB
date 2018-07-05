@@ -38,7 +38,7 @@ class BenchForm(forms.Form):
                 Field('benchGroup', wrapper_class='col-md-3', css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
-                    Submit('submit', 'COMPARE', css_class='btn btn-primary')
+                    Submit('submit', 'COMPARE', css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                 ),
                 ButtonHolder(Submit('cancel', ' GO  BACK ', onclick="window.history.go(-1); return false;",
