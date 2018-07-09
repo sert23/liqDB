@@ -5,7 +5,7 @@ from app.models import Study, Sample, StudiesTable
 from app.pie_chart import pie_chart
 from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
-
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
 
 def index(request):
     context = {}
@@ -33,14 +33,14 @@ def index(request):
     for i,obj in enumerate(recent):
         SRP = obj.SRP
         title = obj.Title
-        results["title"+str(i)] = "<a href='/study/"+ SRP + "'><b>" +title + "</b></a>"
+        results["title"+str(i)] = "<a href='"+SUB_SITE+"/study/"+ SRP + "'><b>" +title + "</b></a>"
         abstract = obj.Abstract
 
         if len(abstract) < 499:
             results["abstract"+str(i)] = abstract
         #print(len(obj.Abstract))
         else:
-            results["abstract" + str(i)] = abstract[0:499]+ "[...]<a href='/study/"+ SRP + "'><b> Read More </b></a>"
+            results["abstract" + str(i)] = abstract[0:499]+ "[...]<a href='"+SUB_SITE+"/study/"+ SRP + "'><b> Read More </b></a>"
         results["srp"+str(i)] = SRP
         results["paper"+str(i)] = obj.Url
     #print(studies_ids)
@@ -109,13 +109,13 @@ def studies(request):
             Abstract = abstract
         #print(len(obj.Abstract))
         else:
-            Abstract = abstract[0:199]+ "[...]<a href='/study/"+ SRP + "'><b> Read More </b></a>"
+            Abstract = abstract[0:199]+ "[...]<a href='"+SUB_SITE+"/study/"+ SRP + "'><b> Read More </b></a>"
         #Abstract = r'<button class="collapsible">Read more</button><div class="content"> <p>Abstract</p></div>'
         #Abstract = r'<button class="collapsible">Read more</button><div class="content"> <p>Abstract</p></div>'
         all_info=list(Sample.objects.filter(SRP__exact=SRP).values_list('Desc', flat=True))
         #print(set(all_info))
         Desc = ", ".join(set(all_info))
-        prof = "<a href='/study/" +SRP +"#tab_profile'><b> View Profiles </b></a>"
+        prof = "<a href='"+SUB_SITE+"/study/" +SRP +"#tab_profile'><b> View Profiles </b></a>"
         #prof = PRJ_field
         #print(prof)
         #Abstract = study.Abstract
