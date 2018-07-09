@@ -38,7 +38,7 @@ class BenchForm(forms.Form):
                 Field('benchGroup', wrapper_class='col-md-3', css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
-                    Submit('submit', 'COMPARE', onclick='$("#loadpage").css("visibility", "visible"); $("#divPageContent").hide();', css_class='btn btn-primary btn-form')
+                    Submit('submit', 'COMPARE', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                 ),
                 ButtonHolder(Submit('cancel', ' GO  BACK ', onclick="window.history.go(-1); return false;",
