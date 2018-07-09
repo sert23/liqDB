@@ -136,7 +136,7 @@ class BenchForm(forms.Form):
         query_path = os.path.join(DATA_FOLDER, "queryData", query_id)
         outputPath = os.path.join(query_path, "queryOutput")
 
-        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=DE sampleString={sampleString} sampleGroups={sampleGroups} userSampleString={userSampleString} userSampleGroups={userSampleGroups}".format(
+        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=DE sampleString={sampleString} sampleGroups={sampleGroups} userSampleString={userSampleString} userSampleGroups={userSampleGroups} variables=Groups".format(
 
             outputPath=outputPath,
             sampleString=sampleString,
@@ -146,6 +146,7 @@ class BenchForm(forms.Form):
         )
 
         print(call)
+        return query_id,call
 
     def start_DE(self, old_query_id):
         query_id = self.generate_id()

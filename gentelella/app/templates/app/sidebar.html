@@ -1,6 +1,7 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="/" class="site_title"><i class="fa fa-tint"></i> <span>liqDB</span></a>
+
+    <a href="{{ settings.SUB_SITE }}/" class="site_title"><i class="fa fa-tint"></i> <span>liqDB</span></a>
   </div>
 
   <div class="clearfix"></div>
@@ -14,21 +15,21 @@
       <ul class="nav side-menu">
         <li><a><i class="fa fa-search"></i> Browse liqDB <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="/studies">Browse studies</a></li>
-            <li><a href="/samples/">Search samples</a></li>
-            <li><a href="/mirna/">Search miRNAs</a></li>
+            <li><a href="{{ settings.SUB_SITE }}/studies">Browse studies</a></li>
+            <li><a href="{{ settings.SUB_SITE }}/samples/">Search samples</a></li>
+            <li><a href="{{ settings.SUB_SITE }}/mirna/">Search miRNAs</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-indent"></i>  Compare datasets  <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <!--<li><a href="/studies">Browse studies</a></li>-->
             <!--<li><a href="/samples/">Compare two sample sets</a></li>-->
-            <li><a href="/bench/">Compare with your data</a></li>
+            <li><a href="{{ settings.SUB_SITE }}/bench/">Compare with your data</a></li>
           </ul>
         </li>
         <li><a href="form.html"><i class="fa fa-edit"></i> Submit your data </a>
         </li>
-        <li><a target="_blank" href="/media/Manual.pdf"><i class="fa fa-book"></i> Manual </a>
+        <li><a target="_blank" href="{{ settings.SUB_SITE }}/media/Manual.pdf"><i class="fa fa-book"></i> Manual </a>
         </li>
         <!--<li><a href="/Test Data"><i class="fa fa-question"></i> TestData </a>-->
         <!--</li>-->

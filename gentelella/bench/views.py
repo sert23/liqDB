@@ -59,7 +59,7 @@ class StartSample(FormView):
         # It should return an HttpResponse.
         form.clean()
         query_id, call = form.start_query()
-        self.success_url = "/bench/" + query_id
+        self.success_url = "{{ settings.SUB_SITE }}/bench/" + query_id
         os.system(call)
 
         return super(StartSample, self).form_valid(form)
@@ -116,7 +116,7 @@ class BenchSample(FormView):
         #old_query = query_id
         #input_query =
         query_id, call = form.start_DE(old_query)
-        self.success_url = "/bench/compare/" + query_id
+        self.success_url = "{{ settings.SUB_SITE }}/bench/compare/" + query_id
         print(call)
         return super(BenchSample, self).form_valid(form)
 
@@ -129,14 +129,14 @@ class BenchCompare(FormView):
         query_id = str(self.request.path_info).split("/")[-1]
         #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
-        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"), 'r') as queryfile:
-            SRX_string = queryfile.read()
-        samples_ids = SRX_string.split(",")
+        # with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"), 'r') as queryfile:
+        #     SRX_string = queryfile.read()
+        # samples_ids = SRX_string.split(",")
         #print(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"))
         #print(os.path.exists(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt")))
         #print(SRX_string)
-        context['SRX_string'] = SRX_string
-        samples_ids = list(filter(None, samples_ids))
+        # context['SRX_string'] = SRX_string
+        # samples_ids = list(filter(None, samples_ids))
         context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
         samples = Sample.objects.all().filter(Experiment__in=samples_ids)
         table_data = []
@@ -166,7 +166,7 @@ class BenchCompare(FormView):
         # It should return an HttpResponse.
         form.clean()
         query_id, call = form.start_query()
-        self.success_url = "/bench/compare/" + query_id
+        self.success_url = "{{ settings.SUB_SITE }}/bench/compare/" + query_id
         os.system(call)
 
         return super(BenchCompare, self).form_valid(form)
@@ -174,6 +174,7 @@ class BenchCompare(FormView):
 
 def bench(request):
     context = dict()
+    query_id = str(request.path_info).split("/")[-1]
     context["pagetitle"] = "Compare selected Dataset with sRNAbench jobs"
     #table_cols = ["miRNA", "Browse miRNA data"]
     template = loader.get_template('app/bench.html' )

@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/"
+#DATA_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = '8*md2t)o**67@*yhc(d=f@j95kl(dnf^rmm4s00$-mh_vurb2b'
 DEBUG = True
 
 ALLOWED_HOSTS = ["bioinfo5.ugr.es"]
-
 
 # Application definition
 
@@ -40,10 +39,10 @@ INSTALLED_APPS = [
     'django_tables2',
     'crispy_forms',
     'app',
-    'study'
+    'study',
+    'miRNA',
+    'samples'
 ]
-
-
 
 
 MIDDLEWARE = [
@@ -70,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -78,10 +78,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gentelella.wsgi.application'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "queryData")
-MEDIA_URL = '/media/'
 
-# STUDIES_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies"
-STUDIES_FOLDER = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
+SUB_SITE = '/liqdb'
+
+STATIC_URL = SUB_SITE + '/static/'
+MEDIA_URL = SUB_SITE + '/media/'
+
+
+BENCH_FOLDER = "/opt/sRNAtoolbox_prod/sRNAtoolboxweb/upload/"
+
+DATA_FOLDER = "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/"
+STUDIES_FOLDER = os.path.join(DATA_FOLDER,"studies")
+MICROS_FOLDER = os.path.join(DATA_FOLDER,"miRNA_data")
+# STUDIES_FOLDER = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
 
 
 # Database
@@ -131,4 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+
+SETTINGS_EXPORT = [
+    'SUB_SITE'
+]
