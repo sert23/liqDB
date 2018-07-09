@@ -24,7 +24,7 @@ urlpatterns = [
     # app/ -> Genetelella UI and resources
     url(r'^app/', include('app.urls')),
     url(r'^', include('app.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # ] + static("/media/", document_root=settings.MEDIA_ROOT)
 
 
