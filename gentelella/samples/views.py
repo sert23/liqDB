@@ -251,7 +251,7 @@ class SampleQuery(FormView):
         context["RPM_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "miRNA_RPMadjLib.txt.zip")
         context["full_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "query_download.zip")
 
-        subprocess.Popen(["touch", "query_download"], cwd="/opt/liqDB")
+        subprocess.Popen(["touch", os.path.join(content_folder,"query_download")], cwd="/opt/liqDB")
         if not os.path.exists(os.path.join(content_folder, "query_download.zip" )):
             #subprocess.Popen(["zip", "-r",  "query_download.zip", "*"],cwd= content_folder)
 
