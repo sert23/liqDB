@@ -252,7 +252,8 @@ class SampleQuery(FormView):
         context["full_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "query_download.zip")
 
         if not os.path.exists(os.path.join(content_folder, "query_download.zip" )):
-            subprocess.Popen(["zip", "-r",  "query_download.zip", "*"],cwd= content_folder)
+            #subprocess.Popen(["zip", "-r",  "query_download.zip", "*"],cwd= content_folder)
+            subprocess.Popen(["touch", "query_download.zip"],cwd= content_folder)
             subprocess.Popen(["zip", os.path.join(content_folder, "miRNA_RPMadjLib.txt.zip"),
                               os.path.join(content_folder, "miRNA_RPMadjLib.txt")])
             subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
