@@ -253,7 +253,7 @@ class SampleQuery(FormView):
 
         if not os.path.exists(os.path.join(content_folder, "query_download.zip" )):
             #subprocess.Popen(["zip", "-r",  "query_download.zip", "*"],cwd= content_folder)
-            subprocess.Popen(["touch", "query_download.zip"],cwd= content_folder)
+            subprocess.Popen(["touch", "query_download.zip"],cwd= "/opt/liqDB/liqDB/gentelella/data_folder/queryData/AGR0BKH10FX8GKS1P3TU/queryOutput")
             subprocess.Popen(["zip", os.path.join(content_folder, "miRNA_RPMadjLib.txt.zip"),
                               os.path.join(content_folder, "miRNA_RPMadjLib.txt")])
             subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
