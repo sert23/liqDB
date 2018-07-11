@@ -12,6 +12,9 @@ from study.views import sortedMatrixToTableList
 import json
 import os
 from app.datatable import create_datatable
+from django.core.urlresolvers import reverse_lazy
+import subprocess
+
 
 def create_table(head, body, table_id = "datatable", table_class = "table table-striped table-bordered dataTable no-footer"):
 	'''
@@ -143,6 +146,7 @@ class StartSample(FormView):
 
         query_id, call = form.start_query()
         self.success_url = "/samples/" + query_id
+        success_url = reverse_lazy("mirconstarget")
         os.system(call)
 
         return super(StartSample, self).form_valid(form)
@@ -245,8 +249,11 @@ class SampleQuery(FormView):
 
         context["RC_link"] = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "miRNA_RCadj.txt")
         context["RPM_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "miRNA_RPMadjLib.txt")
-        #context["full_link"] = os.path.join(MEDIA_URL, "studies", study.SRP, study.SRP + ".zip")
+        context["full_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "query_download.zip")
 
+        subprocess.Popen(["zip -r", os.path.join(content_folder, "query_download.zip" ), content_folder])
+        subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
+        subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
 
         return context
 
