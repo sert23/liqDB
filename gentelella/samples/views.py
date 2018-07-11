@@ -247,14 +247,14 @@ class SampleQuery(FormView):
         # context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(content_folder, "miRNA_RPMadjLib_CV_min20.txt"))
 
-        context["RC_link"] = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "miRNA_RCadj.txt")
-        context["RPM_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "miRNA_RPMadjLib.txt")
+        context["RC_link"] = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "miRNA_RCadj.txt.zip")
+        context["RPM_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "miRNA_RPMadjLib.txt.zip")
         context["full_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "query_download.zip")
 
         if not os.path.exists(os.path.join(content_folder, "query_download.zip" )):
             subprocess.Popen(["zip", "-r", os.path.join(content_folder, "query_download.zip" ), content_folder])
-            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt.zip")])
-            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt.zip")])
+            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
+            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
 
         return context
 
