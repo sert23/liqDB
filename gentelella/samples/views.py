@@ -251,9 +251,10 @@ class SampleQuery(FormView):
         context["RPM_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "miRNA_RPMadjLib.txt")
         context["full_link"] = os.path.join(MEDIA_URL, "queryData",query_id, "queryOutput", "query_download.zip")
 
-        subprocess.Popen(["zip -r", os.path.join(content_folder, "query_download.zip" ), content_folder])
-        subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
-        subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
+        if not os.path.exists(os.path.join(content_folder, "query_download.zip" )):
+            subprocess.Popen(["zip -r", os.path.join(content_folder, "query_download.zip" ), content_folder])
+            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
+            subprocess.Popen(["zip", os.path.join(content_folder,"miRNA_RCadj.txt.zip"), os.path.join(content_folder,"miRNA_RCadj.txt")])
 
         return context
 
