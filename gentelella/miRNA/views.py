@@ -3,9 +3,11 @@ from django.template import loader
 from django.http import HttpResponse
 from miRNA.models import Micro
 from django.views.generic import DetailView
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MICROS_FOLDER
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MICROS_FOLDER,SUB_SITE
 import os
 from study.summary_plots import makeMirBox
+
+
 
 # Create your views here.
 
@@ -20,7 +22,7 @@ def search_mirna(request):
     for m in micros:
         name = m.name
         pk = m.pk
-        link_field = "<a href='/mirna/" + str(pk) + "'><b> See data and graphs for this miRNA</b></a>"
+        link_field = "<a href='"+SUB_SITE+"/mirna/" + str(pk) + "'><b> See data and graphs for this miRNA</b></a>"
         table_body.append([name, link_field])
     #context["tcols"] = table_cols
     context["tbody"] = table_body
