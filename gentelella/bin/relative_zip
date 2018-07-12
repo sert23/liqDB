@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIRNAME=${2%/*}
+BASENAME=${2##*/}
+
+pushd $DIRNAME
+zip -r $1 $BASENAME
+mv $1 $BASENAME/
+popd
+
