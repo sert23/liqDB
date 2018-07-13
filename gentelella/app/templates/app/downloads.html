@@ -1,6 +1,6 @@
 {% extends "app/base_site.html" %}
 
-{% block title %} The sRNA-seq liquid biopsy DataBase {% endblock title %}
+{% block title %} Downloads {% endblock title %}
 
 {% block stylesheets %}
   {{ block.super }}
@@ -21,39 +21,40 @@
     <div class="row">
 
       <div class="col-md-4 col-sm-4 col-xs-12">
-        {{bar_years|safe}}
-      </div>
-
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        {{line_chart|safe}}
-
-      <style>
-      .icon-heading {
-        display: inline-block;
-      }
-      </style>
-
-      <div class="x_panel tile fixed_height_320 overflow_hidden">
+        <div class="x_panel tile fixed_height_320 overflow_hidden">
                               <div class="x_title">
                                 <i class="fa fa-question"></i>
-                            <h3 class="icon-heading">Test Data</h3>
+                            <h3 >Downlod studies</h3>
                                 <!--<h2></h2>-->
                                   <div class="clearfix"></div>
                                     </div>
 
-          <a href="{{ settings.SUB_SITE }}/study/SRP061240"><i class="fa fa-database"></i> See this study where they compare healthy subjects with colon and pancreas cancer patients <b>[Go]</b> </a>
-                        <br>
-                        <br>
+          <p> If you want to download all data for a specific study please find the study using <a href="{{ settings.SUB_SITE }}/studies"><b>Browse studies</b></a>, find the study you
+          are interested in and navigate to the <b>Download</b> tab.</p>
+          <br>
+          <br>
+          <p> For example for the study SRP029994 you can find download links in <a href="http://bioinfo5.ugr.es/liqdb/study/SRP029994#tab_downloads">
+              <b>http://bioinfo5.ugr.es/liqdb/study/SRP029994#tab_downloads</b></a></p>
 
-          <a href="{{ settings.SUB_SITE }}/samples/4C215MMAW00LP4J387LA"><i class="fa fa-group"></i> See this query where we selected all serum samples from healthy women <b>[Go]</b> </a>
-                        <br>
-                        <br>
+                          </div>
+      </div>
 
-          <a href="{{ settings.SUB_SITE }}/mirna/350"><i class="fa fa-crosshairs"></i> Only interested in one particular miRNA? Have a look at the expression graphs we prepared for hsa-miR-10b-3p <b>[Go]</b> </a>
-                      <br>
-                      <br>
+      <div class="col-md-4 col-sm-4 col-xs-12">
 
-        <a href="/mirna/350"><i class="fa fa-upload "></i> Comparison: uploaded DLBCL-secreted exosomes samples VS all healthy plasma samples in liqDB (sRNAbench IDs: K56Y0CAK9O26CD6, HDG1DQUKS7SPJ31)  <b>[Go]</b> </a>
+      <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <i class="fa fa-question"></i>
+                            <h3 >Downlod studies</h3>
+                                <!--<h2></h2>-->
+                                  <div class="clearfix"></div>
+                                    </div>
+
+          <p> If you want to download all data for a specific study please find the study using <a href="{{ settings.SUB_SITE }}/studies"><b>Browse studies</b></a>, find the study you
+          are interested in and navigate to the <b>Download</b> tab.</p>
+          <br>
+          <br>
+          <p> For example for the study SRP029994 you can find download links in <a href="http://bioinfo5.ugr.es/liqdb/study/SRP029994#tab_downloads">
+              <b>http://bioinfo5.ugr.es/liqdb/study/SRP029994#tab_downloads</b></a></p>
 
                           </div>
 
