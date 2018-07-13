@@ -1,0 +1,57 @@
+{% extends "app/base_site.html" %}
+
+{% block title %} Success! {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+  <link href="/static/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+  <link href="/static/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Success!</h3>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Daily active users <small>Sessions</small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <div class="bs-example" data-example-id="simple-jumbotron">
+              <div class="jumbotron">
+                <h1>Succesful form</h1>
+                <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super }}
+  <!-- PNotify -->
+  <script src="/static/vendors/pnotify/dist/pnotify.js"></script>
+  <script src="/static/vendors/pnotify/dist/pnotify.buttons.js"></script>
+  <script src="/static/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+{% endblock javascripts %}
