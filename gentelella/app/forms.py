@@ -36,7 +36,8 @@ class ContactForm(forms.Form):
 
         )
 
-    def send_email(self,cleaned_data):
+    def send_email(self):
+        cleaned_data = self.cleaned_data
         send_mail('message from '+ cleaned_data.get("name_input"), cleaned_data.get("info")+"\nCONTACT EMAIL: "+cleaned_data.get("email_input"), 'liquiddbase@gmail.com',
               ['eaparicioeaparicio@gmail.com'], fail_silently=False)
 
