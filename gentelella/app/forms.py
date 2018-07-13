@@ -25,6 +25,8 @@ class ContactForm(forms.Form):
         super(ContactForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            Fieldset(
+                "Is there some study/samples you would like to see included?",
                 Field('email_input',css_class='form-control'),
                 Field('name_input',css_class='form-control'),
                 Field('info', css_class='form-control'),
@@ -32,13 +34,13 @@ class ContactForm(forms.Form):
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'SEND', css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
-                )
+                ))
 
         )
 
     def send_email(self):
         cleaned_data = self.cleaned_data
-        send_mail('message from '+ cleaned_data.get("name_input"), cleaned_data.get("info")+"\nCONTACT EMAIL: "+cleaned_data.get("email_input"), 'liquiddbase@gmail.com',
+        send_mail('liqDB: New Data from '+ cleaned_data.get("name_input"), cleaned_data.get("info")+"\nCONTACT EMAIL: "+cleaned_data.get("email_input"), 'liquiddbase@gmail.com',
               ['eaparicioeaparicio@gmail.com'], fail_silently=False)
 
     def generate_id(self):
