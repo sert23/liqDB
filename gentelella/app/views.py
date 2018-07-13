@@ -7,7 +7,7 @@ from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
 from django.views.generic import FormView
-from forms import ContactForm
+from app.forms import ContactForm
 from django.core.urlresolvers import reverse_lazy
 
 def index(request):
