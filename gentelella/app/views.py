@@ -6,6 +6,9 @@ from app.pie_chart import pie_chart
 from app.line_chart import line_chart
 from app.bar_chart import year_bar_chart
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
+from django.views.generic import FormView
+from forms import ContactForm
+from django.core.urlresolvers import reverse_lazy
 
 def index(request):
     context = {}
@@ -137,5 +140,24 @@ def studies(request):
     #context["table"] = table
     #template = loader.get_template('app/tables_dynamic.html' )
     template = loader.get_template('app/studies_table.html' )
+    # template = loader.get_template('app/bootstrap_table.html' )
+    return HttpResponse(template.render(context, request))
+
+class ContactView(FormView):
+    template_name = 'app/samples.html'
+    form_class = ContactForm
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.clean()
+        #query_id, call = form.start_query()
+        self.success_url = reverse_lazy("contact_success")
+        #os.system(call)
+
+        return super(ContactView, self).form_valid(form)
+
+def success(request):
+    context = dict()
+    template = loader.get_template('app/success_contact.html')
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
