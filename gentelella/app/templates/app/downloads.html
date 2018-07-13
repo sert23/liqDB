@@ -1,0 +1,105 @@
+{% extends "app/base_site.html" %}
+
+{% block title %} The sRNA-seq liquid biopsy DataBase {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+  <style>
+  .icon-heading {
+      display: inline-block;
+    }
+
+  </style>
+
+  <div class="right_col" role="main">
+
+    <br />
+
+    <div class="row">
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        {{bar_years|safe}}
+      </div>
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        {{line_chart|safe}}
+
+      <style>
+      .icon-heading {
+        display: inline-block;
+      }
+      </style>
+
+      <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                                <i class="fa fa-question"></i>
+                            <h3 class="icon-heading">Test Data</h3>
+                                <!--<h2></h2>-->
+                                  <div class="clearfix"></div>
+                                    </div>
+
+          <a href="{{ settings.SUB_SITE }}/study/SRP061240"><i class="fa fa-database"></i> See this study where they compare healthy subjects with colon and pancreas cancer patients <b>[Go]</b> </a>
+                        <br>
+                        <br>
+
+          <a href="{{ settings.SUB_SITE }}/samples/4C215MMAW00LP4J387LA"><i class="fa fa-group"></i> See this query where we selected all serum samples from healthy women <b>[Go]</b> </a>
+                        <br>
+                        <br>
+
+          <a href="{{ settings.SUB_SITE }}/mirna/350"><i class="fa fa-crosshairs"></i> Only interested in one particular miRNA? Have a look at the expression graphs we prepared for hsa-miR-10b-3p <b>[Go]</b> </a>
+                      <br>
+                      <br>
+
+        <a href="/mirna/350"><i class="fa fa-upload "></i> Comparison: uploaded DLBCL-secreted exosomes samples VS all healthy plasma samples in liqDB (sRNAbench IDs: K56Y0CAK9O26CD6, HDG1DQUKS7SPJ31)  <b>[Go]</b> </a>
+
+                          </div>
+
+      </div>
+
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        {{fluid_chart|safe}}
+        <!--<div class="x_panel tile fixed_height_320">-->
+          <!--<div class="x_title">-->
+            <!--<h2>Quick Settings</h2>-->
+            <!--<div class="clearfix"></div>-->
+          <!--</div>-->
+          <!--<div class="x_content">-->
+              <!---->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+
+
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+{% endblock javascripts %}
