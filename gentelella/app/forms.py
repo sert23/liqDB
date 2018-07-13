@@ -7,6 +7,7 @@ import random
 import os
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
 from django.db.models import Q
+from django.core.mail import send_mail
 
 
 def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
@@ -30,11 +31,15 @@ class ContactForm(forms.Form):
                 Field('info', css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
-                    Submit('submit', 'FILTER', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
+                    Submit('submit', 'SEND', css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                 )
 
         )
+
+    def send_email(self):
+        send_mail('My Subject', 'My message', 'liquiddbase@gmail.com',
+              ['eaparicioeaparicio@gmail.com'], fail_silently=False)
 
     def generate_id(self):
         is_new = True
