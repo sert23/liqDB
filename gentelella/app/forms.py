@@ -16,7 +16,7 @@ def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
 class ContactForm(forms.Form):
 
     email_input=forms.EmailField(label="Please enter your email in case we should contact you (not required)", required=False)
-    name_input=forms.CharField(label="Please enter your name (not required)",widget=forms.TextInput(attrs={'placeholder': 'Your Name'}))
+    name_input=forms.CharField(label="Please enter your name (not required)",widget=forms.TextInput(attrs={'placeholder': 'Your Name'}),required=False)
     info=forms.CharField(label="Sample/Project info",widget=forms.Textarea(attrs={'placeholder': 'Please include SRP/SRA ids and any extra info you deem useful for the DB'}))
     #field2=  forms.CharField(label=')', required=False)
 
