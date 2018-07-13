@@ -150,6 +150,7 @@ class ContactView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
+        form.send_email()
         #query_id, call = form.start_query()
         self.success_url = reverse_lazy("contact_success")
         #os.system(call)
