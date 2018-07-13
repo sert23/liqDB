@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MICROS_FOLDER,SUB_SITE
 import os
 from study.summary_plots import makeMirBox
-from django.core.mail import send_mail
+#from django.core.mail import send_mail
 
 
 
@@ -31,8 +31,8 @@ def search_mirna(request):
     template = loader.get_template('app/mirna_search.html' )
 
 
-    send_mail('My Subject', 'My message', 'liquiddbase@gmail.com',
-              ['eaparicioeaparicio@gmail.com'], fail_silently=False)
+    # send_mail('My Subject', 'My message', 'liquiddbase@gmail.com',
+    #           ['eaparicioeaparicio@gmail.com'], fail_silently=False)
     return HttpResponse(template.render(context, request))
 
 
