@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^mirna/', include('miRNA.urls')),
     url(r'^bench/', include('bench.urls')),
     url(r'^success/', views.success, name="contact_success"),
+    url(r'^about/', views.about),
+    url(r'^downloads/', views.downloads),
 
     # The home page
     url(r'^$', views.index, name='index')
