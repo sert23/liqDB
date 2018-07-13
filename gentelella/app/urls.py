@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^contact/', views.ContactView.as_view()),
     url(r'^mirna/', include('miRNA.urls')),
     url(r'^bench/', include('bench.urls')),
+    url(r'^success/', views.succes, name="contact_success"),
 
     # The home page
     url(r'^$', views.index, name='index')
