@@ -315,14 +315,14 @@ def makeMirBox(input_file,title,input_labels=[]):
             values = row[1:]
             RPM = list(map(float, values))
             RPM1 = [x + 1 for x in RPM]
-
+            labels=""
             if input_labels:
                 labels=input_labels[ix][1:]
             if not row[0].replace(" ","") == "" :
                 trace = go.Box(
-                    y=row[1:],
+                    y=RPM1,
                     name=row[0],
-                    text=RPM1
+                    text= labels
                 )
                 data.append(trace)
         layout = go.Layout(
