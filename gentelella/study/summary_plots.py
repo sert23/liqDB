@@ -312,13 +312,17 @@ def makeMirBox(input_file,title,input_labels=[]):
         data = []
         for ix,line in enumerate(lines):
             row = line.split("\t")
+            values = row[1:]
+            RPM = list(map(int, values))
+            RPM1 = [x + 1 for x in RPM]
+
             if input_labels:
                 labels=input_labels[ix][1:]
             if not row[0].replace(" ","") == "" :
                 trace = go.Box(
                     y=row[1:],
                     name=row[0],
-                    text=labels
+                    text=RPM1
                 )
                 data.append(trace)
         layout = go.Layout(
@@ -339,7 +343,7 @@ def makeMirBox(input_file,title,input_labels=[]):
             ),
             yaxis=dict(
                 type='log',
-                title='RPM')
+                title='RPM+1')
         )
         fig = go.Figure(data=data, layout=layout)
         div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
