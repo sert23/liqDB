@@ -1,0 +1,80 @@
+{% extends "app/base_site.html" %}
+
+{% block title %} About {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
+  <style>
+  .icon-heading {
+      display: inline-block;
+    }
+
+  </style>
+<div class="page-title">
+        <div class="title_left">
+          <!--"Version1:<span style="font-size:10px;"> (10.3.4)</span>  vs Version2: <span style="font-size:10px;">(10.3.4)</span>-->
+          <h3> About liqDB </h3>
+        </div>
+
+        </div>
+
+
+  <div class="right_col" role="main">
+
+    <br />
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel tile fixed_height_320 overflow_hidden">
+                              <div class="x_title">
+                            <h3 >Downlod whole DataBase</h3>
+                                <!--<h2></h2>-->
+                                  <div class="clearfix"></div>
+                                    </div>
+
+          <p> You can find all samples metadata we use in liqDB  <a href="{{ settings.SUB_SITE }}/media/downloads/metaData.txt.zip"><b>here</b></a></p>
+          <br>
+          <p> You can find an expression matrix for all samples <a href="{{ settings.SUB_SITE }}/media/downloads/miRNA_RPMadjLib.txt.zip"><b>here (RPM) </b></a> and
+              <a href="{{ settings.SUB_SITE }}/media/downloads/miRNA_RCadj.txt.zip"><b> here (Read Counts) </b></a></p>
+
+                          </div>
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+{% endblock javascripts %}

@@ -165,7 +165,7 @@ def success(request):
 
 def about(request):
     context = dict()
-    template = loader.get_template('app/success_contact.html')
+    template = loader.get_template('app/about.html')
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
 
