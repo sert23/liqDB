@@ -316,7 +316,7 @@ def makeMirBox(input_file,title,input_labels=[]):
                 trace = go.Box(
                     y=row[1:],
                     name=row[0],
-                    text=["caramelo","curry"]*round(len(row[1:])/2)
+                    text=input_labels
                 )
                 data.append(trace)
         layout = go.Layout(
