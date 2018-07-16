@@ -313,7 +313,7 @@ def makeMirBox(input_file,title,input_labels=[]):
         for ix,line in enumerate(lines):
             row = line.split("\t")
             values = row[1:]
-            RPM = list(map(int, values))
+            RPM = list(map(float, values))
             RPM1 = [x + 1 for x in RPM]
 
             if input_labels:
