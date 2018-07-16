@@ -310,13 +310,15 @@ def makeMirBox(input_file,title,input_labels=[]):
     with open(input_file, "r") as ifile:
         lines = ifile.readlines()
         data = []
-        for line in lines:
+        for ix,line in enumerate(lines):
             row = line.split("\t")
+            if input_labels:
+                labels=input_labels[ix][1:]
             if not row[0].replace(" ","") == "" :
                 trace = go.Box(
                     y=row[1:],
                     name=row[0],
-                    text=input_labels
+                    text=labels
                 )
                 data.append(trace)
         layout = go.Layout(
