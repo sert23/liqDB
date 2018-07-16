@@ -10,6 +10,17 @@ from study.summary_plots import makeMirBox
 
 
 
+def file_to_lists(input_file):
+    with open(input_file, "r") as ifile:
+        lines = ifile.readlines()
+        out_list = []
+        for line in lines:
+            row = line.split("\t")
+            out_list.append(row)
+        return out_list
+
+
+
 # Create your views here.
 
 def search_mirna(request):
@@ -56,7 +67,8 @@ class DisplayMicro(DetailView):
             lines = description.readlines()
             for line in lines:
                 target,title = line.split("\t")
-                plot_list.append(makeMirBox(os.path.join(MICROS_FOLDER,miRNA,target),title))
+                SRX_file = target.split("_")[0]+"_SRX.mat"
+                plot_list.append(makeMirBox(os.path.join(MICROS_FOLDER,miRNA,target),title, file_to_lists(SRX_file)))
 
         context["plot_list"] = plot_list
 
