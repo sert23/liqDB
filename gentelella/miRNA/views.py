@@ -67,7 +67,7 @@ class DisplayMicro(DetailView):
             lines = description.readlines()
             for line in lines:
                 target,title = line.split("\t")
-                SRX_file = target.split("_")[0]+"_SRX.mat"
+                SRX_file = os.path.join(MICROS_FOLDER,miRNA,target.split("_")[0]+"_SRX.mat")
                 plot_list.append(makeMirBox(os.path.join(MICROS_FOLDER,miRNA,target),title, file_to_lists(SRX_file)))
 
         context["plot_list"] = plot_list
