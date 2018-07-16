@@ -303,7 +303,7 @@ def makeDEbox(input_file):
 
 #makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
 
-def makeMirBox(input_file,title):
+def makeMirBox(input_file,title,input_labels=[]):
     input_file = input_file.replace("\\", "/")
 
     color_list = ["red", "green", "blue", "yellow", "purple", "orange"]
@@ -315,7 +315,8 @@ def makeMirBox(input_file,title):
             if not row[0].replace(" ","") == "" :
                 trace = go.Box(
                     y=row[1:],
-                    name=row[0]
+                    name=row[0],
+                    text=["caramelo"]*len(row[1:])
                 )
                 data.append(trace)
         layout = go.Layout(
