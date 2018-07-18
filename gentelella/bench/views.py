@@ -3,7 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 #from miRNA.models import Micro
 from django.views.generic import DetailView
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MICROS_FOLDER
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MICROS_FOLDER, SUB_SITE
 import os
 from study.summary_plots import makeMirBox
 from bench.forms import BenchForm
@@ -59,7 +59,7 @@ class StartSample(FormView):
         # It should return an HttpResponse.
         form.clean()
         query_id, call = form.start_query()
-        self.success_url = "{{ settings.SUB_SITE }}/bench/" + query_id
+        self.success_url = SUB_SITE+"/bench/" + query_id
         os.system(call)
 
         return super(StartSample, self).form_valid(form)
@@ -116,7 +116,7 @@ class BenchSample(FormView):
         #old_query = query_id
         #input_query =
         query_id, call = form.start_DE(old_query)
-        self.success_url = "{{ settings.SUB_SITE }}/bench/compare/" + query_id
+        self.success_url = SUB_SITE+"/bench/compare/" + query_id
         print(call)
         return super(BenchSample, self).form_valid(form)
 
@@ -166,7 +166,7 @@ class BenchCompare(FormView):
         # It should return an HttpResponse.
         form.clean()
         query_id, call = form.start_query()
-        self.success_url = "{{ settings.SUB_SITE }}/bench/compare/" + query_id
+        self.success_url = SUB_SITE+"/bench/compare/" + query_id
         os.system(call)
 
         return super(BenchCompare, self).form_valid(form)
