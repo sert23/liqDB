@@ -175,7 +175,7 @@ class BenchCompare(FormView):
 def bench(request,query_id):
     context = dict()
     query_id = str(request.path_info).split("/")[-1]
-    context["pagetitle"] = "Compare selected Dataset with sRNAbench jobs"
+    context["pagetitle"] = query_id
     #table_cols = ["miRNA", "Browse miRNA data"]
     template = loader.get_template('app/bench.html' )
     return HttpResponse(template.render(context, request))
