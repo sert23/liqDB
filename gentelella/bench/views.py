@@ -168,6 +168,7 @@ class BenchCompare(FormView):
         query_id, call = form.start_query()
         self.success_url = SUB_SITE+"/bench/compare/" + query_id
         os.system(call)
+        os.system("touch /home/eap/liqDB_test/pepe.txt")
 
         return super(BenchCompare, self).form_valid(form)
 
