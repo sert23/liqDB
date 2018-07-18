@@ -129,9 +129,9 @@ class BenchCompare(FormView):
         query_id = str(self.request.path_info).split("/")[-1]
         #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
-        # with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"), 'r') as queryfile:
-        #     SRX_string = queryfile.read()
-        # samples_ids = SRX_string.split(",")
+        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"), 'r') as queryfile:
+            SRX_string = queryfile.read()
+        samples_ids = SRX_string.split(",")
         #print(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"))
         #print(os.path.exists(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt")))
         #print(SRX_string)
