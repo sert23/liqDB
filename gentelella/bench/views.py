@@ -83,7 +83,7 @@ class BenchSample(FormView):
         #print(SRX_string)
         context['SRX_string'] = SRX_string
         samples_ids = list(filter(None, samples_ids))
-        context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        context['pagetitle'] = str(len(samples_ids)) + ' samples selected from liqDB'
         samples = Sample.objects.all().filter(Experiment__in=samples_ids)
         table_data = []
         for sam in samples:
@@ -137,7 +137,7 @@ class BenchCompare(FormView):
         #print(SRX_string)
         # context['SRX_string'] = SRX_string
         # samples_ids = list(filter(None, samples_ids))
-        context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        context['pagetitle'] = str(len(samples_ids)) + ' samples selected from liqDB'
         samples = Sample.objects.all().filter(Experiment__in=samples_ids)
         table_data = []
         for sam in samples:
@@ -172,7 +172,7 @@ class BenchCompare(FormView):
         return super(BenchCompare, self).form_valid(form)
 
 
-def bench(request):
+def bench(request,query_id):
     context = dict()
     query_id = str(request.path_info).split("/")[-1]
     context["pagetitle"] = "Compare selected Dataset with sRNAbench jobs"
