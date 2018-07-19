@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^contact/', views.ContactView.as_view()),
     url(r'^mirna/', include('miRNA.urls')),
     url(r'^bench/', include('bench.urls')),
+    url(r'^datasets/', include('compare.urls')),
     url(r'^success/', views.success, name="contact_success"),
     url(r'^about/', views.about),
     url(r'^downloads/', views.downloads),
