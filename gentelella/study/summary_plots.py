@@ -251,7 +251,7 @@ def makeDEbox(input_file):
     #print((input_file))
     #return None
     #first_table = pandas.read_table(input_file, header=None ,sep='\t')
-    color_list= ["red", "green","blue","yellow","purple","orange"]
+    color_list= ["red", "green","blue","yellow","purple","orange"]*10
     with open(input_file, "r") as ifile:
         lines = ifile.readlines()
         x_dict = dict()
