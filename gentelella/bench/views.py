@@ -161,12 +161,12 @@ class BenchCompare(FormView):
         context["data"] = js_data
         return context
 
-    def form_valid(self, form):
+    def form_valid(self, form,query_id):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
-        query_id, call = form.start_query()
-        self.success_url = SUB_SITE+"/bench/compare/" + query_id
+        nquery_id, call = form.start_DEy(query_id)
+        self.success_url = SUB_SITE+"/bench/compare/" + nquery_id
 
 
         print(call)
