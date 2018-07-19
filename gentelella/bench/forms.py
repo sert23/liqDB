@@ -126,6 +126,7 @@ class BenchForm(forms.Form):
         sampleGroups = ",".join(sampleGroupList)
         userSampleString = cleaned_data.get("benchID")
         userSampleList = userSampleString.split(",")
+        userSampleList = [x.strip(' ') for x in userSampleList ]
         userDirList = [os.path.join(BENCH_FOLDER,ID) for ID in userSampleList]
         userSampleString = ",".join(userDirList)
         userGroup = cleaned_data.get("benchGroup")
