@@ -191,6 +191,8 @@ class CompareForm(forms.Form):
         )
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
+        with open(os.path.join(query_path,"call.txt"), "w") as text_file:
+            text_file.write(call)
         #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id,call)
     def start_query(self):
