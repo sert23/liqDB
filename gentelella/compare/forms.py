@@ -168,8 +168,8 @@ class CompareForm(forms.Form):
         querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
         querySamples2 = Sample.objects.all().filter(Fluid__in=fluid_list2).filter(Sex__in=sex_list2).filter(Healthy__in=health_list2).filter(Extraction__in=extraction_list2).filter(Library__in=library_list2).values_list('Experiment', flat=True)
 
-        queryString = ",".join(querySamples.strip(' '))
-        queryString2 = ",".join(querySamples2.strip(' '))
+        queryString = ",".join(querySamples).strip(' ')
+        queryString2 = ",".join(querySamples2).strip(' ')
 
         sampleString = queryString + queryString2
         query_n = len(queryString.split(","))
