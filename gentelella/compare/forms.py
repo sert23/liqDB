@@ -171,7 +171,7 @@ class CompareForm(forms.Form):
         queryString = ",".join(querySamples).strip(' ')
         queryString2 = ",".join(querySamples2).strip(' ')
 
-        sampleString = queryString + queryString2
+        sampleString = queryString + ","+ queryString2
         query_n = len(queryString.split(","))
         query_n2 = len(queryString2.split(","))
         groupList= ["Group1"]*query_n + ["Group2"]*query_n2
