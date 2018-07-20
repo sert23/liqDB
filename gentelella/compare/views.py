@@ -7,6 +7,7 @@ import os
 from compare.forms import CompareForm
 from django.core.urlresolvers import reverse_lazy
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
+from study.views import sortedMatrixToTableList
 # Create your views here.
 
 class StartCompare(FormView):
@@ -47,9 +48,7 @@ class StartCompare(FormView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-
         form.clean()
-
         query_id, call = form.start_query()
         self.success_url = reverse_lazy("datasets") + query_id
         #self.success_url = "/samples/" + query_id
