@@ -53,7 +53,7 @@ class StartCompare(FormView):
         self.success_url = reverse_lazy("samples") + query_id
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
-        print(call)
+        os.system(call)
 
         return super(StartCompare, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
