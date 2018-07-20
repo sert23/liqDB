@@ -206,3 +206,4 @@ class CompareForm(forms.Form):
     def start_query(self):
         query_id = self.generate_id()
         return self.make_query(self.cleaned_data,query_id)
+
