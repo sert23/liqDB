@@ -124,6 +124,24 @@
                       </div>
                       </div>
                       </div>
+                    {% if DE_list %}
+                    <div role="tabpanel" class="tab-pane fade active" id="tab_DE" aria-labelledby="profile-tab">
+                        <div class="accordion" id="accordion4" role="tablist" aria-multiselectable="true">
+                            {% for comparison,table,plot in DE_objs %}
+                                    <a class="panel-heading" role="tab" id="heading{{comparison}}" data-toggle="collapse" data-parent="#accordion4" href="#collapse{{comparison}}" aria-expanded="false" aria-controls="collapseOne">
+                            <h4 class="panel-title">{{comparison}}</h4>
+                          </a>
+                          <div id="collapse{{comparison}}" class="panel-collapse collapse active in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+
+                                {{plot|safe}}
+
+                            </div>
+                          </div>
+                            {% endfor %}
+                  </div>
+                  </div>
+                  {% endif %}
                     <div role="tabpanel" class="tab-pane fade active" id="tab_plots" aria-labelledby="profiles">
                         <table id="RNA_types" class="table table-striped table-bordered bulk_action"></table>
                         {{mapBox|safe}}
@@ -171,24 +189,7 @@
                               </div>
                               </div>
                               </div>
-                    {% if DE_list %}
-                    <div role="tabpanel" class="tab-pane fade active" id="tab_DE" aria-labelledby="profile-tab">
-                        <div class="accordion" id="accordion4" role="tablist" aria-multiselectable="true">
-                            {% for comparison,table,plot in DE_objs %}
-                                    <a class="panel-heading" role="tab" id="heading{{comparison}}" data-toggle="collapse" data-parent="#accordion4" href="#collapse{{comparison}}" aria-expanded="false" aria-controls="collapseOne">
-                            <h4 class="panel-title">{{comparison}}</h4>
-                          </a>
-                          <div id="collapse{{comparison}}" class="panel-collapse collapse active in" role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body">
 
-                                {{plot|safe}}
-
-                            </div>
-                          </div>
-                            {% endfor %}
-                  </div>
-                  </div>
-                  {% endif %}
                     {% endif %}
                   </div>
 
