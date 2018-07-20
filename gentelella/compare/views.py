@@ -6,6 +6,7 @@ import json
 import os
 from compare.forms import CompareForm
 from django.core.urlresolvers import reverse_lazy
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
 # Create your views here.
 
 class StartCompare(FormView):
@@ -54,7 +55,6 @@ class StartCompare(FormView):
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
         os.system(call)
-
         return super(StartCompare, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
 
