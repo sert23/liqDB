@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE, MEDIA_URL
 from study.views import sortedMatrixToTableList
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
+import subprocess
 # Create your views here.
 
 class StartCompare(FormView):
