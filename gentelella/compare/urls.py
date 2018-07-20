@@ -7,8 +7,8 @@ urlpatterns = [
 
     # url(r'^compare/(?P<query_id>[A-za-z0-9]+)', views.BenchCompare.as_view()),
     # url(r'^compare/(?P<query_id>[A-za-z0-9]+)', views.bench),
-    url(r'^(?P<query_id>[A-za-z0-9]+)', views.CompareQueries.as_view(), name="datasets"),
-    url(r'^',views.StartCompare.as_view() )
+    url(r'^(?P<query_id>[A-za-z0-9]+)', views.CompareQueries.as_view()),
+    url(r'^',views.StartCompare.as_view() , name="datasets")
 
 ]
 
