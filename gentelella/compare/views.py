@@ -135,6 +135,25 @@ class CompareQueries(TemplateView):
             subprocess.Popen(["/opt/liqDB/liqDB/gentelella/bin/relative_zip", "query_download.zip",  content_folder])
             subprocess.Popen(["zip", "miRNA_RPMadjLib.txt.zip" , "miRNA_RPMadjLib.txt"],cwd= content_folder)
             subprocess.Popen(["zip", "miRNA_RCadj.txt.zip" , "miRNA_RCadj.txt"],cwd= content_folder)
+        initial_dir = os.path.join(content_folder, "de")
+        DE_list = [name for name in os.listdir(initial_dir) if os.path.isdir(os.path.join(initial_dir, name))]
+        DE_objs = []
+        for comparison in DE_list:
+            files = os.listdir(os.path.join(content_folder, "de", comparison))
+            if os.path.exists(
+                    os.path.join(content_folder, "de", comparison, "matrix_miRNA_RPMadjLib.txt").replace(
+                            "\\", "/")):
+                DE_table = os.path.join(content_folder, "de", comparison, "").replace("\\", "/")
+                DE_plot = makeDEbox(
+                    os.path.join(content_folder, "de", comparison, "matrix_miRNA_RPMadjLib.txt")).replace(
+                    "\\", "/")
+                DE_objs.append([comparison, DE_table, DE_plot])
+            else:
+                DE_table = os.path.join(content_folder, "de", comparison, "").replace("\\", "/")
+                DE_objs.append([comparison, DE_table, " "])
+                # print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
+        context["DE_list"] = DE_list
+        context["DE_objs"] = DE_objs
         #(["relative_zip", "query_download.zip", ])
 
             # subprocess.Popen(["zip", os.path.join(content_folder, "miRNA_RPMadjLib.txt.zip"),
