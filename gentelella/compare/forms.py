@@ -184,7 +184,7 @@ class CompareForm(forms.Form):
 
         call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=DE sampleString={sampleString} sampleGroups={sampleGroups}  variables=Groups".format(
             outputPath=outputPath,
-            sampleString=queryString,
+            sampleString=sampleString,
             sampleGroups=sampleGroups,
 
 
