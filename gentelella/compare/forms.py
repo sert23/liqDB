@@ -194,9 +194,12 @@ class CompareForm(forms.Form):
         with open(os.path.join(query_path,"call.txt"), "w") as text_file:
             text_file.write(call)
             text_file.write("\n"+ str(len(groupList)) +"\n")
-            text_file.write(str(groupList.count("Group1"))+" Group1")
-            text_file.write(str(groupList.count("Group2"))+" Group2")
+            text_file.write(str(groupList.count("Group1"))+" Group1 ")
+            text_file.write(str(groupList.count("Group2"))+" Group2 ")
             text_file.write(str(sampleString.count(","))+" SampleString")
+            text_file.write(str(queryString.count(","))+" queryString")
+            text_file.write(str(queryString2.count(","))+" queryString2")
+
 
         #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id,call)
