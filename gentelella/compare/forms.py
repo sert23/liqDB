@@ -168,8 +168,8 @@ class CompareForm(forms.Form):
         querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
         querySamples2 = Sample.objects.all().filter(Fluid__in=fluid_list2).filter(Sex__in=sex_list2).filter(Healthy__in=health_list2).filter(Extraction__in=extraction_list2).filter(Library__in=library_list2).values_list('Experiment', flat=True)
 
-        queryString = ",".join(querySamples)
-        queryString2 = ",".join(querySamples2)
+        queryString = ",".join(querySamples.strip(' '))
+        queryString2 = ",".join(querySamples2.strip(' '))
 
         sampleString = queryString + queryString2
         query_n = len(queryString.split(","))
@@ -190,9 +190,14 @@ class CompareForm(forms.Form):
 
         )
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
-            text_file.write(queryString)
+            text_file.write(sampleString)
         with open(os.path.join(query_path,"call.txt"), "w") as text_file:
             text_file.write(call)
+            text_file.write("\n"+ str(len(groupList)) +"\n")
+            text_file.write(str(groupList.count("Group1"))+" Group1")
+            text_file.write(str(groupList.count("Group2"))+" Group2")
+            text_file.write(str(sampleString.count(","))+" SampleString")
+
         #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id,call)
     def start_query(self):
