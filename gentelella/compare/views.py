@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, TemplateView
 from app.models import Sample
 import json
 import os
@@ -58,7 +58,7 @@ class StartCompare(FormView):
         return super(StartCompare, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
 
-class CompareQueries(DetailView):
+class CompareQueries(TemplateView):
     #print(self.request)
     template_name = 'app/compare_query.html'
     #form_class = SamplesForm
