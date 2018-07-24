@@ -22,14 +22,13 @@ library_list = list(set(samples.values_list('Library', flat=True)))
 
 
 class SamplesForm(forms.Form):
-
-    fluids =[(None, "All")] + [(element,element) for element in fluid_list]
-    health_choice =[(None, "All")] + [(element,element) for element in health_list]
-    extraction_choice =[(None, "All")] + [(element,element) for element in extraction_list]
-    #extraction_choice =
-    sex_choice = [(None, "Both")] +  [("mf", "Both (only annotated)")]+[(element,element) for element in sex_list]
-    #sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
-    library_choice = [(None, "All")] + [(element,element) for element in library_list]
+    fluids = [(None, "All")] + [(element, element) for element in sorted(fluid_list, key=str.lower)]
+    health_choice = [(None, "All")] + [(element, element) for element in health_list]
+    extraction_choice = [(None, "All")] + [(element, element) for element in sorted(extraction_list, key=str.lower)]
+    # extraction_choice =
+    sex_choice = [(None, "Both")] + [("mf", "Both (only annotated)")] + [(element, element) for element in sex_list]
+    # sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
+    library_choice = [(None, "All")] + [(element, element) for element in sorted(library_list, key=str.lower)]
     #extraction_choice = [""] + list(set(samples.values_list('Extraction', flat=True)))
     #library_choice = [""] + list(set(samples.values_list('Library', flat=True)))
     #fluids = samples.values_list('Fluid', flat=True)
