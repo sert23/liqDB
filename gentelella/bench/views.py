@@ -168,13 +168,15 @@ class BenchCompare(FormView):
         # It should return an HttpResponse.
         form.clean()
         nquery_id, call = form.start_DE(query_id)
+
+        os.system(call)
         self.success_url = SUB_SITE+"/bench/compare/" + nquery_id
 
 
         with open(os.path.join( "/opt/liqDB/liqDB/gentelella/data_folder/queryData/4DO4UZMXAZ5PBDJG6425", "call2.txt"), "w") as text_file:
             text_file.write(call)
 
-        os.system(call)
+
 
         #print(call)
         #os.system("touch /opt/liqDB/liqDB/gentelella/data_folder/queryData/9JVLHF319M65G4DKB1AT/pepe.txt")
