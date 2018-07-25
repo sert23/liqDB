@@ -111,6 +111,8 @@ class BenchForm(forms.Form):
             outputPath=outputPath,
             sampleString=queryString
         )
+        with open(os.path.join(query_path,"call.txt"), "w") as text_file:
+            text_file.write(call)
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
         #print(query_id,fluid,sex,healthy,extraction,library)
@@ -146,7 +148,7 @@ class BenchForm(forms.Form):
             userSampleGroups=userSampleGroups
         )
 
-        print(call)
+        #print(call)
         return query_id,call
 
     def start_DE(self, old_query_id):
