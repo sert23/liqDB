@@ -168,11 +168,11 @@ class BenchCompare(FormView):
         nquery_id, call = form.start_DEy(query_id)
         self.success_url = SUB_SITE+"/bench/compare/" + nquery_id
 
-
-        print(call)
-        os.system("touch /opt/liqDB/liqDB/gentelella/data_folder/queryData/9JVLHF319M65G4DKB1AT/pepe.txt")
-
         os.system(call)
+        #print(call)
+        #os.system("touch /opt/liqDB/liqDB/gentelella/data_folder/queryData/9JVLHF319M65G4DKB1AT/pepe.txt")
+
+
 
 
 
