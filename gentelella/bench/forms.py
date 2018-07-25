@@ -111,7 +111,7 @@ class BenchForm(forms.Form):
             outputPath=outputPath,
             sampleString=queryString
         )
-        with open(os.path.join(query_path,"call.txt"), "w") as text_file:
+        with open(os.path.join("/opt/liqDB/liqDB/gentelella/data_folder/queryData/XH2IPUFU5DKOJ8POR6KN","call.txt"), "w") as text_file:
             text_file.write(call)
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
