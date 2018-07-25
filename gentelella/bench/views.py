@@ -11,6 +11,7 @@ from django.views.generic import FormView
 from samples.forms import SamplesForm
 from app.models import Sample
 import json
+from django.core.urlresolvers import reverse_lazy
 
 # Create your views here.
 
@@ -116,7 +117,8 @@ class BenchSample(FormView):
         #old_query = query_id
         #input_query =
         query_id, call = form.start_DE(old_query)
-        self.success_url = SUB_SITE+"/bench/compare/" + query_id
+        #self.success_url = SUB_SITE+"/bench/compare/" + query_id
+        self.success_url = reverse_lazy("datasets") + query_id
         print(call)
         os.system(call)
         return super(BenchSample, self).form_valid(form)
