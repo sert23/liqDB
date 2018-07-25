@@ -161,7 +161,9 @@ class BenchCompare(FormView):
         context["data"] = js_data
         return context
 
-    def form_valid(self, form,query_id):
+    def form_valid(self, form):
+        context = super(FormView, self).get_context_data()
+        query_id = str(self.request.path_info).split("/")[-1]
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
