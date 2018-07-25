@@ -118,6 +118,7 @@ class BenchSample(FormView):
         query_id, call = form.start_DE(old_query)
         self.success_url = SUB_SITE+"/bench/compare/" + query_id
         print(call)
+        os.system(call)
         return super(BenchSample, self).form_valid(form)
 
 class BenchCompare(FormView):
