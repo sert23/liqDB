@@ -151,6 +151,8 @@ class BenchForm(forms.Form):
         with open(os.path.join(query_path, "call.txt"), "w") as text_file:
             text_file.write(call)
 
+        os.system(call)
+
         #print(call)
         return query_id,call
 
