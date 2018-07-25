@@ -163,7 +163,7 @@ class BenchCompare(FormView):
 
     def form_valid(self, form):
         context = super(FormView, self).get_context_data()
-        query_id = str(self.request.path_info).split("/")[-1]
+        #query_id = str(self.request.path_info).split("/")[-1]
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
@@ -180,9 +180,6 @@ class BenchCompare(FormView):
 
         #print(call)
         #os.system("touch /opt/liqDB/liqDB/gentelella/data_folder/queryData/9JVLHF319M65G4DKB1AT/pepe.txt")
-
-
-
 
 
         return super(BenchCompare, self).form_valid(form)
