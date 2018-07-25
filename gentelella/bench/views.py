@@ -165,7 +165,7 @@ class BenchCompare(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
-        nquery_id, call = form.start_DEy(query_id)
+        nquery_id, call = form.start_DE(query_id)
         self.success_url = SUB_SITE+"/bench/compare/" + nquery_id
 
         os.system(call)
