@@ -277,9 +277,10 @@ def makeDEbox(input_file):
             aver_dict[x] = sum(floats)/len(floats)
 
         sorted_keys = (sorted(aver_dict, key=aver_dict.get))
+        keys_strings = "\t".join([str(i) for i in sorted_keys])
 
         with open(os.path.join("/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ", "test.txt"), "w") as text_file:
-            text_file.write(sorted_keys)
+            text_file.write(keys_strings)
 
 
         data = []
