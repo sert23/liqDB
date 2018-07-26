@@ -256,6 +256,77 @@ def makeDEbox(input_file):
         lines = ifile.readlines()
         x_dict = dict()
         y_dict = dict()
+        mean_dict = dict()
+        aver_dict = dict()
+        for i,line in enumerate(lines):
+            row = line.split("\t")
+            x,cond = row[0].split("#")
+            if x_dict.get(cond):
+                to_ap = [x]*(len(row)-1)
+                x_dict[cond].extend(to_ap)
+                y_dict[cond].extend(row[1:])
+            else:
+                x_dict[cond] = [x]*(len(row)-1)
+                y_dict[cond] = row[1:]
+            if mean_dict.get(x):
+                mean_dict[x] = mean_dict[x] + row[1:]
+            else:
+                mean_dict[x] = row[1:]
+        for x in mean_dict.keys():
+            floats = [float(i) for i in mean_dict[x]]
+            aver_dict[x] = sum(floats)/len(floats)
+
+        sorted_keys = (sorted(aver_dict, key=aver_dict.get))
+
+        with open(os.path.join("/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ", "test.txt"), "w") as text_file:
+            text_file.write(sorted_keys)
+
+
+        data = []
+        for i,key in enumerate(x_dict.keys()):
+            trace = go.Box(
+                    x=x_dict[key],
+                    y=y_dict[key],
+                    marker=dict(
+                        color= color_list[i]),
+                    name=key
+                )
+            data.append(trace)
+        #    print(data)
+        layout = go.Layout(
+                boxmode='group',
+                autosize=True,
+                margin=go.Margin(
+                    l=50,
+                    r=50,
+                    b=150,
+                    t=100,
+                    pad=4
+                ),
+                title="Differentially Expressed miRNAs",
+                xaxis=dict(
+                    # title='Nulceotide added',
+                    tick0=0,
+                    dtick=1,
+                ),
+                yaxis=dict(
+                    type='log',
+                    title='RPM')
+            )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+    return div_obj
+
+def makeFullDEbox(input_file):
+    input_file = input_file.replace("\\","/")
+    #print((input_file))
+    #return None
+    #first_table = pandas.read_table(input_file, header=None ,sep='\t')
+    color_list= ["red", "green","blue","yellow","purple","orange"]*10
+    with open(input_file, "r") as ifile:
+        lines = ifile.readlines()
+        x_dict = dict()
+        y_dict = dict()
         for i,line in enumerate(lines):
             row = line.split("\t")
             x,cond = row[0].split("#")
