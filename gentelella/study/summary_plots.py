@@ -258,9 +258,11 @@ def makeDEbox(input_file):
         y_dict = dict()
         mean_dict = dict()
         aver_dict = dict()
+        top_list=[]
         for i,line in enumerate(lines):
             row = line.split("\t")
             x,cond = row[0].split("#")
+            top_list.append(x)
             if x_dict.get(cond):
                 to_ap = [x]*(len(row)-1)
                 x_dict[cond].extend(to_ap)
@@ -268,11 +270,8 @@ def makeDEbox(input_file):
             else:
                 x_dict[cond] = [x]*(len(row)-1)
                 y_dict[cond] = row[1:]
-            if mean_dict.get(x):
-                mean_dict[x] = mean_dict[x] + row[1:]
-            else:
-                mean_dict[x] = row[1:]
-        for x in mean_dict.keys():
+
+        for x in top_list[0:20]:
             floats = [float(i) for i in mean_dict[x]]
             aver_dict[x] = sum(floats)/len(floats)
 
