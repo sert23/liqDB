@@ -256,38 +256,22 @@ def makeDEbox(input_file):
         lines = ifile.readlines()
         x_dict = dict()
         y_dict = dict()
-        mean_dict = dict()
-        aver_dict = dict()
-        top_list=[]
+        x_list = []
         for i,line in enumerate(lines):
             row = line.split("\t")
             x,cond = row[0].split("#")
-            top_list.append(x)
-            if x_dict.get(cond):
-                to_ap = [x]*(len(row)-1)
-                x_dict[cond].extend(to_ap)
-                y_dict[cond].extend(row[1:])
-            else:
-                x_dict[cond] = [x]*(len(row)-1)
-                y_dict[cond] = row[1:]
+            x_list.append(x)
+            if len(set(x_list))< 20:
 
-        for x in top_list[0:20]:
-            floats = [float(i) for i in mean_dict[x]]
-            aver_dict[x] = sum(floats)/len(floats)
-
-        sorted_keys = (sorted(aver_dict, key=aver_dict.get))
-        # keys_strings = "\t".join([str(i) for i in sorted_keys])
-        #
-        # with open(os.path.join("/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ", "test.txt"), "w") as text_file:
-        #     text_file.write(keys_strings)
-
-
+                if x_dict.get(cond):
+                    to_ap = [x]*(len(row)-1)
+                    x_dict[cond].extend(to_ap)
+                    y_dict[cond].extend(row[1:])
+                else:
+                    x_dict[cond] = [x]*(len(row)-1)
+                    y_dict[cond] = row[1:]
         data = []
-        if len(sorted_keys)< 21:
-            starting = 0
-        else:
-            starting = -20
-        for i,key in enumerate(sorted_keys[starting:-1]):
+        for i,key in enumerate(x_dict.keys()):
             trace = go.Box(
                     x=x_dict[key],
                     y=y_dict[key],
@@ -320,6 +304,9 @@ def makeDEbox(input_file):
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
     return div_obj
+
+
+
 
 def makeFullDEbox(input_file):
     input_file = input_file.replace("\\","/")
