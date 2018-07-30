@@ -89,10 +89,10 @@ class DisplayStudy(DetailView):
                 DE_table = os.path.join(studies_folder,study.SRP,"de",comparison,"").replace("\\","/")
                 DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
                 HM_link = "<a href='/whatever'><b> lelo </b></a>"
-                DE_objs.append([comparison,DE_table,DE_plot])
+                DE_objs.append([comparison,DE_table,DE_plot, HM_link])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
-                DE_objs.append([comparison, DE_table, " "])
+                DE_objs.append([comparison, DE_table, " ", " "])
                 #print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
         context["DE_list"] = DE_list
         context["DE_objs"] = DE_objs
