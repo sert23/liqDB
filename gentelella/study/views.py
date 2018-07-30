@@ -88,6 +88,7 @@ class DisplayStudy(DetailView):
             if os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt").replace("\\","/")):
                 DE_table = os.path.join(studies_folder,study.SRP,"de",comparison,"").replace("\\","/")
                 DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
+                HM_link = "<a href='/whatever'><b> lelo </b></a>"
                 DE_objs.append([comparison,DE_table,DE_plot])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
