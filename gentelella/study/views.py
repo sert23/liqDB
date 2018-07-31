@@ -91,7 +91,8 @@ class DisplayStudy(DetailView):
                 DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
                 HM_path = os.path.join(MEDIA_URL,"studies",study.SRP,"de", comparison, "heatmap_euclidean.html" )
                 HM_link = "<a href='"+ HM_path +"'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
-                subprocess.Popen([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)])
+                if not os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"heatmap_euclidean.html")):
+                    subprocess.Popen([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)])
                 DE_objs.append([comparison,DE_table,DE_plot, HM_link])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
