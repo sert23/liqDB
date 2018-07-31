@@ -6,7 +6,7 @@ import json
 import os
 from compare.forms import CompareForm
 from django.core.urlresolvers import reverse_lazy
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE, MEDIA_URL
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE, MEDIA_URL, PATH_TO_RSCRIPT, HM_SCRIPT
 from study.views import sortedMatrixToTableList
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
 import subprocess
@@ -147,10 +147,14 @@ class CompareQueries(TemplateView):
                 DE_plot = makeDEbox(
                     os.path.join(content_folder, "de", comparison, "matrix_miRNA_RPMadjLib.txt")).replace(
                     "\\", "/")
-                DE_objs.append([comparison, DE_table, DE_plot])
+                HM_path = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "de", comparison, "heatmap_euclidean.html")
+                HM_link = "<a href='" + HM_path + "'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
+                if not os.path.exists(os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput","de",comparison,"heatmap_euclidean.html")):
+                    subprocess.Popen([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput","de",comparison)])
+                DE_objs.append([comparison, DE_table, DE_plot, HM_link])
             else:
                 DE_table = os.path.join(content_folder, "de", comparison, "").replace("\\", "/")
-                DE_objs.append([comparison, DE_table, " "])
+                DE_objs.append([comparison, DE_table, " ", " "])
                 # print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
         context["DE_list"] = DE_list
         context["DE_objs"] = DE_objs
