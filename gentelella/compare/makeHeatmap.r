@@ -6,7 +6,7 @@ args <- commandArgs()
 #load DE genes
 #input_folder<- "/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
 #input_folder<- "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
-input_folder<-commandArgs[1]
+input_folder<- args[1]
 print("hey")
 
 DE_file <- paste(input_folder,"matrix_miRNA_RPMadjLib.txt", sep= "/")
