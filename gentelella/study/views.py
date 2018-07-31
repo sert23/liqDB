@@ -6,9 +6,10 @@ from django.views.generic import DetailView
 from study.forms import StudyForm
 from app.models import Study, Sample
 import pandas as pd
-from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, STUDIES_FOLDER, MEDIA_URL
+from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, STUDIES_FOLDER, MEDIA_URL, PATH_TO_RSCRIPT, HM_SCRIPT
 import os
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
+import subprocess
 # Create your views here.
 
 
@@ -88,7 +89,9 @@ class DisplayStudy(DetailView):
             if os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt").replace("\\","/")):
                 DE_table = os.path.join(studies_folder,study.SRP,"de",comparison,"").replace("\\","/")
                 DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
-                HM_link = "<a href='/whatever'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
+                HM_path = os.path.join(MEDIA_URL,"studies",study.SRP,"de", comparison, "heatmap_euclidean.html" )
+                HM_link = "<a href='"+ HM_path +"'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
+                subprocess.Popen([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)])
                 DE_objs.append([comparison,DE_table,DE_plot, HM_link])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
