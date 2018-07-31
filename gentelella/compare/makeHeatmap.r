@@ -2,7 +2,7 @@ library("heatmaply")
 
 #miRNA_RPMadjLib <- read.delim("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/miRNA_RPMadjLib.txt", row.names=1, stringsAsFactors=FALSE)
 
-args <- commandArgs(TRUE)
+args <- commandArgs()
 #load DE genes
 #input_folder<- "/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
 #input_folder<- "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
@@ -24,4 +24,11 @@ print("you")
 
 #heatmaply(head(log_trans,20), colors = RdYlGn,  file = "/home/eap/heatmaply_plot30.html")
 heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),  file = paste(input_folder,"heatmap_euclidean.html",sep ="/"))
+
+
+
+
+
+
+
 
