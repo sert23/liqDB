@@ -94,7 +94,7 @@ class DisplayStudy(DetailView):
                 if not os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"heatmap_euclidean.html")):
                     subprocess.Popen([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)])
                     with open(os.path.join(studies_folder,study.SRP,"de",comparison, "call.txt"), "w") as text_file:
-                        text_file.write(" ".join([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)]))
+                        text_file.write(" ".join([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(studies_folder,study.SRP,"de",comparison)]))
                     #subprocess.Popen(["touch", os.path.join(studies_folder,study.SRP,"de",comparison,"heatmap_euclidean.html")])
                     #subprocess.Popen(["touch", os.path.join(studies_folder,study.SRP,"de",comparison,"test.txt")])
                 DE_objs.append([comparison,DE_table,DE_plot, HM_link])
