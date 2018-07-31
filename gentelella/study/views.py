@@ -93,6 +93,7 @@ class DisplayStudy(DetailView):
                 HM_link = "<a href='"+ HM_path +"'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
                 if not os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"heatmap_euclidean.html")):
                     subprocess.Popen([PATH_TO_RSCRIPT, HM_path, os.path.join(studies_folder,study.SRP,"de",comparison)])
+                    subprocess.Popen(["touch", os.path.join(studies_folder,study.SRP,"de",comparison,"test.txt")])
                 DE_objs.append([comparison,DE_table,DE_plot, HM_link])
             else:
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
