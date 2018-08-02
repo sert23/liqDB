@@ -261,7 +261,7 @@ def makeDEbox(input_file):
             row = line.split("\t")
             x,cond = row[0].split("#")
             x_list.append(x)
-            if len(set(x_list))< 20:
+            if len(set(x_list))< 21:
 
                 if x_dict.get(cond):
                     to_ap = [x]*(len(row)-1)
