@@ -85,7 +85,7 @@ def makeTop20(input_file, output_file):
         ),
         yaxis=dict(
             type='log',
-            title='RPM')
+            title='RPM+1')
     )
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type = 'div')
@@ -177,13 +177,19 @@ def makeTop20CV(input_file):
     ordered = first_table.sort_values(by="CV", axis=0, ascending=False)
     clean = ordered.drop(["stddev",	"CV", "mean"],axis=1)
     top20 = clean.head(20)
+
+    numeric_cols = [col for col in top20 if top20[col].dtype.kind != 'O']
+    top20[numeric_cols] += 1
+    labels = top20.columns[1:]
+
     input_table = top20
     data = []
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
             y=line[1:],
-            name=line[0]
+            name=line[0],
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -219,13 +225,19 @@ def makeBottom20CV(input_file):
     ordered = first_table.sort_values(by="CV", axis=0, ascending=False)
     clean = ordered.drop(["stddev",	"CV", "mean"],axis=1)
     top20 = clean.tail(20)
+
+    numeric_cols = [col for col in top20 if top20[col].dtype.kind != 'O']
+    top20[numeric_cols] += 1
+    labels = top20.columns[1:]
+
     input_table = top20
     data = []
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
             y=line[1:],
-            name=line[0]
+            name=line[0],
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
