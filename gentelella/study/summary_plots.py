@@ -16,11 +16,15 @@ def makeGenomePlot(input_file, output_file):
     first_table = pandas.read_table(input_file, sep='\t')
     input_table = first_table.head(10)
     data = []
+
+    labels = input_table.columns[1:]
+
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
             y=line[1:-1],
-            name=line[0]
+            name=line[0],
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -140,11 +144,15 @@ def makeSpeciesPlot(input_file):
     first_table = pandas.read_table(input_file, sep='\t')
     input_table = first_table.head(10)
     data = []
+
+    labels = input_table.columns[1:]
+
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
             y=line[1:-1],
-            name=line[0]
+            name=line[0],
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -209,7 +217,7 @@ def makeTop20CV(input_file):
         ),
         yaxis=dict(
             type='log',
-            title='RPM')
+            title='RPM+1')
     )
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
@@ -257,7 +265,7 @@ def makeBottom20CV(input_file):
         ),
         yaxis=dict(
             type='log',
-            title='RPM')
+            title='RPM+1')
     )
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
