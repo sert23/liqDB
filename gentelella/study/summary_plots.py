@@ -50,13 +50,24 @@ def makeTop20(input_file, output_file):
     first_table = pandas.read_table(input_file, sep='\t')
     input_table = first_table.head(20)
     data = []
+
+    # adding 1
+    numeric_cols = [col for col in input_table if input_table[col].dtype.kind != 'O']
+    input_table[numeric_cols] += 1
+
+    labels = input_table.columns[1:]
+
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
             y=line[1:-1],
-            name=line[0]
+            name=line[0],
+            text=labels
         )
         data.append(trace)
+
+
+
     layout = go.Layout(
         autosize=True,
         margin=go.Margin(
