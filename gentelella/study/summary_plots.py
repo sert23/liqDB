@@ -65,7 +65,7 @@ def makeTop20(input_file, output_file):
     for index, row in input_table.iterrows():
         line = numpy.ndarray.flatten(row.values)
         trace = go.Box(
-            y=line[1:-1],
+            y=line[1:-1]+1,
             name=line[0],
             text=labels
         )
