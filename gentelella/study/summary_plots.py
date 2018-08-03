@@ -277,6 +277,7 @@ def makeDEbox(input_file,de_file=None):
     #return None
     #first_table = pandas.read_table(input_file, header=None ,sep='\t')
     pval_dict=dict()
+    label_dict=dict()
     if de_file:
         with open(de_file, "r") as de_hand:
             lines = de_hand.readlines()
@@ -299,9 +300,11 @@ def makeDEbox(input_file,de_file=None):
                     to_ap = [x]*(len(row)-1)
                     x_dict[cond].extend(to_ap)
                     y_dict[cond].extend(row[1:])
+                    label_dict[cond].extend(pval_dict[x]*(len(row)-1))
                 else:
                     x_dict[cond] = [x]*(len(row)-1)
                     y_dict[cond] = row[1:]
+                    label_dict[cond] = pval_dict[x]*(len(row)-1)
         data = []
         for i,key in enumerate(x_dict.keys()):
             to_y = numpy.array(list(map(float, y_dict[key])))
@@ -314,7 +317,7 @@ def makeDEbox(input_file,de_file=None):
                     y=to_y,
                     marker=dict(
                         color= color_list[i]),
-                    #text=pval_dict[key]*len(x_dict[key]),
+                    text=label_dict[key],
                     name=key
                 )
             data.append(trace)
