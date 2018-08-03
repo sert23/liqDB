@@ -271,11 +271,19 @@ def makeBottom20CV(input_file):
     # print("")
 # makeTop20CV("C:/Users/Ernesto/Desktop/Colabo/liqDB/test/miRNA_RPMadjLib_CV_min20.txt")
 
-def makeDEbox(input_file):
+def makeDEbox(input_file,de_file=None):
     input_file = input_file.replace("\\","/")
     #print((input_file))
     #return None
     #first_table = pandas.read_table(input_file, header=None ,sep='\t')
+    pval_dict=dict()
+    if de_file:
+        with open(de_file, "r") as de_hand:
+            lines = de_hand.readlines()
+            lines.pop(0)
+            for line in lines:
+                row=line.split("\t")
+                pval_dict[row[0]] = row[-2]
     color_list= ["red", "green","blue","yellow","purple","orange"]*10
     with open(input_file, "r") as ifile:
         lines = ifile.readlines()
@@ -296,10 +304,8 @@ def makeDEbox(input_file):
                     y_dict[cond] = row[1:]
         data = []
         for i,key in enumerate(x_dict.keys()):
-
             to_y = numpy.array(list(map(float, y_dict[key])))
             to_y.astype(float)
-
             to_y = to_y+1
             trace = go.Box(
                     x=x_dict[key],
@@ -308,6 +314,7 @@ def makeDEbox(input_file):
                     y=to_y,
                     marker=dict(
                         color= color_list[i]),
+                    text=pval_dict[key]*len(x_dict[key]),
                     name=key
                 )
             data.append(trace)
@@ -330,7 +337,7 @@ def makeDEbox(input_file):
                 ),
                 yaxis=dict(
                     type='log',
-                    title='RPM')
+                    title='RPM+1')
             )
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
