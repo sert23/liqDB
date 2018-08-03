@@ -24,7 +24,7 @@ def makeGenomePlot(input_file, output_file):
         trace = go.Box(
             y=line[1:-1],
             name=line[0],
-            text=[]
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -56,7 +56,8 @@ def makeTop20(input_file, output_file):
     data = []
 
     # adding 1
-    numeric_cols = [col for col in input_table if input_table[col].dtype.kind != 'O']
+    numeric_cols = list(input_table.columns)
+    numeric_cols.remove("name")
     input_table[numeric_cols] += 1
 
     labels = input_table.columns[1:]
@@ -66,7 +67,7 @@ def makeTop20(input_file, output_file):
         trace = go.Box(
             y=line[1:-1],
             name=line[0],
-            text=[]
+            text=labels
         )
         data.append(trace)
 
@@ -152,7 +153,7 @@ def makeSpeciesPlot(input_file):
         trace = go.Box(
             y=line[1:-1],
             name=line[0],
-            text=[]
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -197,7 +198,7 @@ def makeTop20CV(input_file):
         trace = go.Box(
             y=line[1:],
             name=line[0],
-            text=[]
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
@@ -245,7 +246,7 @@ def makeBottom20CV(input_file):
         trace = go.Box(
             y=line[1:],
             name=line[0],
-            text=[]
+            text=labels
         )
         data.append(trace)
     layout = go.Layout(
