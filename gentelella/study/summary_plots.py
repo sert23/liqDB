@@ -287,7 +287,6 @@ def makeDEbox(input_file):
             x,cond = row[0].split("#")
             x_list.append(x)
             if len(set(x_list))< 21:
-
                 if x_dict.get(cond):
                     to_ap = [x]*(len(row)-1)
                     x_dict[cond].extend(to_ap)
@@ -297,9 +296,14 @@ def makeDEbox(input_file):
                     y_dict[cond] = row[1:]
         data = []
         for i,key in enumerate(x_dict.keys()):
+            to_y = numpy.ndarray(list(map(int, y_dict[key])))
+            to_y.astype(int)
+            to_y = to_y+1
             trace = go.Box(
                     x=x_dict[key],
-                    y=y_dict[key],
+                    #y=y_dict[key],
+                #numpy.ndarray.flatten(
+                    y=to_y,
                     marker=dict(
                         color= color_list[i]),
                     name=key
