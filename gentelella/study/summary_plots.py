@@ -297,7 +297,7 @@ def makeDEbox(input_file):
         data = []
         for i,key in enumerate(x_dict.keys()):
             to_y = numpy.ndarray(list(map(int, y_dict[key])))
-            to_y.astype(int)
+            to_y.astype(float)
             to_y = to_y+1
             trace = go.Box(
                     x=x_dict[key],
