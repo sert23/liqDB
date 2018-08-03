@@ -15,7 +15,6 @@ import subprocess
 
 def sortedMatrixToTableList(input_file):
     import json
-
     filename = input_file.split("/")[-1]
     last = False
     if "sort" in filename:
@@ -61,6 +60,10 @@ class DisplayStudy(DetailView):
     #get_form_kwargs
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
+        from datetime import datetime
+        log_file = datetime.now().strftime("%Y%m%d%H%M%S")+".txt"
+        log_path = os.path.join("/opt/liqDB/liqDB/gentelella/logs", log_file)
+        log_w = open(log_path,"w")
         #studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
         studies_folder = STUDIES_FOLDER
         study = context.get('object')
