@@ -64,7 +64,7 @@ class DisplayStudy(DetailView):
         log_file = datetime.now().strftime("%Y%m%d%H%M%S")+".txt"
         log_path = os.path.join("/opt/liqDB/liqDB/gentelella/logs", log_file)
         log_w = open(log_path,"w")
-        log_w.write("Start "+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\n")
+        log_w.write("Start "+datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"\n")
         #studies_folder = "/opt/liqDB/liqDB/gentelella/data_folder/studies"
         studies_folder = STUDIES_FOLDER
         study = context.get('object')
@@ -72,27 +72,27 @@ class DisplayStudy(DetailView):
         expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
         #expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA.txt")
         RNAcols , RNAbody =sortedMatrixToTableList(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"))
-        log_w.write("RNAcol loaded " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("RNAcol loaded " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context['RNAcols'] = RNAcols
         context['RNAbody'] = RNAbody
         plot = makeGenomePlot(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"), "")
-        log_w.write("Genome_plot " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("Genome_plot " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         top20 = makeTop20(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"), "")
-        log_w.write("top20_plot " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("top20_plot " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         toPie = makePie10(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_sort.txt"))
-        log_w.write("pie_plot " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("pie_plot " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context["mapBox"] = plot
         context["top20"] = top20
         context["toPie"] = toPie
         context["speciesPlot"] = makeSpeciesPlot(os.path.join(studies_folder,study.SRP,"genomeDistribution_sort.txt"))
-        log_w.write("species_plot " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("species_plot " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context["top20CV"] = makeTop20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
-        log_w.write("TopCV " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("TopCV " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         #context["bottom20CV"] = makeDEbox("C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/studies/SRP062974/de/health_state/matrix_miRNA_RPMadjLib.txt")
         context["bottom20CV"] = makeBottom20CV(os.path.join(studies_folder,study.SRP,"miRNA_RPMadjLib_CV_min20.txt"))
-        log_w.write("bottomCV " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("bottomCV " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context["Gcols"], context["Gbody"] = sortedMatrixToTableList(os.path.join(studies_folder, study.SRP, "genomeDistribution_sort.txt"))
-        log_w.write("Genome_cols " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("Genome_cols " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         initial_dir = os.path.join(studies_folder,study.SRP,"de")
         DE_list = [name for name in os.listdir(initial_dir) if os.path.isdir(os.path.join(initial_dir, name))]
         DE_objs = []
@@ -114,7 +114,7 @@ class DisplayStudy(DetailView):
                 DE_table = os.path.join(studies_folder, study.SRP, "de", comparison, "").replace("\\", "/")
                 DE_objs.append([comparison, DE_table, " ", " "])
                 #print(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"))
-        log_w.write("DE_plot " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("DE_plot " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context["DE_list"] = DE_list
         context["DE_objs"] = DE_objs
         context["study_folder"] = os.path.join(STUDIES_FOLDER,study.SRP)
@@ -134,7 +134,7 @@ class DisplayStudy(DetailView):
             new_dict["title"] = e
             column_list.append(new_dict)
             #print(e)
-        log_w.write("json_loop " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("json_loop " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         context["exp_columns"] = json.dumps(column_list)
         exp_data = json.dumps(exp_table)
         context["exp_data"] = exp_data
@@ -174,7 +174,7 @@ class DisplayStudy(DetailView):
             exosome= sam.Exosome
             desc = sam.Desc
             table_data.append([SRX, BIOS ,organism,instrument,sex,fluid,extraction,Library,healthy,cancer,exosome,desc])
-        log_w.write("sample_loop " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
+        log_w.write("sample_loop " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
         #context['pagetitle'] = str(study.SRP)
 
         js_data = json.dumps(table_data[0:1000])
