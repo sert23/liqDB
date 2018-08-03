@@ -48,6 +48,7 @@ def sortedMatrixToTableList(input_file):
 
 class DisplayStudy(DetailView):
 
+
     model = Study
     #study = Study.objects.filter(SRP__exact=SRP)
     #print(ProcessFormView.request)
@@ -100,7 +101,12 @@ class DisplayStudy(DetailView):
             files = os.listdir(os.path.join(studies_folder,study.SRP,"de",comparison))
             if os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt").replace("\\","/")):
                 DE_table = os.path.join(studies_folder,study.SRP,"de",comparison,"").replace("\\","/")
-                DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt")).replace("\\","/")
+
+                comparison_dir = os.path.join(MEDIA_ROOT,"studies",study.SRP,"de", comparison)
+                de_file = [os.path.join(comparison_dir,name) for name in os.listdir(comparison_dir)
+                           if (os.path.isfile(os.path.join(initial_dir, name)) and name.startswith("de_miRNA_RPMadjLib"))]
+
+                DE_plot =makeDEbox(os.path.join(studies_folder,study.SRP,"de",comparison,"matrix_miRNA_RPMadjLib.txt"),de_file[0])
                 HM_path = os.path.join(MEDIA_URL,"studies",study.SRP,"de", comparison, "heatmap_euclidean.html" )
                 HM_link = "<a href='"+ HM_path +"'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
                 if not os.path.exists(os.path.join(studies_folder,study.SRP,"de",comparison,"heatmap_euclidean.html")):
