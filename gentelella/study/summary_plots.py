@@ -300,11 +300,11 @@ def makeDEbox(input_file,de_file=None):
                     to_ap = [x]*(len(row)-1)
                     x_dict[cond].extend(to_ap)
                     y_dict[cond].extend(row[1:])
-                    label_dict[cond].extend(pval_dict[x]*(len(row)-1))
+                    label_dict[cond].extend([pval_dict.get(x)]*(len(row)-1))
                 else:
                     x_dict[cond] = [x]*(len(row)-1)
                     y_dict[cond] = row[1:]
-                    label_dict[cond] = pval_dict[x]*(len(row)-1)
+                    label_dict[cond] = [pval_dict.get(x)]*(len(row)-1)
         data = []
         for i,key in enumerate(x_dict.keys()):
             to_y = numpy.array(list(map(float, y_dict[key])))
@@ -317,7 +317,7 @@ def makeDEbox(input_file,de_file=None):
                     y=to_y,
                     marker=dict(
                         color= color_list[i]),
-                    text=label_dict[key],
+                    text=label_dict.get(key),
                     name=key
                 )
             data.append(trace)
