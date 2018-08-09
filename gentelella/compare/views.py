@@ -100,7 +100,7 @@ class CompareQueries(TemplateView):
         context['SRX_string'] = SRX_string
         #context['RNAcols'] = "hello"
 
-        if len(SRX_string)<1:
+        if len(SRX_string)<2:
             context['pagetitle'] = 'Sorry, no samples matched your query'
             return context
 
