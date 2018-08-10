@@ -6,11 +6,12 @@ args <- commandArgs(TRUE)
 #load DE genes
 #input_folder<- "/opt/liqDB/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
 #input_folder<- "C:/Users/Ernesto/PycharmProjects/liqDB/gentelella/data_folder/queryData/JPCLAFL8UHJMRJLKEQSZ/queryOutput/de/Groups"
+#input_folder <- "C:/Users/Ernesto/Desktop/queryOutput/de/Groups"
 input_folder<- args[1]
 print("hey")
 
-DE_file <- paste(input_folder,"matrix_miRNA_RPMadjLib.txt", sep= "/")
-DE_table <- read.delim(DE_file,  stringsAsFactors=FALSE, header = FALSE)
+DE_file <- paste(input_folder,"de_miRNA_RPMadjLib_Group1-Group2.txt", sep= "/")
+DE_table <- read.delim(DE_file,  stringsAsFactors=FALSE, header = TRUE)
 
 DE_table <- DE_table[order(-DE_table$FC),]
 DE_table <- head(DE_table,20)
@@ -29,12 +30,7 @@ print("you")
 
 #heatmaply(head(log_trans,20), colors = RdYlGn,  file = "/home/eap/heatmaply_plot30.html")
 heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),
-file = paste(input_folder,"heatmap_euclidean.html",sep ="/"), fontsize_col=8, column_text_angle=60, key.title="log(RPM+1)")
-
-
-
-
-
+          file = paste(input_folder,"heatmap_euclidean.html",sep ="/"), fontsize_col=8, column_text_angle=60, key.title="log(RPM+1)")
 
 
 
