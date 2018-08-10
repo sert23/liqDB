@@ -15,7 +15,8 @@ row_vector <- DE_table[,1]
 gene_names<-unique(gsub("#.+", "", row_vector))
 
 #load exp_mat
-exp_file<- paste(gsub("\\/de\\/.+","",input_folder),"/miRNA_RPMadjLib.txt", sep="")
+exp_file<- paste(gsub("\\/de\\/.+","",input_folder),"/miRNA_RPMadjLib_sort.txt", sep="")
+exp_file$sum <- NULL
 exp_mat <- read.delim(exp_file, row.names=1, stringsAsFactors=FALSE)
 x <- subset(exp_mat, rownames(exp_mat) %in% gene_names)
 log_trans <- log(x+1)
