@@ -11,6 +11,9 @@ print("hey")
 
 DE_file <- paste(input_folder,"matrix_miRNA_RPMadjLib.txt", sep= "/")
 DE_table <- read.delim(DE_file,  stringsAsFactors=FALSE, header = FALSE)
+
+DE_table <- DE_table[order(-DE_table$FC),]
+DE_table <- head(DE_table,20)
 row_vector <- DE_table[,1]
 gene_names<-unique(gsub("#.+", "", row_vector))
 
