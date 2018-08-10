@@ -23,7 +23,8 @@ log_trans <- log(x+1)
 print("you")
 
 #heatmaply(head(log_trans,20), colors = RdYlGn,  file = "/home/eap/heatmaply_plot30.html")
-heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),  file = paste(input_folder,"heatmap_euclidean.html",sep ="/"))
+heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),
+file = paste(input_folder,"heatmap_euclidean.html",sep ="/"), fontsize_col=5)
 
 
 
