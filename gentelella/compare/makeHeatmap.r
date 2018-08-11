@@ -27,7 +27,8 @@ log_trans <- log(x+1)
 heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),
           file = paste(input_folder,"heatmap_euclidean.html",sep ="/"),
           fontsize_col=8, column_text_angle=60, key.title="log(RPM+1)", custom_hovertext = x,
-          ColSideColors = gsub(".+\\.", "", colnames(x)) )
+          col_side_colors = gsub(".+\\.", "", colnames(x)) )
+          #ColSideColors = gsub(".+\\.", "", colnames(x)) )
           #\code{function(...) round(..., digits=3, )
 
 
