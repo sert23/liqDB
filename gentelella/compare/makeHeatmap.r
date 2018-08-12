@@ -20,16 +20,19 @@ exp_file<- paste(input_folder,"matrix_sort_annot.txt", sep= "/")
 exp_mat <- read.delim(exp_file, row.names=1, stringsAsFactors=FALSE,  comment.char = "", header=TRUE)
 exp_mat$sum<-NULL
 x <- subset(exp_mat, rownames(exp_mat) %in% gene_names)
+y<-sapply(x, as.character)
+labels<-sapply(y, function(x) paste("RPM=",x,sep=""))
 log_trans <- log(x+1)
 
 
 #heatmaply(head(log_trans,20), colors = RdYlGn,  file = "/home/eap/heatmaply_plot30.html")
 heatmaply(head(log_trans,20), colors = c("Red", "Black", "Green"),
           file = paste(input_folder,"heatmap_euclidean.html",sep ="/"),
-          fontsize_col=8, column_text_angle=60, key.title="log(RPM+1)", custom_hovertext = x,
+          fontsize_col=8, column_text_angle=60, key.title="log(RPM+1)", custom_hovertext = labels,
           col_side_colors = gsub(".+\\.", "", colnames(x)) )
           #ColSideColors = gsub(".+\\.", "", colnames(x)) )
           #\code{function(...) round(..., digits=3, )
+          #label_format_fun
 
 
 
