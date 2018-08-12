@@ -21,7 +21,9 @@ exp_mat <- read.delim(exp_file, row.names=1, stringsAsFactors=FALSE,  comment.ch
 exp_mat$sum<-NULL
 x <- subset(exp_mat, rownames(exp_mat) %in% gene_names)
 y<-sapply(x, as.character)
-labels<-sapply(y, function(x) paste("RPM=",x,sep=""))
+mm<-dim(x)
+labels<-sapply(y,function(t) paste("RPM=",t,sep=""))
+dim(labels)<-mm
 log_trans <- log(x+1)
 
 
