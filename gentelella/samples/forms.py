@@ -15,6 +15,7 @@ def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
 
 samples = Sample.objects.all()
 fluid_list = list(set(samples.values_list('Fluid', flat=True)))
+fluid_list.remove("NA")
 health_list = list(set(samples.values_list('Healthy', flat=True)))
 extraction_list = list(set(samples.values_list('Extraction', flat=True)))
 sex_list = list(set(samples.values_list('Sex', flat=True)))
