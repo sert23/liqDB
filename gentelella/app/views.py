@@ -21,14 +21,16 @@ def index(request):
     results = dict()
 
     bar_years = dict()
+    SRPs = set(Study.objects.all().values_list('SRP', flat=True))
     for sample in samples:
         SRP = sample.SRP
-        year = sample.Date.year
-        if SRP in bar_years:
-            if year < bar_years[SRP]:
+        if SRP in SRPs:
+            year = sample.Date.year
+            if SRP in bar_years:
+                if year < bar_years[SRP]:
+                    bar_years[SRP] = year
+            else:
                 bar_years[SRP] = year
-        else:
-            bar_years[SRP] = year
 
     results["bar_years"] = year_bar_chart(list(bar_years.values()))
     # results["line_chart"] = line_chart(Sample)
