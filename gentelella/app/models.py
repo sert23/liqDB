@@ -31,6 +31,7 @@ class Sample (models.Model):
     Exosome = models.CharField(max_length=100, default="False")
     Desc = models.CharField(max_length=100, default="False")
     Date = models.DateTimeField( editable = True,default=datetime.now())
+    RC = models.IntegerField(default=0)
     #Adapter = models.CharField(max_length=100, default="-")
 
 
@@ -38,6 +39,13 @@ class StudiesTable(tables.Table):
     class Meta:
         model = Study
 
+
+def load_RC(input_file):
+    with input_file as handle:
+        for line in handle:
+            exp, rc = line.replace('"', '').replace("'", '').strip().split('\t')
+            rc = int(rc)
+            Sample.objects.filter(Experiment=exp).update(RC=rc)
 
 # Create your models here.
 
