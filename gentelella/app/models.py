@@ -41,7 +41,7 @@ class StudiesTable(tables.Table):
 
 
 def load_RC(input_file):
-    with input_file as handle:
+    with open(input_file) as handle:
         for line in handle:
             exp, rc = line.replace('"', '').replace("'", '').strip().split('\t')
             rc = int(rc)
