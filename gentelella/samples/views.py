@@ -68,6 +68,7 @@ def samples_table(request):
         cancer = sam.Cancer
         exosome = sam.Exosome
         desc = sam.Desc
+        checkbox = "<input type='checkbox' id='" + sam.Experiment + "_check" + "'>"
         table_data.append(
             [SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
             #[SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
@@ -127,10 +128,11 @@ class StartSample(FormView):
             healthy = sam.Healthy
             cancer = sam.Cancer
             exosome = sam.Exosome
+            checkbox = "<input type='checkbox' id='" + sam.Experiment + "_check" + "'>"
             desc = sam.Desc
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-                [SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [checkbox,SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
 
         js_data = json.dumps(table_data)
         #print(js_data)
