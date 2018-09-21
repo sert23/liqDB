@@ -189,7 +189,8 @@ class SampleQuery(FormView):
     template_name = 'app/samples_query.html'
     form_class = SamplesForm
     #post_dict = HttpRequest.POST
-    post_dict = HttpRequest.POST
+    post = HttpRequest()
+    post_dict = post.POST
     import json
     with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
         json.dump(post_dict, fp)
