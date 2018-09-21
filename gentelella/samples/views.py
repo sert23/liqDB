@@ -107,6 +107,11 @@ def samples_table(request):
 class StartSample(FormView):
     template_name = 'app/samples.html'
     form_class = SamplesForm
+    post = HttpRequest()
+    post_dict = post.POST
+    import json
+    with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
+        json.dump(post_dict, fp)
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Select your samples:'
@@ -189,11 +194,7 @@ class SampleQuery(FormView):
     template_name = 'app/samples_query.html'
     form_class = SamplesForm
     #post_dict = HttpRequest.POST
-    post = HttpRequest()
-    post_dict = post.POST
-    import json
-    with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
-        json.dump(post_dict, fp)
+
 
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
