@@ -1,7 +1,7 @@
 
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from app.models import Sample
 from django.views.generic import FormView
 from samples.forms import SamplesForm
@@ -188,6 +188,12 @@ class SampleQuery(FormView):
     #print(self.request)
     template_name = 'app/samples_query.html'
     form_class = SamplesForm
+    #post_dict = HttpRequest.POST
+    post_dict = request.POST
+    import json
+    with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
+        json.dump(post_dict, fp)
+
     def get_context_data(self, **kwargs):
         context = super(FormView, self).get_context_data(**kwargs)
         query_id = str(self.request.path_info).split("/")[-1]
