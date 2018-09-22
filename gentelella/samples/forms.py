@@ -142,7 +142,7 @@ class ManualForm(forms.Form):
 
     ##choices go here
     def __init__(self, *args, **kwargs):
-        super(SamplesForm, self).__init__(*args, **kwargs)
+        super(ManualForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
