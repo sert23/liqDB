@@ -155,6 +155,20 @@ class ManualForm(forms.Form):
                     # onsubmit="alert('Neat!'); return false")
                     #onclick = 'printChecked()
                 ),
+                ButtonHolder(
+                    # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
+                    # Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
+                    Submit('submit', 'REMOVE SELECTED', onclick="printChecked()", css_class='btn btn-primary btn-form')
+                    # onsubmit="alert('Neat!'); return false")
+                    # onclick = 'printChecked()
+                ),
+                ButtonHolder(
+                    # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
+                    # Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
+                    Submit('submit', 'PROCEED WITH ANALYSIS', onclick="printChecked()", css_class='btn btn-primary btn-form')
+                    # onsubmit="alert('Neat!'); return false")
+                    # onclick = 'printChecked()
+                ),
                 css_class='form-row')
         )
 
@@ -170,45 +184,9 @@ class ManualForm(forms.Form):
 
     def make_query(self,cleaned_data,query_id):
 
-        fluid = str(cleaned_data.get("fluid"))
-        sex = str(cleaned_data.get("sex"))
-        healthy = str(cleaned_data.get("healthy"))
-        extraction = str(cleaned_data.get("extraction"))
-        library = str(cleaned_data.get("library"))
-        samples = Sample.objects.all()
-        #samples = Sample.objects.all()
+        hiddenString = str(cleaned_data.get("hiddenIDs"))
 
-        #print(samples)
-
-        if fluid:
-            fluid_list = [fluid]
-        else:
-            fluid_list = list(set(samples.values_list('Fluid', flat=True)))
-        if sex:
-            if sex == "mf":
-                sex_list = ["male","female"]
-            else:
-                sex_list = [sex]
-        else:
-            sex_list = list(set(samples.values_list('Sex', flat=True)))
-        if healthy:
-            health_list = [healthy]
-        else:
-            health_list = list(set(samples.values_list('Healthy', flat=True)))
-
-        if extraction:
-            extraction_list=[extraction]
-        else:
-            extraction_list = list(set(samples.values_list('Extraction', flat=True)))
-
-        if library:
-            library_list=[library]
-        else:
-            library_list = list(set(samples.values_list('Library', flat=True)))
-
-        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
-
-        queryString = ",".join(querySamples)
+        queryString = hiddenString[:-1]
         #print(len(querySamples))
         #samples_ids = samples.values_list('Experiment',flat=True)
         #print(samples_ids)
@@ -221,7 +199,6 @@ class ManualForm(forms.Form):
             outputPath=outputPath,
             sampleString=queryString
         )
-
 
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
