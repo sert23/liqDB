@@ -108,21 +108,21 @@ class StartSample(FormView):
     template_name = 'app/samples.html'
     form_class = SamplesForm
 
-    def post(self, request, *args, **kwargs):
-        # request.POST._mutable = True
-        # #print(SPECIES_PATH)
-        # request.POST['species'] = request.POST['species_hidden'].split(',')
-        # print(request.POST['species'])
-        # print(request.POST['species_hidden'].split(','))
-        # request.POST._mutable = False
-
-        post_dict = request.POST
-        import json
-        with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
-            json.dump(post_dict, fp)
-
-
-        return super(StartSample, self).post(request, *args, **kwargs)
+    # # def post(self, request, *args, **kwargs):
+    # #     # request.POST._mutable = True
+    # #     # #print(SPECIES_PATH)
+    # #     # request.POST['species'] = request.POST['species_hidden'].split(',')
+    # #     # print(request.POST['species'])
+    # #     # print(request.POST['species_hidden'].split(','))
+    # #     # request.POST._mutable = False
+    # #
+    # #     post_dict = request.POST
+    # #     import json
+    # #     with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
+    # #         json.dump(post_dict, fp)
+    #
+    #
+    #     return super(StartSample, self).post(request, *args, **kwargs)
 
 
     def get_context_data(self, **kwargs):
@@ -151,8 +151,109 @@ class StartSample(FormView):
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
                 #[checkbox,SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
 
+        js_data = json.dumps(table_data)
+        #print(js_data)
+        context["data"] = js_data
+
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+
+        form.clean()
+
+        query_id, call = form.start_query()
+        self.success_url = reverse_lazy("samples") + query_id
+        #self.success_url = "/samples/" + query_id
+        #success_url = reverse_lazy("mirconstarget")
+        os.system(call)
+
+        return super(StartSample, self).form_valid(form)
+    #success_url = reverse_lazy("BENCH")
+
+    #return super(StartSample, self).form_valid(form)
+    # def post(self, request, *args, **kwargs):
+    #     request.POST._mutable = True
+    #     #print(SPECIES_PATH)
+    #     request.POST['species'] = request.POST['species_hidden'].split(',')
+    #     print(request.POST['species'])
+    #     print(request.POST['species_hidden'].split(','))
+    #     request.POST._mutable = False
+    #     return super(Bench, self).post(request, *args, **kwargs)
+    #
+    # def form_valid(self, form):
+    #     # This method is called when valid form data has been POSTed.
+    #     # It should return an HttpResponse.
+    #
+    #     form.clean()
+    #
+    #     call, pipeline_id = form.create_call()
+    #     self.success_url = reverse_lazy('srnabench') + '?id=' + pipeline_id
+    #
+    #     print(call)
+    #     os.system(call)
+    #     js = JobStatus.objects.get(pipeline_key=pipeline_id)
+    #     js.status.create(status_progress='sent_to_queue')
+    #     js.job_status = 'sent_to_queue'
+    #     js.save()
+    #     return super(StartSample, self).form_valid(form)
+
+
+class PickSample(FormView):
+    template_name = 'app/samples_pick.html'
+    form_class = SamplesForm
+
+    # # def post(self, request, *args, **kwargs):
+    # #     # request.POST._mutable = True
+    # #     # #print(SPECIES_PATH)
+    # #     # request.POST['species'] = request.POST['species_hidden'].split(',')
+    # #     # print(request.POST['species'])
+    # #     # print(request.POST['species_hidden'].split(','))
+    # #     # request.POST._mutable = False
+    # #
+    # #     post_dict = request.POST
+    # #     import json
+    # #     with open('/opt/liqDB/liqDB/gentelella/queryData/post.json', 'w') as fp:
+    # #         json.dump(post_dict, fp)
+    #
+    #
+    #     return super(StartSample, self).post(request, *args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        context = super(FormView, self).get_context_data(**kwargs)
+        query_id = str(self.request.path_info).split("/")[-1]
+        # content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
+        content_folder = os.path.join(DATA_FOLDER, "queryData", query_id, "queryOutput")
+        with open(os.path.join(DATA_FOLDER, "queryData", query_id, "query.txt"), 'r') as queryfile:
+            SRX_string = queryfile.read()
+        samples_ids = SRX_string.split(",")
+        samples_ids = list(filter(None, samples_ids))
+        context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
+        table_data = []
+        for sam in samples:
+            organism = sam.Organism
+            SRP = sam.SRP
+            SRX = sam.Experiment
+            Library = sam.Library
+            BIOS = sam.Sample
+            instrument = sam.Instrument
+            sex = sam.Sex
+            fluid = sam.Fluid
+            extraction = sam.Extraction
+            healthy = sam.Healthy
+            cancer = sam.Cancer
+            exosome = sam.Exosome
+            checkbox = "<input type='checkbox' value='" + sam.Experiment + "' name='to_list'>"
+            desc = sam.Desc
+            table_data.append(
+                #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                #[checkbox,SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
         js_data = json.dumps(table_data)
         #print(js_data)
         context["data"] = js_data
