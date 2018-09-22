@@ -145,7 +145,7 @@ class ManualForm(forms.Form):
         super(ManualForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(
+            Div(
                 Field(' hiddenIDs', name=' hiddenIDs'),
                 #Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
@@ -168,7 +168,8 @@ class ManualForm(forms.Form):
                     Submit('submit', 'PROCEED WITH ANALYSIS', onclick="printChecked()", css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                     # onclick = 'printChecked()
-                ))
+                ),
+                css_class='row-fluid')
         )
 
     def generate_id(self):
