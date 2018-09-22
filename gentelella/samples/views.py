@@ -166,10 +166,10 @@ class StartSample(FormView):
         form.clean()
 
         query_id, call = form.start_query()
-        self.success_url = reverse_lazy("samples") + query_id
+        self.success_url = reverse_lazy("samples") + "pick/" + query_id
         #self.success_url = "/samples/" + query_id
-        #success_url = reverse_lazy("mirconstarget")
-        os.system(call)
+
+        #os.system(call)
 
         return super(StartSample, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
