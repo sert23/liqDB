@@ -68,7 +68,7 @@
 							 <!--&lt;!&ndash;<th><input type="checkbox" id="check-all" class="flat"></th>&ndash;&gt;-->
 						  <!--&lt;!&ndash;</th>&ndash;&gt;-->
               <!--</table>-->
-
+            <input type="button" onclick='printChecked()' value="Print Selected Items"/>
             </div>
           </div>
         </div>
@@ -120,6 +120,21 @@
 //    alert(received_data)
 //    alert(received_data);
 
+
+
+function printChecked(){
+    var items=document.getElementsByName('to_list');
+    var selectedItems="";
+    for(var i=0; i<items.length; i++){
+        if(items[i].type=='checkbox' && items[i].checked==true)
+            selectedItems+=items[i].value+"\n";
+    }
+    alert(selectedItems);
+}
+
+
+
+
 $(document).ready(function() {
     $('#example').DataTable( {
 //        'responsive': true,
@@ -155,11 +170,7 @@ $(document).ready(function() {
 
 </script>
 
-<!--<script>-->
-<!--//    alert("Hey");-->
-<!--//    var received_data = {{ data }};-->
-    <!--var received_data = {{ data|safe }};-->
-<!--//    alert(received_data);-->
+
 
 <!--$(document).ready(function() {-->
     <!--$('#example').DataTable( {-->
