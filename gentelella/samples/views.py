@@ -4,7 +4,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpRequest
 from app.models import Sample
 from django.views.generic import FormView
-from samples.forms import SamplesForm
+from samples.forms import SamplesForm, ManualForm
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, MEDIA_URL
 from study.summary_plots import makeGenomePlot, makeTop20, makePie10,makeSpeciesPlot,makeTop20CV,makeBottom20CV,makeDEbox
 from study.views import sortedMatrixToTableList
@@ -204,7 +204,7 @@ class StartSample(FormView):
 
 class PickSample(FormView):
     template_name = 'app/samples_pick.html'
-    form_class = SamplesForm
+    form_class = ManualForm
 
     # # def post(self, request, *args, **kwargs):
     # #     # request.POST._mutable = True

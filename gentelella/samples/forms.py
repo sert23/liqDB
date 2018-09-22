@@ -133,3 +133,98 @@ class SamplesForm(forms.Form):
     def start_query(self):
         query_id = self.generate_id()
         return self.make_query(self.cleaned_data,query_id)
+
+class ManualForm(forms.Form):
+
+    hiddenIDs = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=2500)
+
+    #field2=  forms.CharField(label=')', required=False)
+
+    ##choices go here
+    def __init__(self, *args, **kwargs):
+        super(SamplesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Div(
+                Field(' hiddenIDs', name=' hiddenIDs'),
+                #Field('library', wrapper_class='col-md-2',css_class='form-control'),
+                ButtonHolder(
+                    # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
+                    Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
+                    # onsubmit="alert('Neat!'); return false")
+                ),
+                css_class='form-row')
+        )
+
+    def generate_id(self):
+        is_new = True
+        while is_new:
+            query_id = generate_uniq_id()
+            #query_path =os.path.join(MEDIA_ROOT,query_id)
+            query_path =os.path.join(DATA_FOLDER,"queryData",query_id)
+            if not os.path.exists(query_path):
+                os.mkdir(query_path)
+                return query_id
+
+    def make_query(self,cleaned_data,query_id):
+
+        fluid = str(cleaned_data.get("fluid"))
+        sex = str(cleaned_data.get("sex"))
+        healthy = str(cleaned_data.get("healthy"))
+        extraction = str(cleaned_data.get("extraction"))
+        library = str(cleaned_data.get("library"))
+        samples = Sample.objects.all()
+        #samples = Sample.objects.all()
+
+        #print(samples)
+
+        if fluid:
+            fluid_list = [fluid]
+        else:
+            fluid_list = list(set(samples.values_list('Fluid', flat=True)))
+        if sex:
+            if sex == "mf":
+                sex_list = ["male","female"]
+            else:
+                sex_list = [sex]
+        else:
+            sex_list = list(set(samples.values_list('Sex', flat=True)))
+        if healthy:
+            health_list = [healthy]
+        else:
+            health_list = list(set(samples.values_list('Healthy', flat=True)))
+
+        if extraction:
+            extraction_list=[extraction]
+        else:
+            extraction_list = list(set(samples.values_list('Extraction', flat=True)))
+
+        if library:
+            library_list=[library]
+        else:
+            library_list = list(set(samples.values_list('Library', flat=True)))
+
+        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
+
+        queryString = ",".join(querySamples)
+        #print(len(querySamples))
+        #samples_ids = samples.values_list('Experiment',flat=True)
+        #print(samples_ids)
+        #print(len(samples_ids))
+
+        query_path = os.path.join(DATA_FOLDER,"queryData", query_id)
+        outputPath = os.path.join(query_path,"queryOutput")
+
+        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
+            outputPath=outputPath,
+            sampleString=queryString
+        )
+
+
+        with open(os.path.join(query_path,"query.txt"), "w") as text_file:
+            text_file.write(queryString)
+        #print(query_id,fluid,sex,healthy,extraction,library)
+        return(query_id,call)
+    def start_query(self):
+        query_id = self.generate_id()
+        return self.make_query(self.cleaned_data,query_id)
