@@ -146,7 +146,7 @@ class StartSample(FormView):
             healthy = sam.Healthy
             cancer = sam.Cancer
             exosome = sam.Exosome
-            checkbox = "<div class='checkbox' id='" + sam.Experiment + "_check" + "'>"
+            checkbox = "<input type='checkbox' id='" + sam.Experiment + "_check' name='to_list'>"
             desc = sam.Desc
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
