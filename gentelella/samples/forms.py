@@ -136,7 +136,7 @@ class SamplesForm(forms.Form):
 
 class ManualForm(forms.Form):
 
-    hiddenIDs = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=2500)
+    hiddenIDs = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=1000000)
 
     #field2=  forms.CharField(label=')', required=False)
 
@@ -145,7 +145,7 @@ class ManualForm(forms.Form):
         super(ManualForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Div(
+            Row(
                 Field(' hiddenIDs', name=' hiddenIDs'),
                 #Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
@@ -168,8 +168,7 @@ class ManualForm(forms.Form):
                     Submit('submit', 'PROCEED WITH ANALYSIS', onclick="printChecked()", css_class='btn btn-primary btn-form')
                     # onsubmit="alert('Neat!'); return false")
                     # onclick = 'printChecked()
-                ),
-                css_class='form-row')
+                ))
         )
 
     def generate_id(self):
