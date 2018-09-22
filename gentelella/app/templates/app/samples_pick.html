@@ -37,7 +37,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-
+            {% load crispy_forms_tags %}
           <!--"Version1:<span style="font-size:10px;"> (10.3.4)</span>  vs Version2: <span style="font-size:10px;">(10.3.4)</span>-->
           <!--<h3> Palomero  </h3>-->
           <h3>{{pagetitle}}  </h3>
@@ -54,7 +54,7 @@
           <div class="x_panel">
             <div class="x_title">
               <h2> {{title}} </h2>
-
+                {% crispy form %}
 
               <div class="clearfix"></div>
 
@@ -128,7 +128,7 @@ function printChecked(){
     var selectedItems="";
     for(var i=0; i<items.length; i++){
         if(items[i].type=='checkbox' && items[i].checked==true)
-            selectedItems+=items[i].value+"\n";
+            selectedItems+=items[i].value+",";
     }
     alert(selectedItems);
 }
