@@ -424,7 +424,7 @@ def makeMirBox(input_file,title,input_labels=[]):
             if not row[0].replace(" ","") == "" :
                 trace = go.Box(
                     y=RPM1,
-                    name=row[0] + "\\n lelo",
+                    name=row[0] + "\n lelo",
                     text= labels
                 )
                 data.append(trace)
