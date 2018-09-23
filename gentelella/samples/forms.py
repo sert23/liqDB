@@ -191,6 +191,8 @@ class ManualForm(forms.Form):
             old_list = old_SRX_string.split(",")
             new_list = [x for x in old_list if x not in removeList]
             queryString = ",".join(new_list)
+        if hiddenList[-1] == "proceed":
+            success_url = reverse_lazy("samples") + query_id
 
         #print(len(querySamples))
         #samples_ids = samples.values_list('Experiment',flat=True)
