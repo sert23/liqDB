@@ -142,7 +142,15 @@ selectedItems=Array.from(new Set(selectedItems))
 $("input:checkbox[name=to_list]:not(:checked)").each(function() {
 selectedItems=selectedItems.filter(e => e !== $(this).val());
 });
-alert(selectedItems);
+//alert(selectedItems);
+}
+
+function keepSelected() {
+
+    selectedItems.push("keep");
+    document.getElementById('id_hiddenIDs').value = selectedItems.join();
+    return true
+
 }
 
 function printUnchecked(){
