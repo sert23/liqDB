@@ -272,7 +272,7 @@ class PickSample(FormView):
         #success_url = reverse_lazy("mirconstarget")
         os.system(call)
 
-        return super(StartSample, self).form_valid(form)
+        return super(PickSample, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
 
     #return super(StartSample, self).form_valid(form)
