@@ -318,7 +318,7 @@ def makeDEbox(input_file,de_file=None):
                     marker=dict(
                         color= color_list[i]),
                     text=label_dict.get(key),
-                    name=key + " (" + str(len(label_dict.get(key))/float(len(y_dict.keys()))) +")"
+                    name=key + " (" + str(len(label_dict.get(key))/float(len(label_dict.keys()))) +")"
                 )
             data.append(trace)
         #    print(data)
