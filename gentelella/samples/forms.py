@@ -196,7 +196,7 @@ class ManualForm(forms.Form):
         with open(os.path.join(query_path,"query.txt"), "w") as text_file:
             text_file.write(queryString)
         #print(query_id,fluid,sex,healthy,extraction,library)
-        return(query_id,call)
+        return(query_id,call,success_url)
     def start_query(self):
         query_id = self.generate_id()
         return self.make_query(self.cleaned_data,query_id)

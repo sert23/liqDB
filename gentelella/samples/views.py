@@ -266,8 +266,8 @@ class PickSample(FormView):
 
         form.clean()
 
-        query_id, call = form.start_query()
-        self.success_url = reverse_lazy("samples") + query_id
+        query_id, call, success_url = form.start_query()
+        self.success_url = success_url
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
         os.system(call)
