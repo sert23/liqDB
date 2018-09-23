@@ -157,7 +157,7 @@ class ManualForm(forms.Form):
 
                     Submit('submit', 'REMOVE SELECTED SAMPLES', onclick="removeSelected()", css_class='btn btn-primary btn-form'),
 
-                    Submit('submit', 'PROCEED WITH ALL SAMPLES', onclick="printAll()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'PROCEED WITH ALL SAMPLES', onclick="proceed()", css_class='btn btn-primary btn-form'),
 
                 )
 
@@ -193,6 +193,9 @@ class ManualForm(forms.Form):
             queryString = ",".join(new_list)
         if hiddenList[-1] == "proceed":
             success_url = reverse_lazy("samples") + query_id
+            with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
+                queryString = queryfile.read()
+
 
         #print(len(querySamples))
         #samples_ids = samples.values_list('Experiment',flat=True)
