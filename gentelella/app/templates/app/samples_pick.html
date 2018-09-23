@@ -133,10 +133,10 @@
 //    alert(selectedItems);
 //}
 
-
+var selectedItems="";
 function printChecked(){
 //var items=document.getElementsByName('to_list');
-var selectedItems="";
+
 $("input:checkbox[name=to_list]:checked").each(function() {
 selectedItems+=$(this).val()+',';
 });
