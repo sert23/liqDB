@@ -147,7 +147,7 @@ class ManualForm(forms.Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
-                Field(' hiddenIDs', name=' hiddenIDs')),
+                Field('hiddenIDs', name='hiddenIDs')),
                 #Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
