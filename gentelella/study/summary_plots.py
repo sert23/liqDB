@@ -350,7 +350,7 @@ def makeDEbox(input_file,de_file=None):
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
     return div_obj
 
-makeDEbox()
+#makeDEbox()
 
 
 def makeFullDEbox(input_file):
