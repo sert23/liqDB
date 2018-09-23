@@ -169,6 +169,17 @@ function removeSelected() {
 }
 
 
+function proceed() {
+
+//    alert(selectedItems);
+    selectedItems.push("proceed");
+//    alert(selectedItems);
+    document.getElementById('id_hiddenIDs').value = selectedItems.join();
+//    alert(document.getElementById('id_hiddenIDs').value);
+    return true
+
+}
+
 
 function printAll(){
     var items=document.getElementsByName('to_list');
