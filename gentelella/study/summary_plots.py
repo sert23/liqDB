@@ -291,11 +291,15 @@ def makeDEbox(input_file,de_file=None):
         x_dict = dict()
         y_dict = dict()
         x_list = []
+        size_dict = dict()
         for i,line in enumerate(lines):
             row = line.split("\t")
             x,cond = row[0].split("#")
             x_list.append(x)
             if len(set(x_list))< 21:
+                if not size_dict.get(cond):
+                    size_dict[cond] = len(to_ap)
+
                 if x_dict.get(cond):
                     to_ap = [x]*(len(row)-1)
                     x_dict[cond].extend(to_ap)
@@ -318,7 +322,7 @@ def makeDEbox(input_file,de_file=None):
                     marker=dict(
                         color= color_list[i]),
                     text=label_dict.get(key),
-                    name=key + " (" + str(len(x_dict.get(key))/(len(lines)/len(label_dict.keys()))) +")"
+                    name=key + " (" + str(size_dict[key]) +")"
                 )
             data.append(trace)
         #    print(data)
@@ -346,7 +350,7 @@ def makeDEbox(input_file,de_file=None):
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
     return div_obj
 
-
+makeDEbox()
 
 
 def makeFullDEbox(input_file):
