@@ -8,6 +8,7 @@ import random
 import os
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
 from django.db.models import Q
+from django.core.urlresolvers import reverse_lazy
 
 
 def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
@@ -175,8 +176,10 @@ class ManualForm(forms.Form):
     def make_query(self,cleaned_data,query_id):
 
         hiddenString = str(cleaned_data.get("hiddenIDs"))
-
-        queryString = hiddenString[:-1]
+        hiddenList = hiddenString.split(",")
+        if hiddenList[-1] == "keep":
+            queryString = ",".join(hiddenList[:-1])
+            success_url = reverse_lazy("samples") + "pick/" + query_id
         #print(len(querySamples))
         #samples_ids = samples.values_list('Experiment',flat=True)
         #print(samples_ids)
