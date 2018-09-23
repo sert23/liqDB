@@ -155,9 +155,9 @@ class ManualForm(forms.Form):
                     #Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
                     Submit('submit', 'KEEP SELECTED SAMPLES', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
 
-                    Submit('submit', 'REMOVE SELECTED SAMPLES', onclick="printUnchecked()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'REMOVE SELECTED SAMPLES', onclick="removeSelected()", css_class='btn btn-primary btn-form'),
 
-                    Submit('submit', 'PROCEED WITH ANALYSIS', onclick="printAll()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'PROCEED WITH ALL SAMPLES', onclick="printAll()", css_class='btn btn-primary btn-form'),
 
                 )
 
@@ -173,13 +173,25 @@ class ManualForm(forms.Form):
                 os.mkdir(query_path)
                 return query_id
 
-    def make_query(self,cleaned_data,query_id):
+    def make_query(self,cleaned_data,query_id,old_query):
+
 
         hiddenString = str(cleaned_data.get("hiddenIDs"))
         hiddenList = hiddenString.split(",")
         if hiddenList[-1] == "keep":
             queryString = ",".join(hiddenList[:-1])
             success_url = reverse_lazy("samples") + "pick/" + query_id
+
+        if hiddenList[-1] == "remove":
+            removeString = ",".join(hiddenList[:-1])
+            removeList = removeString.split(",")
+            success_url = reverse_lazy("samples") + "pick/" + query_id
+            with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
+                old_SRX_string = queryfile.read()
+            old_list = old_SRX_string.split(",")
+            new_list = [x for x in old_list if x not in removeList]
+            queryString = ",".join(new_list)
+
         #print(len(querySamples))
         #samples_ids = samples.values_list('Experiment',flat=True)
         #print(samples_ids)

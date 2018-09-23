@@ -265,8 +265,8 @@ class PickSample(FormView):
         # It should return an HttpResponse.
 
         form.clean()
-
-        query_id, call, success_url = form.start_query()
+        old_query = str(self.request.path_info).split("/")[-1]
+        query_id, call, success_url = form.start_query(old_query)
         self.success_url = success_url
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
