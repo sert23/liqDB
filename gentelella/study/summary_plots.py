@@ -297,11 +297,11 @@ def makeDEbox(input_file,de_file=None):
             x,cond = row[0].split("#")
             x_list.append(x)
             if len(set(x_list))< 21:
-                if not size_dict.get(cond):
-                    size_dict[cond] = len(to_ap)
 
                 if x_dict.get(cond):
                     to_ap = [x]*(len(row)-1)
+                    if not size_dict.get(cond):
+                        size_dict[cond] = len(to_ap)
                     x_dict[cond].extend(to_ap)
                     y_dict[cond].extend(row[1:])
                     label_dict[cond].extend([pval_dict.get(x)]*(len(row)-1))
