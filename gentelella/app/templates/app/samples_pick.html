@@ -147,6 +147,7 @@ selectedItems=selectedItems.filter(e => e !== $(this).val());
 
 function keepSelected() {
 
+    alert(selectedItems);
     selectedItems.push("keep");
     document.getElementById('id_hiddenIDs').value = selectedItems.join();
     alert(selectedItems);
