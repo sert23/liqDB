@@ -156,15 +156,19 @@ function keepSelected() {
 
 }
 
-function printUnchecked(){
-    var items=document.getElementsByName('to_list');
-    var selectedItems="";
-    for(var i=0; i<items.length; i++){
-        if(items[i].type=='checkbox' && items[i].checked==false)
-            selectedItems+=items[i].value+",";
-    }
-    alert(selectedItems);
+
+function removeSelected() {
+
+//    alert(selectedItems);
+    selectedItems.push("remove");
+//    alert(selectedItems);
+    document.getElementById('id_hiddenIDs').value = selectedItems.join();
+//    alert(document.getElementById('id_hiddenIDs').value);
+    return true
+
 }
+
+
 
 function printAll(){
     var items=document.getElementsByName('to_list');
