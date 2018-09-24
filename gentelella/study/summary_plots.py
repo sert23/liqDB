@@ -322,7 +322,7 @@ def makeDEbox(input_file,de_file=None):
                     marker=dict(
                         color= color_list[i]),
                     text=label_dict.get(key),
-                    name=key + " (" + str(size_dict[key]) +")"
+                    name=key + " n=" + str(size_dict[key])
                 )
             data.append(trace)
         #    print(data)
@@ -349,6 +349,100 @@ def makeDEbox(input_file,de_file=None):
     fig = go.Figure(data=data, layout=layout)
     div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
     return div_obj
+
+def makeDEbox_pval(input_file,de_file=None):
+    input_file = input_file.replace("\\","/")
+    #print((input_file))
+    #return None
+    #first_table = pandas.read_table(input_file, header=None ,sep='\t')
+    pval_dict=dict()
+    label_dict=dict()
+    if de_file:
+        with open(de_file, "r") as de_hand:
+            lines = de_hand.readlines()
+            lines.pop(0)
+            for line in lines:
+                row=line.split("\t")
+                # pval_dict[row[0]] = str(float(row[-2]))
+                pval_dict[row[0]] = str(round(float(row[-2]),8))
+    print(pval_dict)
+    color_list= ["red", "green","blue","yellow","purple","orange"]*10
+    with open(input_file, "r") as ifile:
+        lines = ifile.readlines()
+        x_dict = dict()
+        y_dict = dict()
+        x_list = []
+        size_dict = dict()
+        for i,line in enumerate(lines):
+            row = line.split("\t")
+            x,cond = row[0].split("#")
+            x_list.append(x)
+            if len(set(x_list))< 21:
+
+                if x_dict.get(cond):
+                    to_ap = [x + " [pval="+ pval_dict.get(x)+"]"] *(len(row)-1)
+                    if not size_dict.get(cond):
+                        size_dict[cond] = len(to_ap)
+                    x_dict[cond].extend(to_ap)
+                    y_dict[cond].extend(row[1:])
+                    label_dict[cond].extend([pval_dict.get(x)]*(len(row)-1))
+                else:
+                    x_dict[cond] = [x + " [pval="+ pval_dict.get(x)+"]"]  *(len(row)-1)
+                    y_dict[cond] = row[1:]
+                    label_dict[cond] = [pval_dict.get(x)]*(len(row)-1)
+        data = []
+        print(len(label_dict["Group1"]))
+        print(len(x_dict["Group1"]))
+
+        for i,key in enumerate(x_dict.keys()):
+            to_y = numpy.array(list(map(float, y_dict[key])))
+            to_y.astype(float)
+            to_y = to_y+1
+            trace = go.Box(
+                    x=x_dict[key],
+                    #y=y_dict[key],
+                #numpy.ndarray.flatten(
+                    y=to_y,
+                    #z=label_dict.get(key),
+                    marker=dict(
+                        color= color_list[i]),
+                    #text=label_dict.get(key),
+                    #hovermode="compare",
+                    # hoverinfo=label_dict.get(key),
+                    #hoveron="points",
+                    name=key + " n=" + str(size_dict[key])
+                )
+            data.append(trace)
+        #    print(data)
+        layout = go.Layout(
+                hovermode="x",
+                #hoveron="points",
+                boxmode='group',
+                autosize=True,
+                margin=go.Margin(
+                    l=50,
+                    r=50,
+                    b=150,
+                    t=100,
+                    pad=4
+                ),
+                title="Differentially Expressed miRNAs",
+                xaxis=dict(
+                    # title='Nulceotide added',
+                    tick0=0,
+                    dtick=1,
+                ),
+                yaxis=dict(
+                    type='log',
+                    title='RPM+1')
+            )
+    fig = go.Figure(data=data, layout=layout)
+    div_obj = plot(fig, show_link=False, auto_open=False, output_type='div')
+
+    #plot(fig, filename="C:/Users/Ernesto/Desktop/Groups/test.html", show_link=False, auto_open=False)
+    return div_obj
+
+makeDEbox_pval("C:/Users/Ernesto/Desktop/Groups/matrix_miRNA_RPMadjLib.txt",  "C:/Users/Ernesto/Desktop/Groups/de_miRNA_RPMadjLib_Group1-Group2.txt")
 
 #makeDEbox()
 
