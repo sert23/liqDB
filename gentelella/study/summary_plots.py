@@ -380,7 +380,7 @@ def makeDEbox_pval(input_file,de_file=None):
             if len(set(x_list))< 21:
 
                 if x_dict.get(cond):
-                    to_ap = [x + " [pval="+ pval_dict.get(x)+"]"] *(len(row)-1)
+                    to_ap = ["<b>" + x +"</b>" + " [pval="+ pval_dict.get(x)+"]"] *(len(row)-1)
                     if not size_dict.get(cond):
                         size_dict[cond] = len(to_ap)
                     x_dict[cond].extend(to_ap)
