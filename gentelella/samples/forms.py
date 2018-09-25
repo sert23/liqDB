@@ -45,6 +45,7 @@ class SamplesForm(forms.Form):
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
     exosome = forms.ChoiceField(label="Exosome Isolation",choices=exosome_choice,required=False)
 
+    RCfilter = forms.CharField(label="minimun miRNA Read Count", required= False ,widget=forms.TextInput(attrs={'placeholder': "e.g: id1:id2#id3:id4#id5:id6:id7"}))
     #field2=  forms.CharField(label=')', required=False)
 
     ##choices go here
@@ -59,6 +60,7 @@ class SamplesForm(forms.Form):
                 Field('extraction', wrapper_class='col-md-2',css_class='form-control'),
                 Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 Field('exosome', wrapper_class='col-md-2',css_class='form-control'),
+                Field('RCfilter', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'FILTER', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
