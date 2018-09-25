@@ -249,11 +249,12 @@ class PickSample(FormView):
             cancer = sam.Cancer
             exosome = sam.Exosome
             checkbox = "<input type='checkbox' value='" + sam.Experiment + "' name='to_list'>"
+            RC = sam.RC
             desc = sam.Desc
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
                 #[checkbox,SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc,RC])
         js_data = json.dumps(table_data)
         #print(js_data)
         context["data"] = js_data
