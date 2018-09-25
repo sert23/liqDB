@@ -23,6 +23,7 @@ health_list.remove("NA")
 extraction_list = list(set(samples.values_list('Extraction', flat=True)))
 sex_list = list(set(samples.values_list('Sex', flat=True)))
 library_list = list(set(samples.values_list('Library', flat=True)))
+exosome_list = list(set(samples.values_list('Exosome', flat=True)))
 
 
 class SamplesForm(forms.Form):
@@ -33,6 +34,7 @@ class SamplesForm(forms.Form):
     sex_choice = [(None, "Both")] + [("mf", "Both (only annotated)")] + [(element, element) for element in sex_list]
     # sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
     library_choice = [(None, "All")] + [(element, element) for element in sorted(library_list, key=str.lower)]
+    exosome_choice = [(None, "All")] + [(element, element) for element in sorted(exosome_list, key=str.lower)]
     #extraction_choice = [""] + list(set(samples.values_list('Extraction', flat=True)))
     #library_choice = [""] + list(set(samples.values_list('Library', flat=True)))
     #fluids = samples.values_list('Fluid', flat=True)
@@ -41,6 +43,7 @@ class SamplesForm(forms.Form):
     healthy =  forms.ChoiceField(label="Healthy Subjects",choices=health_choice,required=False)
     extraction =  forms.ChoiceField(label="RNA Extraction Protocol",choices=extraction_choice,required=False)
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
+    exosome = forms.ChoiceField(label="Exosome Isolation Treatment",choices=exosome_choice,required=False)
 
     #field2=  forms.CharField(label=')', required=False)
 
@@ -55,6 +58,7 @@ class SamplesForm(forms.Form):
                 Field('healthy', wrapper_class='col-md-2',css_class='form-control'),
                 Field('extraction', wrapper_class='col-md-2',css_class='form-control'),
                 Field('library', wrapper_class='col-md-2',css_class='form-control'),
+                Field('exosome', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'FILTER', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
@@ -179,7 +183,8 @@ class ManualForm(forms.Form):
         hiddenString = str(cleaned_data.get("hiddenIDs"))
         hiddenList = hiddenString.split(",")
         if hiddenList[-1] == "keep":
-            queryString = ",".join(hiddenList[:-1])
+            cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
+            queryString = ",".join(cleanList)
             success_url = reverse_lazy("samples") + "pick/" + query_id
 
         if hiddenList[-1] == "remove":
@@ -190,7 +195,9 @@ class ManualForm(forms.Form):
                 old_SRX_string = queryfile.read()
             old_list = old_SRX_string.split(",")
             new_list = [x for x in old_list if x not in removeList]
-            queryString = ",".join(new_list)
+            cleanList = [x for x in new_list if x not in ["keep", "proceed", "remove"]]
+            queryString = ",".join(cleanList)
+
         if hiddenList[-1] == "proceed":
             success_url = reverse_lazy("samples") + query_id
             with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
