@@ -19,6 +19,7 @@ health_list = list(set(samples.values_list('Healthy', flat=True)))
 extraction_list = list(set(samples.values_list('Extraction', flat=True)))
 sex_list = list(set(samples.values_list('Sex', flat=True)))
 library_list = list(set(samples.values_list('Library', flat=True)))
+exosome_list = list(set(samples.values_list('Exosome', flat=True)))
 
 
 class CompareForm(forms.Form):
@@ -30,6 +31,7 @@ class CompareForm(forms.Form):
     sex_choice = [(None, "Both")] +  [("mf", "Both (only annotated)")]+[(element,element) for element in sex_list]
     #sex_choice = (("", "All"), ("mf", "mf"),("male","male"),("female","female"))
     library_choice = [(None, "All")] + [(element,element) for element in  sorted(library_list,key=str.lower)]
+    exosome_choice = [(None, "All")] + [(element, element) for element in sorted(exosome_list, key=str.lower)]
     #extraction_choice = [""] + list(set(samples.values_list('Extraction', flat=True)))
     #library_choice = [""] + list(set(samples.values_list('Library', flat=True)))
     #fluids = samples.values_list('Fluid', flat=True)
@@ -38,12 +40,14 @@ class CompareForm(forms.Form):
     healthy =  forms.ChoiceField(label="Healthy Subjects",choices=health_choice,required=False)
     extraction =  forms.ChoiceField(label="RNA Extraction Protocol",choices=extraction_choice,required=False)
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
+    exosome = forms.ChoiceField(label="Exosome Isolation", choices=exosome_choice, required=False)
 
     fluid2 = forms.ChoiceField(label="Fluid", choices=fluids, required=False)
     sex2 = forms.ChoiceField(label="Sex", choices=sex_choice, required=False)
     healthy2 = forms.ChoiceField(label="Healthy Subjects", choices=health_choice, required=False)
     extraction2 = forms.ChoiceField(label="RNA Extraction Protocol", choices=extraction_choice, required=False)
     library2 = forms.ChoiceField(label="RNA Library Preparation", choices=library_choice, required=False)
+    exosome2 = forms.ChoiceField(label="Exosome Isolation", choices=exosome_choice, required=False)
 
     #field2=  forms.CharField(label=')', required=False)
 
@@ -61,6 +65,7 @@ class CompareForm(forms.Form):
                 Field('healthy', wrapper_class='col-md-2',css_class='form-control'),
                 Field('extraction', wrapper_class='col-md-2',css_class='form-control'),
                 Field('library', wrapper_class='col-md-2',css_class='form-control'),
+                Field('exosome', wrapper_class='col-md-2',css_class='form-control'),
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'COMPARE', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
@@ -76,6 +81,7 @@ class CompareForm(forms.Form):
                 Field('healthy2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('extraction2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('library2', wrapper_class='col-md-2', css_class='form-control'),
+                Field('exosome2', wrapper_class='col-md-2', css_class='form-control'),
                 # ButtonHolder(
                 #     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                 #     Submit('submit', 'FILTER', onclick="$('#loadpage').show(); $('#divPageContent').hide();",
