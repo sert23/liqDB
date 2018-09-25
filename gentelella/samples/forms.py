@@ -45,7 +45,7 @@ class SamplesForm(forms.Form):
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
     exosome = forms.ChoiceField(label="Exosome Isolation",choices=exosome_choice,required=False)
 
-    RCfilter = forms.CharField(label="mini. miRNA Read Count", required= False ,widget=forms.TextInput(attrs={'placeholder': "500000 Recommended"}))
+    RCfilter = forms.CharField(label="min. miRNA Read Count", required= False ,widget=forms.TextInput(attrs={'placeholder': "500000 Recommended"}))
     #field2=  forms.CharField(label=')', required=False)
 
     ##choices go here
@@ -87,6 +87,7 @@ class SamplesForm(forms.Form):
         extraction = str(cleaned_data.get("extraction"))
         library = str(cleaned_data.get("library"))
         exosome = str(cleaned_data.get("exosome"))
+        RC = cleaned_data.get("RCfilter")
 
         samples = Sample.objects.all()
         #samples = Sample.objects.all()
@@ -124,7 +125,10 @@ class SamplesForm(forms.Form):
         else:
             exosome_list = list(set(samples.values_list('Exosome', flat=True)))
 
-        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(Exosome__in=exosome_list).values_list('Experiment', flat=True)
+        if not RC:
+            RC = 1
+
+        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(Exosome__in=exosome_list).filter(RC__gte=RC).values_list('Experiment', flat=True)
 
         queryString = ",".join(querySamples)
         #print(len(querySamples))
