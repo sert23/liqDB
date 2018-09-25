@@ -66,11 +66,7 @@ class CompareForm(forms.Form):
                 Field('extraction', wrapper_class='col-md-2',css_class='form-control'),
                 Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 Field('exosome', wrapper_class='col-md-2',css_class='form-control'),
-                ButtonHolder(
-                    # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
-                    Submit('submit', 'COMPARE', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
-                    # onsubmit="alert('Neat!'); return false")
-                ),
+
                 css_class='form-row'),
             Row(HTML("""<h3> Second Group</h3>""")),
             Div(
@@ -82,6 +78,12 @@ class CompareForm(forms.Form):
                 Field('extraction2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('library2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('exosome2', wrapper_class='col-md-2', css_class='form-control'),
+                ButtonHolder(
+                    # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
+                    Submit('submit', 'COMPARE', onclick="$('#loadpage').show(); $('#divPageContent').hide();",
+                           css_class='btn btn-primary btn-form')
+                    # onsubmit="alert('Neat!'); return false")
+                ),
                 # ButtonHolder(
                 #     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                 #     Submit('submit', 'FILTER', onclick="$('#loadpage').show(); $('#divPageContent').hide();",
