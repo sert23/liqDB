@@ -118,7 +118,7 @@ class SamplesForm(forms.Form):
             library_list = list(set(samples.values_list('Library', flat=True)))
 
         if exosome:
-            exosome_list=[library]
+            exosome_list=[exosome]
         else:
             exosome_list = list(set(samples.values_list('Exosome', flat=True)))
 
