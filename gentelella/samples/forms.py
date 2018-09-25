@@ -84,6 +84,8 @@ class SamplesForm(forms.Form):
         healthy = str(cleaned_data.get("healthy"))
         extraction = str(cleaned_data.get("extraction"))
         library = str(cleaned_data.get("library"))
+        exosome = str(cleaned_data.get("exosome"))
+
         samples = Sample.objects.all()
         #samples = Sample.objects.all()
 
@@ -115,7 +117,12 @@ class SamplesForm(forms.Form):
         else:
             library_list = list(set(samples.values_list('Library', flat=True)))
 
-        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
+        if exosome:
+            exosome_list=[library]
+        else:
+            exosome_list = list(set(samples.values_list('Exosome', flat=True)))
+
+        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(Exosome__in=exosome_list).values_list('Experiment', flat=True)
 
         queryString = ",".join(querySamples)
         #print(len(querySamples))
