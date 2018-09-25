@@ -110,11 +110,15 @@ class CompareForm(forms.Form):
         healthy = str(cleaned_data.get("healthy"))
         extraction = str(cleaned_data.get("extraction"))
         library = str(cleaned_data.get("library"))
+        exosome = str(cleaned_data.get("exosome"))
+
         fluid2 = str(cleaned_data.get("fluid2"))
         sex2 = str(cleaned_data.get("sex2"))
         healthy2 = str(cleaned_data.get("healthy2"))
         extraction2 = str(cleaned_data.get("extraction2"))
         library2 = str(cleaned_data.get("library2"))
+        exosome2 = str(cleaned_data.get("exosome2"))
+
         samples = Sample.objects.all()
         #samples = Sample.objects.all()
 
@@ -146,6 +150,13 @@ class CompareForm(forms.Form):
         else:
             library_list = list(set(samples.values_list('Library', flat=True)))
 
+        if exosome:
+            exosome_list=[exosome]
+        else:
+            exosome_list = list(set(samples.values_list('Exosome', flat=True)))
+
+        #querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(Exosome__in=exosome_list).values_list('Experiment', flat=True)
+
 
         if fluid2:
             fluid_list2 = [fluid2]
@@ -172,9 +183,18 @@ class CompareForm(forms.Form):
             library_list2=[library2]
         else:
             library_list2 = list(set(samples.values_list('Library', flat=True)))
+        if exosome2:
+            exosome_list2=[exosome2]
+        else:
+            exosome_list2 = list(set(samples.values_list('Exosome', flat=True)))
 
-        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
-        querySamples2 = Sample.objects.all().filter(Fluid__in=fluid_list2).filter(Sex__in=sex_list2).filter(Healthy__in=health_list2).filter(Extraction__in=extraction_list2).filter(Library__in=library_list2).values_list('Experiment', flat=True)
+        #querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
+        querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(
+            Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(
+            Exosome__in=exosome_list).values_list('Experiment', flat=True)
+
+        querySamples2 = Sample.objects.all().filter(Fluid__in=fluid_list2).filter(Sex__in=sex_list2).filter(Healthy__in=health_list2).filter(Extraction__in=extraction_list2).filter(Library__in=library_list2).filter(
+            Exosome__in=exosome_list2).values_list('Experiment', flat=True)
 
         queryString = ",".join(querySamples).strip(' ')
         queryString2 = ",".join(querySamples2).strip(' ')
