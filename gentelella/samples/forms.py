@@ -168,7 +168,7 @@ class ManualForm(forms.Form):
 
                     Submit('submit', 'REMOVE SELECTED SAMPLES', onclick="removeSelected()", css_class='btn btn-primary btn-form'),
 
-                    Submit('submit', 'PROCEED WITH ALL SAMPLES', onclick="proceed()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'PROCEED WITH ALL SAMPLES', onclick="$('#loadpage').show(); $('#divPageContent').hide();proceed()", css_class='btn btn-primary btn-form'),
 
                 )
 
