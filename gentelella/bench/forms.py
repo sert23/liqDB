@@ -8,6 +8,7 @@ import random
 import os
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, BENCH_FOLDER
 from django.db.models import Q
+from django.core.urlresolvers import reverse_lazy
 
 
 def generate_uniq_id(size=20, chars=string.ascii_uppercase + string.digits):
@@ -209,12 +210,13 @@ class ManualForm(forms.Form):
         if hiddenList[-1] == "keep":
             cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
             queryString = ",".join(cleanList)
-            success_url = reverse_lazy("samples") + "pick/" + query_id
+            # success_url = reverse_lazy("samples") + "pick/" + query_id
+            success_url = reverse_lazy("bench") + "pick/" + query_id
 
         if hiddenList[-1] == "remove":
             removeString = ",".join(hiddenList[:-1])
             removeList = removeString.split(",")
-            success_url = reverse_lazy("samples") + "pick/" + query_id
+            success_url = reverse_lazy("bench") + "pick/" + query_id
             with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
                 old_SRX_string = queryfile.read()
             old_list = old_SRX_string.split(",")
@@ -223,7 +225,7 @@ class ManualForm(forms.Form):
             queryString = ",".join(cleanList)
 
         if hiddenList[-1] == "proceed":
-            success_url = reverse_lazy("samples") + query_id
+            success_url = reverse_lazy("bench") + query_id
             with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
                 queryString = queryfile.read()
 
