@@ -172,10 +172,11 @@ class PickBench(FormView):
             exosome = sam.Exosome
             checkbox = "<input type='checkbox' value='" + sam.Experiment + "' name='to_list'>"
             desc = sam.Desc
+            RC = sam.RC
             table_data.append(
                 #[SRP,SRX, BIOS, organism, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
                 #[checkbox,SRP,SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+                [checkbox,SRP,SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc, RC])
         js_data = json.dumps(table_data)
         #print(js_data)
         context["data"] = js_data
