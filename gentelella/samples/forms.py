@@ -45,7 +45,7 @@ class SamplesForm(forms.Form):
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
     exosome = forms.ChoiceField(label="Exosome Isolation",choices=exosome_choice,required=False)
 
-    RCfilter = forms.CharField(label="minimun miRNA Read Count", required= False ,widget=forms.TextInput(attrs={'placeholder': "e.g: id1:id2#id3:id4#id5:id6:id7"}))
+    RCfilter = forms.CharField(label="mini. miRNA Read Count", required= False ,widget=forms.TextInput(attrs={'placeholder': "500000 Recommended"}))
     #field2=  forms.CharField(label=')', required=False)
 
     ##choices go here
