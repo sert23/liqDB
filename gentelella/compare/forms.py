@@ -49,6 +49,9 @@ class CompareForm(forms.Form):
     library2 = forms.ChoiceField(label="RNA Library Preparation", choices=library_choice, required=False)
     exosome2 = forms.ChoiceField(label="Exosome Isolation", choices=exosome_choice, required=False)
 
+    RCfilter = forms.CharField(label="min. miRNA Read Count", required=False,
+                               widget=forms.TextInput(attrs={'placeholder': "500000 Recommended"}))
+
     #field2=  forms.CharField(label=')', required=False)
 
     ##choices go here
@@ -78,6 +81,8 @@ class CompareForm(forms.Form):
                 Field('extraction2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('library2', wrapper_class='col-md-2', css_class='form-control'),
                 Field('exosome2', wrapper_class='col-md-2', css_class='form-control'),
+                Field('RCfilter', wrapper_class='col-md-2', css_class='form-control'),
+
                 ButtonHolder(
                     # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     Submit('submit', 'COMPARE', onclick="$('#loadpage').show(); $('#divPageContent').hide();",
