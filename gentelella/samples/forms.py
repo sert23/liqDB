@@ -43,7 +43,7 @@ class SamplesForm(forms.Form):
     healthy =  forms.ChoiceField(label="Healthy Subjects",choices=health_choice,required=False)
     extraction =  forms.ChoiceField(label="RNA Extraction Protocol",choices=extraction_choice,required=False)
     library =  forms.ChoiceField(label="RNA Library Preparation",choices=library_choice,required=False)
-    exosome = forms.ChoiceField(label="Exosome Isolation Treatment",choices=exosome_choice,required=False)
+    exosome = forms.ChoiceField(label="Exosome Isolation",choices=exosome_choice,required=False)
 
     #field2=  forms.CharField(label=')', required=False)
 
