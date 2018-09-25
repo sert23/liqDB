@@ -4,7 +4,7 @@ from django.views.generic import FormView, TemplateView
 from app.models import Sample
 import json
 import os
-from compare.forms import CompareForm
+from compare.forms import CompareForm, ManualForm
 from django.core.urlresolvers import reverse_lazy
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE, MEDIA_URL, PATH_TO_RSCRIPT, HM_SCRIPT
 from study.views import sortedMatrixToTableList
@@ -52,12 +52,106 @@ class StartCompare(FormView):
         # It should return an HttpResponse.
         form.clean()
         query_id, call = form.start_query()
+        self.success_url = reverse_lazy("datasets") + "pick/" +query_id
+        #self.success_url = "/samples/" + query_id
+        #success_url = reverse_lazy("mirconstarget")
+        #os.system(call)
+        return super(StartCompare, self).form_valid(form)
+    #success_url = reverse_lazy("BENCH")
+
+class PickCompare(FormView):
+    template_name = 'app/compare_pick.html'
+    form_class = ManualForm
+    def get_context_data(self, **kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        query_id = str(self.request.path_info).split("/")[-1]
+        #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
+        content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
+        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query1.txt"), 'r') as queryfile:
+            SRX_string1 = queryfile.read()
+
+        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query2.txt"), 'r') as queryfile:
+            SRX_string2 = queryfile.read()
+        # with open(os.path.join(content_folder,), 'r') as exp_file:
+        #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
+
+        #first table
+        samples_ids = SRX_string1.split(",")
+        samples_ids = list(filter(None, samples_ids))
+        #context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
+        table_data = []
+        for sam in samples:
+            SRP = sam.SRP
+            organism = sam.Organism
+            SRX = sam.Experiment
+            Library = sam.Library
+            BIOS = sam.Sample
+            instrument = sam.Instrument
+            sex = sam.Sex
+            fluid = sam.Fluid
+            extraction = sam.Extraction
+            healthy = sam.Healthy
+            cancer = sam.Cancer
+            exosome = sam.Exosome
+            desc = sam.Desc
+            checkbox = "<input type='checkbox' value='" + sam.Experiment + "' name='to_list'>"
+            RC = sam.RC
+            desc = sam.Desc
+            table_data.append(
+                [checkbox, SRP, SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc, RC])
+        js_data = json.dumps(table_data)
+        # print(js_data)
+        context["data"] = js_data
+
+        #second table
+        samples_ids = SRX_string2.split(",")
+        samples_ids = list(filter(None, samples_ids))
+        # context['pagetitle'] = str(len(samples_ids)) + ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids)
+        table_data = []
+        for sam in samples:
+            SRP = sam.SRP
+            organism = sam.Organism
+            SRX = sam.Experiment
+            Library = sam.Library
+            BIOS = sam.Sample
+            instrument = sam.Instrument
+            sex = sam.Sex
+            fluid = sam.Fluid
+            extraction = sam.Extraction
+            healthy = sam.Healthy
+            cancer = sam.Cancer
+            exosome = sam.Exosome
+            desc = sam.Desc
+            checkbox = "<input type='checkbox' value='" + sam.Experiment + "' name='to_list2'>"
+            RC = sam.RC
+            desc = sam.Desc
+            table_data.append(
+                [checkbox, SRP, SRX, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc, RC])
+        js_data = json.dumps(table_data)
+        # print(js_data)
+        context["data2"] = js_data
+
+
+        if len(SRX_string1)<2 and len(SRX_string2)<2:
+            context['pagetitle'] = 'Sorry, no samples matched your query'
+            return context
+
+        return context
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.clean()
+        query_id, call = form.start_query()
         self.success_url = reverse_lazy("datasets") + query_id
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
         os.system(call)
-        return super(StartCompare, self).form_valid(form)
+        return super(PickCompare, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
+
 
 class CompareQueries(TemplateView):
     #print(self.request)
