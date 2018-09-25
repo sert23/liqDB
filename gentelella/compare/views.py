@@ -63,7 +63,7 @@ class PickCompare(FormView):
     template_name = 'app/compare_pick.html'
     form_class = ManualForm
     def get_context_data(self, **kwargs):
-        context = super(TemplateView, self).get_context_data(**kwargs)
+        context = super(FormView, self).get_context_data(**kwargs)
         query_id = str(self.request.path_info).split("/")[-1]
         #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
