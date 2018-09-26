@@ -310,6 +310,8 @@ class ManualForm(forms.Form):
         with open(os.path.join(query_path, "query.txt"), "w") as text_file:
             text_file.write(hiddenAction)
 
+        success_url = reverse_lazy("datasets") + query_id
+
         if hiddenAction == "keep1":
             success_url = reverse_lazy("datasets") + "pick/" + query_id
         elif hiddenAction == "keep2":
