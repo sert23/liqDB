@@ -137,6 +137,7 @@
 //}
 
 var selectedItems=[];
+var selectedItems2=[];
 function printChecked(){
 $("input:checkbox[name=to_list]:checked").each(function() {
 selectedItems.push($(this).val());
@@ -145,20 +146,32 @@ selectedItems=Array.from(new Set(selectedItems))
 $("input:checkbox[name=to_list]:not(:checked)").each(function() {
 selectedItems=selectedItems.filter(e => e !== $(this).val());
 });
+
+$("input:checkbox[name=to_list2]:checked").each(function() {
+selectedItems2.push($(this).val());
+selectedItems2=Array.from(new Set(selectedItems2))
+});
+$("input:checkbox[name=to_list2]:not(:checked)").each(function() {
+selectedItems2=selectedItems2.filter(e => e !== $(this).val());
+});
 //alert(selectedItems);
 }
 
 function keepSelected() {
 
 //    alert(selectedItems);
-    selectedItems.push("keep");
+//    selectedItems.push("keep");
 //    alert(selectedItems);
     document.getElementById('id_hiddenIDs').value = selectedItems.join();
+    document.getElementById('id_hiddenIDs2').value = selectedItems2.join();
 //    alert(document.getElementById('id_hiddenIDs').value);
     return true
 
 }
 
+function giveAction(input_action){
+        document.getElementById('id_hiddenIDs').value = input_action;
+}
 
 function removeSelected() {
 
