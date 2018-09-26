@@ -354,7 +354,7 @@ class ManualForm(forms.Form):
             newString = ",".join(new_list)
 
             old_list = oldString2.split(",")
-            new_list = [x for x in old_list if x not in hiddenList]
+            new_list = [x for x in old_list if x not in hiddenList2]
             newString2 = ",".join(new_list)
             success_url = reverse_lazy("datasets") + "pick/" + query_id
 
