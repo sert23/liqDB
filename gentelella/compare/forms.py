@@ -307,49 +307,86 @@ class ManualForm(forms.Form):
 
         hiddenAction = str(cleaned_data.get("hiddenAction"))
         query_path = os.path.join(DATA_FOLDER, "queryData", query_id)
-        with open(os.path.join(query_path, "query.txt"), "w") as text_file:
-            text_file.write(hiddenAction)
 
-        success_url = reverse_lazy("datasets") + query_id
+        hiddenString = str(cleaned_data.get("hiddenIDs"))
+        hiddenString2 = str(cleaned_data.get("hiddenIDs2"))
+        hiddenList = hiddenString.split(",")
+        hiddenList2 = hiddenString2.split(",")
+
+        with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query1.txt"), 'r') as queryfile:
+            oldString = queryfile.read()
+
+        with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query2.txt"), 'r') as queryfile:
+            oldString2 = queryfile.read()
 
         if hiddenAction == "keep1":
+            newString = hiddenString
+            newString2 = oldString2
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "keep2":
+            newString2 = hiddenString2
+            newString = oldString
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "keepB":
+            newString = hiddenString
+            newString2 = hiddenString2
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "remove1":
+            newString2 = oldString2
+            old_list = oldString.split(",")
+            new_list = [x for x in old_list if x not in hiddenList]
+            newString = ",".join(new_list)
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "remove2":
+            newString = oldString
+            old_list = oldString2.split(",")
+            new_list = [x for x in old_list if x not in hiddenList]
+            newString2 = ",".join(new_list)
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "removeB":
+            old_list = oldString.split(",")
+            new_list = [x for x in old_list if x not in hiddenList]
+            newString = ",".join(new_list)
+
+            old_list = oldString2.split(",")
+            new_list = [x for x in old_list if x not in hiddenList]
+            newString2 = ",".join(new_list)
             success_url = reverse_lazy("datasets") + "pick/" + query_id
+
         elif hiddenAction == "proceed":
+            newString = oldString
+            newString2 = oldString2
             success_url = reverse_lazy("datasets") + query_id
 
+        queryString = newString
+        queryString2 = newString
+        sampleString = queryString + "," + queryString2
+        query_n = len(queryString.split(","))
+        query_n2 = len(queryString2.split(","))
+        groupList = ["Group1"] * query_n + ["Group2"] * query_n2
+        sampleGroups = ",".join(groupList)
+        query_path = os.path.join(DATA_FOLDER, "queryData", query_id)
+        outputPath = os.path.join(query_path, "queryOutput")
 
-        # hiddenList = hiddenString.split(",")
-        # if hiddenList[-1] == "keep":
-        #     cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
-        #     queryString = ",".join(cleanList)
-        #     success_url = reverse_lazy("datasets") + "pick/" + query_id
-        #
-        # if hiddenList[-1] == "remove":
-        #     removeString = ",".join(hiddenList[:-1])
-        #     removeList = removeString.split(",")
-        #     success_url = reverse_lazy("datasets") + "pick/" + query_id
-        #     with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
-        #         old_SRX_string = queryfile.read()
-        #     old_list = old_SRX_string.split(",")
-        #     new_list = [x for x in old_list if x not in removeList]
-        #     cleanList = [x for x in new_list if x not in ["keep", "proceed", "remove"]]
-        #     queryString = ",".join(cleanList)
-        #
-        # if hiddenList[-1] == "proceed":
-        #     success_url = reverse_lazy("datasets") + query_id
-        #     with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
-        #         queryString = queryfile.read()
-        #
+        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=DE sampleString={sampleString} sampleGroups={sampleGroups}  variables=Groups".format(
+            outputPath=outputPath,
+            sampleString=sampleString,
+            sampleGroups=sampleGroups,
+        )
+
+        with open(os.path.join(query_path,"query1.txt"), "w") as text_file:
+            text_file.write(queryString)
+
+        with open(os.path.join(query_path,"query2.txt"), "w") as text_file:
+            text_file.write(queryString2)
+
+        with open(os.path.join(query_path,"call.txt"), "w") as text_file:
+            text_file.write(call)
         #
         # #print(len(querySamples))
         # #samples_ids = samples.values_list('Experiment',flat=True)
@@ -367,8 +404,8 @@ class ManualForm(forms.Form):
         # with open(os.path.join(query_path,"query.txt"), "w") as text_file:
         #     text_file.write(queryString)
         # #print(query_id,fluid,sex,healthy,extraction,library)
-        #return(query_id,call,success_url)
-        return(query_id," ", success_url)
+        return(query_id,call,success_url)
+
     def start_query(self,old_query):
         query_id = self.generate_id()
         return self.make_query(self.cleaned_data,query_id, old_query)
