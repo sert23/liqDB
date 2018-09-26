@@ -249,6 +249,7 @@ class ManualForm(forms.Form):
 
     hiddenIDs = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=1000000)
     hiddenIDs2 = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=1000000)
+    hiddenAction = forms.CharField(label='', required=False, widget=forms.HiddenInput, max_length=50)
 
     #field2=  forms.CharField(label=')', required=False)
 
@@ -259,31 +260,33 @@ class ManualForm(forms.Form):
         self.helper.layout = Layout(
             Div(
                 Field('hiddenIDs', name='hiddenIDs'),
-                Field('hiddenIDs2', name='hiddenIDs'),
+                Field('hiddenIDs2', name='hiddenIDs2'),
+                Field('hiddenAction', name='hiddenAction')
+
                                                      ),
                 #Field('library', wrapper_class='col-md-2',css_class='form-control'),
                 FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     #Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
                     Submit('submit', 'KEEP SELECTED (GROUP 1)', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
-
-                    Submit('submit', 'REMOVE SELECTED (GROUP 1)', onclick="removeSelected()", css_class='btn btn-primary btn-form'),
-
-                    Submit('submit', 'PROCEED WITH CURRENT SAMPLES', onclick="$('#loadpage').show(); $('#divPageContent').hide();proceed()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED (GROUP 2)', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED (BOTH)', onclick = "keepSelected()", css_class='btn btn-primary btn-form')
 
                 ),
             FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                 # Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
-                Submit('submit', 'KEEP SELECTED (GROUP 2)', onclick="keepSelected()",
+                Submit('submit', 'REMOVE SELECTED (GROUP 1)', onclick="keepSelected()",
                        css_class='btn btn-primary btn-form'),
 
                 Submit('submit', 'REMOVE SELECTED (GROUP 2)', onclick="removeSelected()",
                        css_class='btn btn-primary btn-form'),
+                Submit('submit', 'REMOVE SELECTED (BOTH)', onclick="removeSelected()",
+                       css_class='btn btn-primary btn-form'),
 
                 Submit('submit', 'PROCEED WITH CURRENT SAMPLES',
                        onclick="$('#loadpage').show(); $('#divPageContent').hide();proceed()",
-                       css_class='btn btn-primary btn-form'),
+                       css_class='btn btn-primary btn-form')
 
             )
 
