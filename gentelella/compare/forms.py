@@ -7,6 +7,7 @@ import string
 import random
 import os
 from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT
+from django.core.urlresolvers import reverse_lazy
 from django.db.models import Q
 
 
@@ -268,24 +269,24 @@ class ManualForm(forms.Form):
                 FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     #Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
-                    Submit('submit', 'KEEP SELECTED (GROUP 1 )', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
-                    Submit('submit', 'KEEP SELECTED ( GROUP 2 )', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
-                    Submit('submit', 'KEEP SELECTED ( BOTH )', onclick = "keepSelected()", css_class='btn btn-primary btn-form')
+                    Submit('submit', 'KEEP SELECTED (GROUP 1 )', onclick = "giveAction('keep1'); keepSelected()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED ( GROUP 2 )', onclick = "giveAction('keep2'); keepSelected()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED ( BOTH )', onclick = "giveAction('keepB'); keepSelected()", css_class='btn btn-primary btn-form')
 
                 ),
             FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                 # Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
-                Submit('submit', 'REMOVE SELECT. (GROUP 1)', onclick="keepSelected()",
+                Submit('submit', 'REMOVE SELECT. (GROUP 1)', onclick="giveAction('remove1'); keepSelected()",
                        css_class='btn btn-primary btn-form'),
 
-                Submit('submit', 'REMOVE SELECT. (GROUP 2)', onclick="removeSelected()",
+                Submit('submit', 'REMOVE SELECT. (GROUP 2)', onclick="giveAction('remove2'); keepSelected()",
                        css_class='btn btn-primary btn-form'),
-                Submit('submit', 'REMOVE SELECT. (BOTH)', onclick="removeSelected()",
+                Submit('submit', 'REMOVE SELECT. (BOTH)', onclick="giveAction('removeB'); keepSelected()",
                        css_class='btn btn-primary btn-form'),
 
                 Submit('submit', 'PROCEED WITH CURRENT SAMPLES',
-                       onclick="$('#loadpage').show(); $('#divPageContent').hide();proceed()",
+                       onclick="$('#loadpage').show(); $('#divPageContent').hide();giveAction('proceed')",
                        css_class='btn btn-primary btn-form')
 
             )
@@ -310,12 +311,12 @@ class ManualForm(forms.Form):
         if hiddenList[-1] == "keep":
             cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
             queryString = ",".join(cleanList)
-            success_url = reverse_lazy("samples") + "pick/" + query_id
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
 
         if hiddenList[-1] == "remove":
             removeString = ",".join(hiddenList[:-1])
             removeList = removeString.split(",")
-            success_url = reverse_lazy("samples") + "pick/" + query_id
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
             with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
                 old_SRX_string = queryfile.read()
             old_list = old_SRX_string.split(",")
@@ -324,7 +325,7 @@ class ManualForm(forms.Form):
             queryString = ",".join(cleanList)
 
         if hiddenList[-1] == "proceed":
-            success_url = reverse_lazy("samples") + query_id
+            success_url = reverse_lazy("datasets") + query_id
             with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
                 queryString = queryfile.read()
 
