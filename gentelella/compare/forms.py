@@ -268,9 +268,9 @@ class ManualForm(forms.Form):
                 FormActions(
                 # Submit('submit', 'RUN', css_class='btn btn-primary', onclick="alert('Neat!'); return true")
                     #Submit('submit', 'KEEP SELECTED', onclick="$('#loadpage').show(); $('#divPageContent').hide();", css_class='btn btn-primary btn-form')
-                    Submit('submit', 'KEEP SELECTED (GROUP 1)', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
-                    Submit('submit', 'KEEP SELECTED (GROUP 2)', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
-                    Submit('submit', 'KEEP SELECTED (BOTH)', onclick = "keepSelected()", css_class='btn btn-primary btn-form')
+                    Submit('submit', 'KEEP SELECTED ( GROUP 1 )', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED ( GROUP 2 )', onclick = "keepSelected()", css_class='btn btn-primary btn-form'),
+                    Submit('submit', 'KEEP SELECTED ( BOTH )', onclick = "keepSelected()", css_class='btn btn-primary btn-form')
 
                 ),
             FormActions(
