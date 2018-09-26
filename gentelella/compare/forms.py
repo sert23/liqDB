@@ -306,6 +306,9 @@ class ManualForm(forms.Form):
     def make_query(self,cleaned_data,query_id,old_query):
 
         hiddenAction = str(cleaned_data.get("hiddenAction"))
+        query_path = os.path.join(DATA_FOLDER, "queryData", query_id)
+        with open(os.path.join(query_path, "query.txt"), "w") as text_file:
+            text_file.write(hiddenAction)
 
         if hiddenAction == "keep1":
             success_url = reverse_lazy("datasets") + "pick/" + query_id
