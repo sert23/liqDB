@@ -323,45 +323,45 @@ class ManualForm(forms.Form):
             success_url = reverse_lazy("datasets") + query_id
 
 
-        hiddenList = hiddenString.split(",")
-        if hiddenList[-1] == "keep":
-            cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
-            queryString = ",".join(cleanList)
-            success_url = reverse_lazy("datasets") + "pick/" + query_id
-
-        if hiddenList[-1] == "remove":
-            removeString = ",".join(hiddenList[:-1])
-            removeList = removeString.split(",")
-            success_url = reverse_lazy("datasets") + "pick/" + query_id
-            with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
-                old_SRX_string = queryfile.read()
-            old_list = old_SRX_string.split(",")
-            new_list = [x for x in old_list if x not in removeList]
-            cleanList = [x for x in new_list if x not in ["keep", "proceed", "remove"]]
-            queryString = ",".join(cleanList)
-
-        if hiddenList[-1] == "proceed":
-            success_url = reverse_lazy("datasets") + query_id
-            with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
-                queryString = queryfile.read()
-
-
-        #print(len(querySamples))
-        #samples_ids = samples.values_list('Experiment',flat=True)
-        #print(samples_ids)
-        #print(len(samples_ids))
-
-        query_path = os.path.join(DATA_FOLDER,"queryData", query_id)
-        outputPath = os.path.join(query_path,"queryOutput")
-
-        call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
-            outputPath=outputPath,
-            sampleString=queryString
-        )
-
-        with open(os.path.join(query_path,"query.txt"), "w") as text_file:
-            text_file.write(queryString)
-        #print(query_id,fluid,sex,healthy,extraction,library)
+        # hiddenList = hiddenString.split(",")
+        # if hiddenList[-1] == "keep":
+        #     cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]
+        #     queryString = ",".join(cleanList)
+        #     success_url = reverse_lazy("datasets") + "pick/" + query_id
+        #
+        # if hiddenList[-1] == "remove":
+        #     removeString = ",".join(hiddenList[:-1])
+        #     removeList = removeString.split(",")
+        #     success_url = reverse_lazy("datasets") + "pick/" + query_id
+        #     with open(os.path.join(DATA_FOLDER,"queryData",old_query,"query.txt"), 'r') as queryfile:
+        #         old_SRX_string = queryfile.read()
+        #     old_list = old_SRX_string.split(",")
+        #     new_list = [x for x in old_list if x not in removeList]
+        #     cleanList = [x for x in new_list if x not in ["keep", "proceed", "remove"]]
+        #     queryString = ",".join(cleanList)
+        #
+        # if hiddenList[-1] == "proceed":
+        #     success_url = reverse_lazy("datasets") + query_id
+        #     with open(os.path.join(DATA_FOLDER, "queryData", old_query, "query.txt"), 'r') as queryfile:
+        #         queryString = queryfile.read()
+        #
+        #
+        # #print(len(querySamples))
+        # #samples_ids = samples.values_list('Experiment',flat=True)
+        # #print(samples_ids)
+        # #print(len(samples_ids))
+        #
+        # query_path = os.path.join(DATA_FOLDER,"queryData", query_id)
+        # outputPath = os.path.join(query_path,"queryOutput")
+        #
+        # call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
+        #     outputPath=outputPath,
+        #     sampleString=queryString
+        # )
+        #
+        # with open(os.path.join(query_path,"query.txt"), "w") as text_file:
+        #     text_file.write(queryString)
+        # #print(query_id,fluid,sex,healthy,extraction,library)
         return(query_id,call,success_url)
     def start_query(self,old_query):
         query_id = self.generate_id()
