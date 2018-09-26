@@ -364,7 +364,7 @@ class ManualForm(forms.Form):
             success_url = reverse_lazy("datasets") + query_id
 
         queryString = newString
-        queryString2 = newString
+        queryString2 = newString2
         sampleString = queryString + "," + queryString2
         query_n = len(queryString.split(","))
         query_n2 = len(queryString2.split(","))
