@@ -305,8 +305,24 @@ class ManualForm(forms.Form):
 
     def make_query(self,cleaned_data,query_id,old_query):
 
+        hiddenAction = str(cleaned_data.get("hiddenAction"))
 
-        hiddenString = str(cleaned_data.get("hiddenIDs"))
+        if hiddenAction == "keep1":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "keep2":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "keepB":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "remove1":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "remove2":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "removeB":
+            success_url = reverse_lazy("datasets") + "pick/" + query_id
+        elif hiddenAction == "proceed":
+            success_url = reverse_lazy("datasets") + query_id
+
+
         hiddenList = hiddenString.split(",")
         if hiddenList[-1] == "keep":
             cleanList = [x for x in hiddenList if x not in ["keep", "proceed","remove"]]

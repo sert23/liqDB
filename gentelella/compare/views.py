@@ -144,11 +144,13 @@ class PickCompare(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.clean()
-        query_id, call = form.start_query()
-        self.success_url = reverse_lazy("datasets") + query_id
+        old_query = str(self.request.path_info).split("/")[-1]
+        query_id, call, success_url = form.start_query(old_query)
+        self.success_url = success_url
         #self.success_url = "/samples/" + query_id
         #success_url = reverse_lazy("mirconstarget")
         os.system(call)
+
         return super(PickCompare, self).form_valid(form)
     #success_url = reverse_lazy("BENCH")
 
