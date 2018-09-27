@@ -164,7 +164,7 @@ class CompareQueries(TemplateView):
         query_id = str(self.request.path_info).split("/")[-1]
         #content_folder = os.path.join(MEDIA_ROOT, query_id, "queryOutput")
         content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
-        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query.txt"), 'r') as queryfile:
+        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query1.txt"), 'r') as queryfile:
             SRX_string = queryfile.read()
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
