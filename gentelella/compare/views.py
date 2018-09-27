@@ -166,6 +166,8 @@ class CompareQueries(TemplateView):
         content_folder = os.path.join(DATA_FOLDER, "queryData",query_id, "queryOutput")
         with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query1.txt"), 'r') as queryfile:
             SRX_string = queryfile.read()
+        with open(os.path.join(DATA_FOLDER,"queryData",query_id,"query2.txt"), 'r') as queryfile:
+            SRX_string2 = queryfile.read()
         # with open(os.path.join(content_folder,), 'r') as exp_file:
         #     exp_data = [[n for n in line.split()] for line in exp_file.readlines()]
 
@@ -194,9 +196,35 @@ class CompareQueries(TemplateView):
         # print(js_data)
         context["data"] = js_data
         context['SRX_string'] = SRX_string
+
+        samples_ids2 = SRX_string2.split(",")
+        samples_ids2 = list(filter(None, samples_ids2))
+        context['pagetitle'] = str(len(samples_ids)+len(samples_ids2)) + ' samples selected'
+        samples = Sample.objects.all().filter(Experiment__in=samples_ids2)
+        table_data = []
+        for sam in samples:
+            SRP = sam.SRP
+            organism = sam.Organism
+            SRX = sam.Experiment
+            Library = sam.Library
+            BIOS = sam.Sample
+            instrument = sam.Instrument
+            sex = sam.Sex
+            fluid = sam.Fluid
+            extraction = sam.Extraction
+            healthy = sam.Healthy
+            cancer = sam.Cancer
+            exosome = sam.Exosome
+            desc = sam.Desc
+            table_data.append(
+                [SRP, SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
+        js_data = json.dumps(table_data)
+        # print(js_data)
+        context["data2"] = js_data
+        context['SRX_string2'] = SRX_string2
         #context['RNAcols'] = "hello"
 
-        if len(SRX_string)<2:
+        if len(SRX_string)<2 and len(SRX_string2)<2:
             context['pagetitle'] = 'Sorry, no samples matched your query'
             return context
 
