@@ -281,9 +281,9 @@ class CompareQueries(TemplateView):
                 HM_link = "<a href='" + HM_path + "'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
 
                 if not os.path.exists(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"heatmap_euclidean.html")):
-                    #output = ('temp.txt', 'w') as output:
-                    #server = subprocess.Popen('./server.py', stdout=output)
-                    subprocess.Popen([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison)], stderr = os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt"), stdout = os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt") )
+                    with open(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt"), "w") as outputf:
+                        #server = subprocess.Popen('./server.py', stdout=output)
+                        subprocess.Popen([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison)], stderr = outputf, stdout = outputf )
                     #print("lelo")
                 DE_objs.append([comparison, DE_table, DE_plot, HM_link])
             else:
