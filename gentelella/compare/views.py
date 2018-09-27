@@ -283,8 +283,8 @@ class CompareQueries(TemplateView):
                 if not os.path.exists(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"heatmap_euclidean.html")):
                     #output = ('temp.txt', 'w') as output:
                     #server = subprocess.Popen('./server.py', stdout=output)
-                    #subprocess.Popen([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison)], ">",os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt")])
-                    print("lelo")
+                    subprocess.Popen([PATH_TO_RSCRIPT, HM_SCRIPT, os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison)], stderr = os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt"), stdout = os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt") )
+                    #print("lelo")
                 DE_objs.append([comparison, DE_table, DE_plot, HM_link])
             else:
                 DE_table = os.path.join(content_folder, "de", comparison, "").replace("\\", "/")
