@@ -99,7 +99,7 @@
                             <br>
                             <h2> Group2 samples metadata</h2>
                         <!--{{exp_table|safe}}-->
-                      <table id="example" class="table table-striped table-bordered bulk_action"></table>
+                      <table id="example2" class="table table-striped table-bordered bulk_action"></table>
 
                     <!--<table id="profile" class="table table-striped table-bordered bulk_action"></table>-->
                   </div>
@@ -268,11 +268,46 @@
 //    alert("Hey2");
 //    var received_data = {{ data }};
     var received_data = {{ data|safe }};
+    var received_data2 = {{ data2|safe }};
 //    alert(received_data)
 //    alert(received_data);
 
 $(document).ready(function() {
     $('#example').DataTable( {
+//        'responsive': true,
+        data: received_data,
+//        processing: true,
+//        serverSide: true,
+//        deferRender: false,
+        'language':{
+       "loadingRecords": "&nbsp;",
+      "processing": "Loading..."
+    },
+        columns: [
+
+            { title: "SRA Study" },
+            { title: "Experiment" },
+            { title: "BioSample" },
+//            { title: "Organism" },
+            { title: "Instrument" },
+            { title: "Sex" },
+            { title: "Fluid" },
+            { title: "RNA Extraction protocol" },
+            { title: "Library preparation protocol" },
+
+            { title: "Healthy" },
+            { title: "Cancer" },
+            { title: "Exosome isolation treatment" },
+            { title: "Sample info" }
+
+
+        ]
+    } );
+} );
+
+
+$(document).ready(function() {
+    $('#example2').DataTable( {
 //        'responsive': true,
         data: received_data,
 //        processing: true,
