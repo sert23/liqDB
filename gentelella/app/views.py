@@ -243,7 +243,7 @@ def make_table_div(input_file):
 def statistics(request):
     context = dict()
     template = loader.get_template('app/statistics.html')
-    context["table"] = example_table = make_table_div("lalo")
+    context["table"] = make_table_div("lalo")
 
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
