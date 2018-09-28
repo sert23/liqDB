@@ -62,12 +62,12 @@
 
                 {% for table in table_list %}
 
-                    {{table}}
+                    {{table|safe}}
 
                 {% endfor %}
 
 
-                <table id="example" class="table table-striped table-bordered bulk_action"></table>
+
 
                 <!--<table id="example" class="table table-striped table-bordered bulk_action">-->
                 <!--&lt;!&ndash;<th>&ndash;&gt;-->
