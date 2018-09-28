@@ -242,7 +242,7 @@ def statistics(request):
             list_of = line.split("\t")
             file = list_of[0]
             title = list_of[1]
-            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file)),title)
+            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file),title))
 
     context["table_list"] = table_list
 
