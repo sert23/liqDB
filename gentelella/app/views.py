@@ -247,6 +247,7 @@ def statistics(request):
             table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file),title))
 
     context["table_list"] = table_list
+    context["pagetitle"] = "Basic statistics"
 
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
