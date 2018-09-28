@@ -239,7 +239,7 @@ def statistics(request):
     with open(os.path.join(MEDIA_ROOT,"basic_statistics","desc.txt"),"r") as ifile:
         lines = ifile.readlines()
         for line in lines:
-            [file,title] = line.rstrip().split("\t")
+            [file,title] = line.split("\t")
             table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file),title))
 
     context["table_list"] = table_list
