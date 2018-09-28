@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^success/', views.success, name="contact_success"),
     url(r'^about/', views.about),
     url(r'^downloads/', views.downloads),
+    url(r'^statistics/', views.statistics),
 
     # The home page
     url(r'^$', views.index, name='index')

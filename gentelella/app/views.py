@@ -176,3 +176,74 @@ def downloads(request):
     template = loader.get_template('app/downloads.html')
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
+
+
+def make_table_div(input_file):
+
+
+    table_headers = '''
+                        <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                        '''
+    table_body = '''
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                '''
+
+    table_template = '''
+                
+                <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Stripped table <small>Stripped table subtitle</small></h2>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    {table_headers}
+                  </tr>
+                </thead>
+                <tbody>
+                  {table_body}
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+    '''
+    table_string = table_template.format(
+        table_headers= table_headers,
+        table_body = table_body
+    )
+    return table_string
+def statistics(request):
+    context = dict()
+    template = loader.get_template('app/statistics.html')
+    context["table"] = example_table = make_table_div("lalo")
+
+    # template = loader.get_template('app/bootstrap_table.html' )
+    return HttpResponse(template.render(context, request))
