@@ -125,6 +125,7 @@ class CompareForm(forms.Form):
         extraction2 = str(cleaned_data.get("extraction2"))
         library2 = str(cleaned_data.get("library2"))
         exosome2 = str(cleaned_data.get("exosome2"))
+        RC = cleaned_data.get("RCfilter")
 
         samples = Sample.objects.all()
         #samples = Sample.objects.all()
@@ -195,13 +196,17 @@ class CompareForm(forms.Form):
         else:
             exosome_list2 = list(set(samples.values_list('Exosome', flat=True)))
 
+        if not RC:
+            RC = 1
+
+
         #querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).values_list('Experiment', flat=True)
         querySamples = Sample.objects.all().filter(Fluid__in=fluid_list).filter(Sex__in=sex_list).filter(
             Healthy__in=health_list).filter(Extraction__in=extraction_list).filter(Library__in=library_list).filter(
-            Exosome__in=exosome_list).values_list('Experiment', flat=True)
+            Exosome__in=exosome_list).filter(RC__gte=RC).values_list('Experiment', flat=True)
 
         querySamples2 = Sample.objects.all().filter(Fluid__in=fluid_list2).filter(Sex__in=sex_list2).filter(Healthy__in=health_list2).filter(Extraction__in=extraction_list2).filter(Library__in=library_list2).filter(
-            Exosome__in=exosome_list2).values_list('Experiment', flat=True)
+            Exosome__in=exosome_list2).filter(RC__gte=RC).values_list('Experiment', flat=True)
 
         queryString = ",".join(querySamples).strip(' ')
         queryString2 = ",".join(querySamples2).strip(' ')
