@@ -189,7 +189,7 @@ def make_table_div(input_file, title=" "):
     for header in headers.split("\t"):
         table_headers.append("<th>" + header.rstrip() +"</th>")
     table_body = []
-    lines.pop(0)
+    # lines.pop(0)
     for i,row in enumerate(lines):
         cells = row.split("\t")
         new_row =[]
