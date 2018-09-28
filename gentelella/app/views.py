@@ -179,7 +179,7 @@ def downloads(request):
     return HttpResponse(template.render(context, request))
 
 
-def make_table_div(input_file, title):
+def make_table_div(input_file, title=" "):
 
     with open(input_file, 'r') as ifile:
         lines = ifile.readlines()
@@ -239,8 +239,8 @@ def statistics(request):
     with open(os.path.join(MEDIA_ROOT,"basic_statistics","desc.txt"),"r") as ifile:
         lines = ifile.readlines()
         for line in lines:
-            [file,title] = line.split("\t")
-            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file),title))
+            file = line.split("\t")
+            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file)))
 
     context["table_list"] = table_list
 
