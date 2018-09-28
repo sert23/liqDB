@@ -239,7 +239,8 @@ def make_table_div(input_file):
         table_headers= table_headers,
         table_body = table_body
     )
-    return table_string
+    return table_headers
+    # return table_string
 def statistics(request):
     context = dict()
     template = loader.get_template('app/statistics.html')
