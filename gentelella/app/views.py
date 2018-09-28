@@ -227,8 +227,8 @@ def make_table_div(input_file, title=" "):
         <div class="clearfix"></div>
     '''
     table_string = table_template.format(
-        table_headers= table_headers,
-        table_body = table_body,
+        table_headers= "".join(table_headers),
+        table_body = "".join(table_body),
         title = title
     )
     # return table_headers
