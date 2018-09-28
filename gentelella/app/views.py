@@ -9,6 +9,7 @@ from gentelella.settings import BASE_DIR, DATA_FOLDER, MEDIA_ROOT, SUB_SITE
 from django.views.generic import FormView
 from app.forms import ContactForm
 from django.core.urlresolvers import reverse_lazy
+import os
 
 def index(request):
     context = {}
@@ -178,42 +179,30 @@ def downloads(request):
     return HttpResponse(template.render(context, request))
 
 
-def make_table_div(input_file):
+def make_table_div(input_file, title):
 
+    with open(input_file, 'r') as ifile:
+        lines = ifile.readlines()
 
-    table_headers = '''
-                        <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                        '''
-    table_body = '''
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                '''
+    headers = lines.pop(0)
+    table_headers = []
+    for header in headers:
+        table_headers.append("<th>" + header +"</th>")
+    table_body = []
+    for i,row in enumerate(lines):
+        cells = row.split("\t")
+        new_row =['<tr><th scope="row">'+str(i)+'</th>']
+        for cell in cells:
+            new_row.append("<td>" + cell +"</td>")
+        new_row.append("</tr>")
+        table_body.append("".join(new_row))
 
     table_template = '''
                 
                 <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
-              <h2>Stripped table <small>Stripped table subtitle</small></h2>
+              <h2>{title}</h2>
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -236,8 +225,9 @@ def make_table_div(input_file):
         <div class="clearfix"></div>
     '''
     table_string = table_template.format(
-        table_headers= table_headers,
-        table_body = table_body
+        table_headers= ,
+        table_body = table_body,
+        title = title
     )
     # return table_headers
     return table_string
@@ -245,7 +235,14 @@ def make_table_div(input_file):
 def statistics(request):
     context = dict()
     template = loader.get_template('app/statistics.html')
-    context["table"] = make_table_div("lalo")
+    table_list = []
+    with open(os.path.join(MEDIA_ROOT,"basic_statistics","desc.txt"),"r") as ifile:
+        lines = ifile.readlines()
+        for line in lines:
+            file,title = line.rstrip().split("\t")
+            table_list.append(make_table_div(file,title))
+
+    context["table_list"] = table_list
 
     # template = loader.get_template('app/bootstrap_table.html' )
     return HttpResponse(template.render(context, request))
