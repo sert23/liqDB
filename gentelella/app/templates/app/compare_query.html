@@ -142,7 +142,7 @@
                     {% if DE_list %}
                     <div role="tabpanel" class="tab-pane fade active" id="tab_DE" aria-labelledby="profile-tab">
                         <div class="accordion" id="accordion4" role="tablist" aria-multiselectable="true">
-                            {% for comparison,table,plot,heatmap in DE_objs %}
+                            {% for comparison,table,plot,heatmap,message in DE_objs %}
                                     <a class="panel-heading" role="tab" id="heading{{comparison}}" data-toggle="collapse" data-parent="#accordion4" href="#collapse{{comparison}}" aria-expanded="false" aria-controls="collapseOne">
                             <h4 class="panel-title">{{comparison}}</h4>
                           </a>
@@ -150,6 +150,9 @@
                             <div class="panel-body">
 
                                 {{plot|safe}}
+                                <br>
+                                <h2>{{message}}</h2>
+                                <br>
                                 {{heatmap|safe}}
 
                             </div>
