@@ -279,6 +279,11 @@ class CompareQueries(TemplateView):
 
                 HM_path = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "de", comparison, "heatmap_euclidean.html")
                 HM_link = "<a href='" + HM_path + "'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
+                with open(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput"), "r") as desc:
+                    lines = desc.readlines()
+                    for line in lines:
+                        if line.startswith("de_miRNA"):
+                            DE_message = line.split("\t")[-1]
 
                 if not os.path.exists(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"heatmap_euclidean.html")):
                     with open(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","de",comparison,"Rlog.txt"), "w") as outputf:
@@ -287,7 +292,7 @@ class CompareQueries(TemplateView):
                         outputf.write(" ".join(HM_call_list)+"\n")
                         subprocess.Popen(HM_call_list, stderr = outputf, stdout = outputf )
                     #print("lelo")
-                DE_objs.append([comparison, DE_table, DE_plot, HM_link])
+                DE_objs.append([comparison, DE_table, DE_plot, HM_link, DE_message])
             else:
                 DE_table = os.path.join(content_folder, "de", comparison, "").replace("\\", "/")
                 DE_objs.append([comparison, DE_table, " ", " "])
