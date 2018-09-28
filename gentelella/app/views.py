@@ -210,7 +210,7 @@ def make_table_div(input_file):
 
     table_template = '''
                 
-                <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
             <div class="x_title">
               <h2>Stripped table <small>Stripped table subtitle</small></h2>
