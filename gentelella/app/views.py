@@ -240,7 +240,7 @@ def statistics(request):
         lines = ifile.readlines()
         for line in lines:
             file,title = line.rstrip().split("\t")
-            table_list.append(make_table_div(file,title))
+            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file),title))
 
     context["table_list"] = table_list
 
