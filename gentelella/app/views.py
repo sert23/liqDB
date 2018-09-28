@@ -186,7 +186,7 @@ def make_table_div(input_file, title=" "):
 
     headers = lines.pop(0)
     table_headers = []
-    for header in headers:
+    for header in headers.split("\t"):
         table_headers.append("<th>" + header +"</th>")
     table_body = []
     for i,row in enumerate(lines):
@@ -241,8 +241,8 @@ def statistics(request):
         for line in lines:
             list_of = line.split("\t")
             file = list_of[0]
-            #title = list_of[1]
-            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file)))
+            title = list_of[1]
+            table_list.append(make_table_div(os.path.join(MEDIA_ROOT,"basic_statistics",file)),title)
 
     context["table_list"] = table_list
 
