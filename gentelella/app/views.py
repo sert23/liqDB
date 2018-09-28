@@ -189,12 +189,13 @@ def make_table_div(input_file, title=" "):
     for header in headers.split("\t"):
         table_headers.append("<th>" + header.rstrip() +"</th>")
     table_body = []
+    lines.pop(0)
     for i,row in enumerate(lines):
         cells = row.split("\t")
         new_row =[]
         #new_row =['<tr><th scope="row">'+str(i)+'</th>']
         for cell in cells:
-            new_row.append("<td>" + cell +"</td>")
+            new_row.append("<td>" + cell.rstrip() +"</td>")
         new_row.append("</tr>")
         table_body.append("".join(new_row))
 
