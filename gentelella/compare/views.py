@@ -279,7 +279,7 @@ class CompareQueries(TemplateView):
 
                 HM_path = os.path.join(MEDIA_URL,  "queryData",query_id, "queryOutput", "de", comparison, "heatmap_euclidean.html")
                 HM_link = "<a href='" + HM_path + "'><h3><b> See heatmap with hierarchical clustering </b><h3></a>"
-                with open(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput"), "r") as desc:
+                with open(os.path.join(MEDIA_ROOT,  "queryData",query_id, "queryOutput","desc.txt"), "r") as desc:
                     lines = desc.readlines()
                     for line in lines:
                         if line.startswith("de_miRNA"):
