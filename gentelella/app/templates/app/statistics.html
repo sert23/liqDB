@@ -60,7 +60,12 @@
             </div>
             <div class="x_content">
 
-                {{table|safe}}
+                {% for table in table_list %}
+
+                    {{table|safe}}
+
+                {% endfor %}
+
 
                 <table id="example" class="table table-striped table-bordered bulk_action"></table>
 
