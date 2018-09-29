@@ -56,6 +56,8 @@ def index(request):
     fluid_list = Sample.objects.values_list('Fluid', flat=True)
     #print(len(fluid_list))
     fluid_list = [element for element in fluid_list if not "cell" in element]
+    fluid_list = [element for element in fluid_list if not element == "NA"]
+
     #print(len(fluid_list))
     pie_string = pie_chart(fluid_list)
 
