@@ -201,7 +201,7 @@ class CompareQueries(TemplateView):
         samples_ids2 = list(filter(None, samples_ids2))
         context['pagetitle'] = str(len(samples_ids)+len(samples_ids2)) + ' samples selected'
         samples = Sample.objects.all().filter(Experiment__in=samples_ids2)
-        table_data = []
+        table_data2 = []
         for sam in samples:
             SRP = sam.SRP
             organism = sam.Organism
@@ -216,11 +216,11 @@ class CompareQueries(TemplateView):
             cancer = sam.Cancer
             exosome = sam.Exosome
             desc = sam.Desc
-            table_data.append(
+            table_data2.append(
                 [SRP, SRX, BIOS, instrument, sex, fluid, extraction, Library, healthy, cancer, exosome, desc])
-        js_data = json.dumps(table_data)
+        js_data2 = json.dumps(table_data2)
         # print(js_data)
-        context["data2"] = js_data
+        context["data2"] = js_data2
         context['SRX_string2'] = SRX_string2
         #context['RNAcols'] = "hello"
 
