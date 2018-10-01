@@ -70,6 +70,13 @@ class DisplayStudy(DetailView):
         studies_folder = STUDIES_FOLDER
         study = context.get('object')
         context['pagetitle'] = study.SRP
+        if not os.path.exists(os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")):
+            study_samples = Sample.objects.all.filter(SRP__exact=study.SRP).values_list("Experiment", flat= True)
+            call = "java -jar /opt/sRNAtoolboxDB/exec/liqDB.jar output={outputPath} mode=matrix sampleString={sampleString}".format(
+            outputPath= os.path.join(studies_folder,study.SRP) ,
+            sampleString= ",".join(study_samples)
+        )
+            os.system(call)
         expression_mat = os.path.join(studies_folder,study.SRP,"miRNA_RCadj.txt")
         #expression_mat = os.path.join(DATA_FOLDER,"SRP062974","RCadj_miRNA.txt")
         RNAcols , RNAbody =sortedMatrixToTableList(os.path.join(studies_folder,study.SRP,"RNAmaping_sort.txt"))
