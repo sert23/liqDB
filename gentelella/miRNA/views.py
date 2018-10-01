@@ -63,7 +63,7 @@ class DisplayMicro(DetailView):
         miRNA = micro.name
         context['pagetitle'] = miRNA
         plot_list = []
-        with open(os.path.join(MICROS_FOLDER,miRNA,"description.txt"), "r") as description:
+        with open(os.path.join(MICROS_FOLDER,"description.txt"), "r") as description:
             lines = description.readlines()
             for line in lines:
                 target,title = line.split("\t")
