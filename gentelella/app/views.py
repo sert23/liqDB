@@ -33,7 +33,7 @@ def clean_upload():
 
     with open("/opt/liqDB/liqDB/gentelella/data_folder/test.txt", "w") as testfile:
         for dir in to_rem:
-            timestamp = os.path.getmtime(os.path.join(query_folder, dir))
+            timestamp = os.path.getmtime(dir)
             if now - numdays > timestamp:
                 try:
                     testfile.write(dir+"\n")
