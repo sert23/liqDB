@@ -11,6 +11,16 @@ from app.forms import ContactForm
 from django.core.urlresolvers import reverse_lazy
 import os
 
+
+def clean_upload():
+
+    #get all folders in upload
+
+    folders = [x for x in os.listdir(MEDIA_ROOT) if os.path.isdir(os.path.join(MEDIA_ROOT,x))]
+
+    with open("/opt/liqDB/liqDB/gentelella/data_folder/test.txt", "w") as testfile:
+        testfile.write(",".join(folders))
+
 def index(request):
     context = {}
     template = loader.get_template('app/index.html')
@@ -20,7 +30,7 @@ def index(request):
     recent = Study.objects.all()[total-6:total-1]
     #print(len(recent))
     results = dict()
-
+    clean_upload()
     bar_years = dict()
     SRPs = set(Study.objects.all().values_list('SRP', flat=True))
     for sample in samples:
