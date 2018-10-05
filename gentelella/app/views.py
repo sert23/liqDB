@@ -15,7 +15,7 @@ import os
 def clean_upload():
     import time
     import shutil
-    numdays = 86400 * 30
+    numdays = 86400 * 15
     now = time.time()
     #make white_list
     white_list=[]
