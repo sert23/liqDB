@@ -28,6 +28,9 @@ def clean_upload():
     folders = [x for x in os.listdir(query_folder) if os.path.isdir(os.path.join(query_folder,x))]
 
     to_rem = [os.path.join(query_folder,x) for x in folders if x not in white_list]
+    with open("/opt/liqDB/liqDB/gentelella/data_folder/test1.txt", "w") as testfile1:
+        testfile1.write(",".join(to_rem))
+
     with open("/opt/liqDB/liqDB/gentelella/data_folder/test.txt", "w") as testfile:
         for dir in to_rem:
             timestamp = os.path.getmtime(os.path.join(query_folder, dir))
