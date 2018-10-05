@@ -37,7 +37,7 @@ def clean_upload():
             timestamp = os.path.getmtime(dir)
             #testfile.write(dir + " " + str(timestamp) +" " + str(now - numdays) + "\n")
             if now - numdays > timestamp:
-                testfile.write(dir + " " + str(timestamp) + "\n")
+                #testfile.write(dir + " " + str(timestamp) + "\n")
                 try:
                     testfile.write(dir+"\n")
                     # shutil.rmtree(os.path.join(query_folder,dir))  #uncomment to use
