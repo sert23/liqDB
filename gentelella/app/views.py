@@ -35,7 +35,7 @@ def clean_upload():
         for dir in to_rem:
 
             timestamp = os.path.getmtime(dir)
-            testfile.write(dir + str(timestamp) +"\n")
+            testfile.write(dir + " " +str(timestamp) +"\n")
             if now - numdays > timestamp:
                 try:
                     testfile.write(dir+"\n")
