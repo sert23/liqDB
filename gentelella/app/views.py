@@ -40,7 +40,7 @@ def clean_upload():
                 #testfile.write(dir + " " + str(timestamp) + "\n")
                 try:
                     testfile.write(dir+"\n")
-                    # shutil.rmtree(os.path.join(query_folder,dir))  #uncomment to use
+                    shutil.rmtree(dir) #uncomment to use
                 except:
                     testfile.write("")
 
