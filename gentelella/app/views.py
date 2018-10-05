@@ -13,13 +13,33 @@ import os
 
 
 def clean_upload():
-
+    import time
+    import shutil
+    numdays = 86400 * 30
+    now = time.time()
+    #make white_list
+    white_list=[]
+    with open(os.path.join(MEDIA_ROOT,"white_list"), "r") as wfile:
+        for line in wfile.readlines():
+            white_list.append(line.rstrip())
     #get all folders in upload
+    query_folder = os.path.join(MEDIA_ROOT,"queryData")
 
-    folders = [x for x in os.listdir(MEDIA_ROOT) if os.path.isdir(os.path.join(MEDIA_ROOT,x))]
+    folders = [x for x in os.listdir(query_folder) if os.path.isdir(os.path.join(query_folder,x))]
 
+    to_rem = [os.path.join(query_folder,x) for x in folders if x not in white_list]
     with open("/opt/liqDB/liqDB/gentelella/data_folder/test.txt", "w") as testfile:
-        testfile.write(",".join(folders))
+        for dir in to_rem:
+            timestamp = os.path.getmtime(os.path.join(query_folder, dir))
+            if now - numdays > timestamp:
+                try:
+                    testfile.write(dir+"\n")
+                    # shutil.rmtree(os.path.join(query_folder,dir))  #uncomment to use
+                except:
+                    testfile.write("")
+
+
+
 
 def index(request):
     context = {}
